@@ -34,6 +34,7 @@ export class DashboardComponent implements OnInit {
     summary = signal<AnalyticsSummary | null>(null);
     loading = signal(true);
     selectedRange = signal('monthly');
+    today = new Date();
 
     // Chart Data
     revenueChartData: ChartConfiguration<'line'>['data'] = { labels: [], datasets: [] };
@@ -115,7 +116,6 @@ export class DashboardComponent implements OnInit {
         this.loadDashboardData();
     }
 
-    // Quick Management Cards
     cards = [
         {
             title: 'My Products',
@@ -126,21 +126,21 @@ export class DashboardComponent implements OnInit {
         },
         {
             title: 'Add Product',
-            link: '/admin/add-product',
+            link: '/admin/add-product', // Keep this or change if moderator specific add exists
             description: 'Add new shoes to your collection.',
             icon: 'add_circle',
             gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
         },
         {
             title: 'Orders',
-            link: '/admin/orders',
+            link: '/moderator/orders',
             description: 'Track and manage customer orders.',
             icon: 'shopping_cart',
             gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
         },
         {
             title: 'Reviews',
-            link: '/admin/reviews',
+            link: '/moderator/reviews',
             description: 'Check customer reviews and feedback.',
             icon: 'star',
             gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
@@ -159,5 +159,21 @@ export class DashboardComponent implements OnInit {
 
     navigate(link: string) {
         this.router.navigate([link]); // Fixed: using this.router instead of router
+    }
+
+    downloadChart(canvasId: string, fileName: string) {
+        const canvas = document.getElementById(canvasId) as HTMLCanvasElement;
+        if (!canvas) return;
+
+        // Create a temporary link to download the image
+        const url = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('download', `${fileName}_${new Date().getTime()}.png`);
+        link.click();
+    }
+
+    printReport() {
+        window.print();
     }
 }

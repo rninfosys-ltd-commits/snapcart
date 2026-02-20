@@ -18,6 +18,10 @@ public class DatabaseSchemaFixer implements CommandLineRunner {
             // Change role column to VARCHAR to support all enum values and avoid
             // truncation/enum mismatch
             jdbcTemplate.execute("ALTER TABLE users MODIFY COLUMN role VARCHAR(20)");
+
+            // Fix for OrderTracking status truncation (ENUM vs VARCHAR issue)
+            jdbcTemplate.execute("ALTER TABLE order_tracking MODIFY COLUMN status VARCHAR(255)");
+
             System.out.println("Database Schema Fixes executed successfully.");
         } catch (Exception e) {
             System.err.println("Error running database schema fixes: " + e.getMessage());

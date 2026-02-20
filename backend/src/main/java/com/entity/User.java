@@ -12,6 +12,14 @@ import lombok.NoArgsConstructor;
 @Table(name = "users")
 public class User {
 
+    @Column(updatable = false)
+    private java.time.LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = java.time.LocalDateTime.now();
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

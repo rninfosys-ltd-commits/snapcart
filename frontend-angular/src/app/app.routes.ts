@@ -158,6 +158,14 @@ export const routes: Routes = [
                 loadComponent: () => import('./features/moderator/employee-management/employee-management.component').then(m => m.EmployeeManagementComponent)
             },
             {
+                path: 'orders',
+                loadComponent: () => import('./features/moderator/orders/moderator-orders.component').then(m => m.ModeratorOrdersComponent)
+            },
+            {
+                path: 'reviews',
+                loadComponent: () => import('./features/moderator/reviews/moderator-reviews.component').then(m => m.ModeratorReviewsComponent)
+            },
+            {
                 path: 'profile',
                 loadComponent: () => import('./features/pages/profile-page/profile-page.component').then(m => m.ProfilePageComponent)
             },

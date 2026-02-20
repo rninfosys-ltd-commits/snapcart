@@ -1,3 +1,9 @@
+// Print-Only Elements (Hidden by default)
+.print-only-header,
+.print-summary-section {
+    display: none;
+}
+
 // Variables for the new theme
 $bg-color: #fcfcfc;
 $card-bg: #ffffff;
@@ -338,4 +344,138 @@ $radius-md: 12px;
     align-items: center;
     gap: 1rem;
     color: $text-sub;
+}
+
+// Print Styles
+@media print {
+    @page {
+        size: A4;
+        margin: 15mm;
+    }
+
+    .dashboard-wrapper {
+        padding: 0;
+        margin: 0 !important;
+        max-width: 100%;
+        background-color: white !important;
+    }
+
+    // Professional Header
+    .print-only-header {
+        display: block !important;
+        margin-bottom: 2rem;
+        border-bottom: 2px solid $primary;
+        padding-bottom: 1rem;
+
+        .print-brand {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+
+            .brand-logo {
+                font-size: 2rem;
+                font-weight: 800;
+                color: $accent;
+            }
+
+            .report-title {
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: $text-main;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+        }
+
+        .print-metadata {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            font-size: 0.85rem;
+            color: $text-sub;
+        }
+    }
+
+    // Summary Table
+    .print-summary-section {
+        display: block !important;
+        margin-bottom: 2.5rem;
+
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: $primary;
+            text-transform: uppercase;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+
+            th,
+            td {
+                padding: 12px;
+                text-align: left;
+                border: 1px solid #ddd;
+            }
+
+            th {
+                background: #f9f9f9;
+                font-weight: 700;
+            }
+
+            .fw-bold {
+                font-weight: 700;
+                color: $accent;
+            }
+        }
+    }
+
+    .controls,
+    .export-btn,
+    .print-btn,
+    .range-selector,
+    .chart-header button,
+    .action-card .arrow-container {
+        display: none !important;
+    }
+
+    .dashboard-header {
+        display: none !important; // Hide standard header in favor of print header
+    }
+
+    .section-container {
+        margin-bottom: 2rem;
+        break-inside: avoid;
+    }
+
+    .metric-card {
+        box-shadow: none !important;
+        border: 1px solid #eee;
+        break-inside: avoid;
+        background: white !important;
+    }
+
+    .chart-container {
+        background: white !important;
+        border: 1px solid #eee;
+        padding: 1rem !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+
+        &.wide {
+            height: auto !important;
+            min-height: 300px;
+        }
+    }
+
+    .cards-grid {
+        display: none !important;
+    }
+
+    canvas {
+        max-width: 100% !important;
+        height: auto !important;
+    }
 }

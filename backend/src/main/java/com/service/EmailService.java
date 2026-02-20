@@ -27,11 +27,15 @@ public class EmailService {
         try {
             log.info("Sending email to {} with subject: {}", to, subject);
             MimeMessage message = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
+            helper.setFrom("SnapCart <rninfosysltd@gmail.com>");
             helper.setTo(Objects.requireNonNull(to, "Email recipient is required"));
             helper.setSubject(Objects.requireNonNull(subject, "Email subject is required"));
-            helper.setText(Objects.requireNonNull(body, "Email body is required"), true);
+
+            // Create plain text version by stripping HTML tags
+            String plainText = body.replaceAll("<[^>]*>", "");
+            helper.setText(plainText, body);
 
             mailSender.send(message);
             log.info("Email sent successfully to {}", to);
@@ -47,11 +51,15 @@ public class EmailService {
         try {
             log.info("Sending email with attachment to {} with subject: {}", to, subject);
             MimeMessage message = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
+            helper.setFrom("SnapCart <rninfosysltd@gmail.com>");
             helper.setTo(Objects.requireNonNull(to, "Email recipient is required"));
             helper.setSubject(Objects.requireNonNull(subject, "Email subject is required"));
-            helper.setText(Objects.requireNonNull(body, "Email body is required"), true);
+
+            // Create plain text version by stripping HTML tags
+            String plainText = body.replaceAll("<[^>]*>", "");
+            helper.setText(plainText, body);
 
             if (attachmentData != null && attachmentData.length > 0) {
                 ByteArrayDataSource dataSource = new ByteArrayDataSource(attachmentData, "application/pdf");

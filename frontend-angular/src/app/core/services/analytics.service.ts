@@ -8,6 +8,9 @@ export interface AnalyticsSummary {
     totalOrders: number;
     newCustomers: number;
     avgOrderValue: number;
+    adminCount: number;
+    moderatorCount: number;
+    userCount: number;
 }
 
 export interface ChartData {

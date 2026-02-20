@@ -17,7 +17,10 @@ import java.util.stream.Collectors;
 import org.springframework.context.ApplicationEventPublisher;
 import com.event.OrderStatusChangedEvent;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class OrderService {
 
     @Autowired
@@ -127,8 +130,9 @@ public class OrderService {
         }
 
         // Generate Invoice for record keeping (but send email only after payment)
+        byte[] invoicePdf = null;
         try {
-            invoiceService.generateInvoice(savedOrder.getId());
+            invoicePdf = invoiceService.generateInvoice(savedOrder.getId());
         } catch (Exception e) {
             System.err.println("Failed to generate invoice: " + e.getMessage());
         }
@@ -152,10 +156,8 @@ public class OrderService {
         // Publish Order Confirmed Event (Async Email)
         // Note: Usually confirmation email is sent after payment success, but if this
         // is COD or immediate, we can trigger here.
-        // Assuming implicit confirmation for now or relying on payment flow.
-        // If we want to send confirmation email here:
-        // eventPublisher.publishEvent(new OrderStatusChangedEvent(this,
-        // user.getEmail(), savedOrder.getId().toString(), user.getName(), null));
+        eventPublisher.publishEvent(new OrderStatusChangedEvent(this,
+                user.getEmail(), savedOrder.getId().toString(), user.getName(), invoicePdf));
 
         return OrderMapper.toResponseDTO(savedOrder);
     }
@@ -320,45 +322,51 @@ public class OrderService {
 
     @Transactional
     public Order updateOrderLocation(Long orderId, String location, String statusStr) {
-        Order order = getOrderById(orderId);
-
-        // Update basic status if provided
-        OrderStatus status = OrderStatus.valueOf(statusStr.toUpperCase());
-        if (status != order.getStatus()) {
-            order.setStatus(status);
-        }
-
-        // Update location
-        order.setCurrentLocation(location);
-
-        // Add to tracking history
-        TrackingStatus trackingStatus;
+        log.info("Updating order location. OrderId: {}, Location: {}, Status: {}", orderId, location, statusStr);
         try {
-            trackingStatus = TrackingStatus.valueOf(status.name());
-        } catch (IllegalArgumentException e) {
-            // Fallback for statuses that don't match exactly
-            trackingStatus = switch (status) {
-                case PENDING -> TrackingStatus.ORDER_CONFIRMED;
-                default -> TrackingStatus.SHIPPED;
-            };
+            Order order = getOrderById(orderId);
+
+            // Update basic status if provided
+            OrderStatus status = OrderStatus.valueOf(statusStr.toUpperCase());
+            if (status != order.getStatus()) {
+                order.setStatus(status);
+            }
+
+            // Update location
+            order.setCurrentLocation(location);
+
+            // Add to tracking history
+            TrackingStatus trackingStatus;
+            try {
+                trackingStatus = TrackingStatus.valueOf(status.name());
+            } catch (IllegalArgumentException e) {
+                // Fallback for statuses that don't match exactly
+                trackingStatus = switch (status) {
+                    case PENDING -> TrackingStatus.ORDER_CONFIRMED;
+                    default -> TrackingStatus.SHIPPED;
+                };
+            }
+            OrderTracking tracking = new OrderTracking(order, trackingStatus, location, "", "Update via Admin Portal");
+            order.getTrackingHistory().add(tracking); // Cascaded
+                                                      // save
+
+            Order savedOrder = orderRepository.save(order);
+
+            // Publish tracking update event (Async Email)
+            User user = order.getUser();
+            eventPublisher.publishEvent(new OrderStatusChangedEvent(
+                    this,
+                    user.getEmail(),
+                    orderId.toString(),
+                    status.name(),
+                    user.getName(),
+                    location));
+
+            return savedOrder;
+        } catch (Exception e) {
+            log.error("Error updating order location for OrderId: {}", orderId, e);
+            throw e;
         }
-        OrderTracking tracking = new OrderTracking(order, trackingStatus, location, "", "Update via Admin Portal");
-        order.getTrackingHistory().add(tracking); // Cascaded
-                                                  // save
-
-        Order savedOrder = orderRepository.save(order);
-
-        // Publish tracking update event (Async Email)
-        User user = order.getUser();
-        eventPublisher.publishEvent(new OrderStatusChangedEvent(
-                this,
-                user.getEmail(),
-                orderId.toString(),
-                status.name(),
-                user.getName(),
-                location));
-
-        return savedOrder;
     }
 
     @Transactional

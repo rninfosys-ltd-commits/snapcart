@@ -1,4 +1,53 @@
 <div class="dashboard-wrapper">
+    <!-- Print-Only Professional Header -->
+    <div class="print-only-header">
+        <div class="print-brand">
+            <span class="brand-logo">SnapCart</span>
+            <span class="report-title">Analytical Performance Report</span>
+        </div>
+        <div class="print-metadata">
+            <div class="meta-item"><strong>Generated On:</strong> {{ today | date:'medium' }}</div>
+            <div class="meta-item"><strong>Report Range:</strong> {{ selectedRange() | titlecase }}</div>
+            <div class="meta-item"><strong>Role:</strong> Moderator</div>
+        </div>
+    </div>
+
+    <!-- Print-Only Summary Table -->
+    <div class="print-summary-section">
+        <h3>Executive Summary</h3>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Current Value</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Total Revenue</td>
+                    <td class="fw-bold">{{ summary()?.totalRevenue | currency:'INR':'symbol':'1.0-0' }}</td>
+                    <td>Achieved</td>
+                </tr>
+                <tr>
+                    <td>Total Orders</td>
+                    <td class="fw-bold">{{ summary()?.totalOrders }}</td>
+                    <td>Verified</td>
+                </tr>
+                <tr>
+                    <td>New Customers</td>
+                    <td class="fw-bold">{{ summary()?.newCustomers }}</td>
+                    <td>Active</td>
+                </tr>
+                <tr>
+                    <td>Avg Order Value</td>
+                    <td class="fw-bold">{{ summary()?.avgOrderValue | currency:'INR':'symbol':'1.0-0' }}</td>
+                    <td>Optimized</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
     <div class="dashboard-header">
         <div class="header-content">
             <h1>Dashboard</h1>
@@ -6,6 +55,9 @@
         </div>
 
         <div class="controls">
+            <button mat-flat-button color="accent" class="print-btn" (click)="printReport()" [disabled]="loading()">
+                <mat-icon>print</mat-icon> Print Report
+            </button>
             <mat-form-field appearance="outline" class="range-selector">
                 <mat-select [value]="selectedRange()" (selectionChange)="onRangeChange($event.value)">
                     <mat-option value="daily">Daily</mat-option>
@@ -99,9 +151,14 @@
             <div class="chart-container wide">
                 <div class="chart-header">
                     <h3>Revenue Growth</h3>
+                    <button mat-icon-button color="primary" (click)="downloadChart('revenueChart', 'revenue_growth')"
+                        title="Download Chart">
+                        <mat-icon>download</mat-icon>
+                    </button>
                 </div>
                 <div class="chart-body">
-                    <canvas baseChart [data]="revenueChartData" [options]="lineChartOptions" [type]="'line'">
+                    <canvas id="revenueChart" baseChart [data]="revenueChartData" [options]="lineChartOptions"
+                        [type]="'line'">
                     </canvas>
                 </div>
             </div>
@@ -110,9 +167,14 @@
             <div class="chart-container">
                 <div class="chart-header">
                     <h3>Order Volume</h3>
+                    <button mat-icon-button color="primary" (click)="downloadChart('ordersChart', 'order_volume')"
+                        title="Download Chart">
+                        <mat-icon>download</mat-icon>
+                    </button>
                 </div>
                 <div class="chart-body">
-                    <canvas baseChart [data]="ordersChartData" [options]="barChartOptions" [type]="'bar'">
+                    <canvas id="ordersChart" baseChart [data]="ordersChartData" [options]="barChartOptions"
+                        [type]="'bar'">
                     </canvas>
                 </div>
             </div>
@@ -121,9 +183,14 @@
             <div class="chart-container">
                 <div class="chart-header">
                     <h3>Sales by Category</h3>
+                    <button mat-icon-button color="primary"
+                        (click)="downloadChart('categoryChart', 'sales_by_category')" title="Download Chart">
+                        <mat-icon>download</mat-icon>
+                    </button>
                 </div>
                 <div class="chart-body">
-                    <canvas baseChart [data]="categoryChartData" [options]="pieChartOptions" [type]="'pie'">
+                    <canvas id="categoryChart" baseChart [data]="categoryChartData" [options]="pieChartOptions"
+                        [type]="'pie'">
                     </canvas>
                 </div>
             </div>
