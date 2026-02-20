@@ -1,0 +1,29 @@
+<div class="smart-popup" *ngIf="product && isVisible" [class.show]="isVisible" [class.flash-deal]="isFlashDeal">
+    <button class="close-btn" (click)="closePopup()">×</button>
+
+    <div class="popup-content" (click)="navigateToProduct()">
+        <div class="popup-image">
+            <img [src]="getProductImage()" alt="{{product.name}}">
+        </div>
+
+        <div class="popup-details">
+            <span class="popup-tag flash-tag" *ngIf="isFlashDeal">⚡ Flash Deal</span>
+            <span class="popup-tag" *ngIf="isTrending && !isFlashDeal">🔥 Trending</span>
+            <span class="popup-tag low-stock" *ngIf="isLowStock && !isFlashDeal">⚡ Fast Selling</span>
+
+            <h4 class="product-name">{{product.name}}</h4>
+            <p class="product-brand">{{product.brandName}}</p>
+
+            <div class="price-row" *ngIf="product.variants[0] as v">
+                <span class="price">
+                    ₹{{(isFlashDeal && v.salePrice) ? v.salePrice : v.price}}
+                </span>
+                <span class="original-price" *ngIf="v.salePrice && v.salePrice < v.price">
+                    ₹{{v.price}}
+                </span>
+            </div>
+
+            <button class="view-btn">View Details</button>
+        </div>
+    </div>
+</div>

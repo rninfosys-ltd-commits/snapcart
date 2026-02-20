@@ -1,0 +1,6 @@
+﻿C:\Users\kashi\redtape-freelance\workspace_recent_files.txt
+C:\Users\kashi\redtape-freelance\backend\recent_error.txt
+C:\Users\kashi\redtape-freelance\backend\recent_execution.txt
+C:\Users\kashi\redtape-freelance\backend\recent_files_expand.txt
+C:\Users\kashi\redtape-freelance\backend\recent_files_list.txt
+C:\Users\kashi\redtape-freelance\backend\server_execution_utf8.txt

@@ -1,0 +1,49 @@
+<div class="search-dropdown-container" #container>
+    <div class="search-input-wrapper">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input type="text" class="search-input" placeholder="Search for products, brands and more..."
+            [ngModel]="query()" (input)="onInput($event)" (focus)="isOpen.set(true)" (keydown)="handleKeyDown($event)">
+        @if (query()) {
+        <button class="clear-btn" (click)="handleClear()">
+            <mat-icon>close</mat-icon>
+        </button>
+        }
+    </div>
+
+    @if (isOpen() && (query() || isLoading())) {
+    <div class="search-dropdown-box shadow-lg">
+        @if (isLoading()) {
+        <div class="search-state p-4 text-center">
+            <mat-spinner diameter="24" class="mx-auto mb-2"></mat-spinner>
+            <span class="text-muted">Searching...</span>
+        </div>
+        } @else if (results().length > 0) {
+        <div class="results-list">
+            @for (product of results(); track product.modelNo; let i = $index) {
+            <div class="result-item p-3 d-flex align-items-center gap-3" [class.active]="i === activeIndex()"
+                (click)="handleSelect(product)" (mouseenter)="activeIndex.set(i)">
+                <img [src]="environment.apiUrl + '/images/product/' + product.modelNo + '/1'" alt=""
+                    class="result-thumb" (error)="$any($event.target).src='https://via.placeholder.com/50'">
+                <div class="result-info flex-grow-1 overflow-hidden">
+                    <h6 class="mb-0 text-truncate fw-bold">{{ product.name }}</h6>
+                    <p class="mb-0 smallest text-muted">{{ product.category }} • {{ product.subCategory || 'General' }}
+                    </p>
+                </div>
+                <span class="result-price fw-bold text-danger">{{ formatPrice(product.price) }}</span>
+            </div>
+            }
+            <div class="view-all-btn p-3 text-center" (click)="viewAllResults()">
+                <button class="btn-link">
+                    <mat-icon>search</mat-icon>
+                    View all results for "{{ query() }}"
+                </button>
+            </div>
+        </div>
+        } @else {
+        <div class="search-state p-4 text-center text-muted">
+            No matches found for "{{ query() }}"
+        </div>
+        }
+    </div>
+    }
+</div>

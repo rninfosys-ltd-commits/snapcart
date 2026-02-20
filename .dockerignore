@@ -1,0 +1,30 @@
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.iml
+
+# Node modules
+**/node_modules
+**/dist
+**/.angular
+
+# Maven
+**/target
+**/.mvn
+
+# Logs
+**/*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+README.md
+*.md
+curl_output.txt
+workspace_recent_files.txt

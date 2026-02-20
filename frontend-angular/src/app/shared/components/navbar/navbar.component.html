@@ -1,0 +1,184 @@
+<div class="navbar-wrapper">
+    <!-- Top Action Bar -->
+    <div class="top-bar">
+        <div class="container actions-container">
+            <!-- Mobile/Sidebar Toggle (Left) -->
+            <button mat-icon-button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+                <mat-icon>menu</mat-icon>
+            </button>
+
+            <!-- Logo -->
+            <a href="/" class="logo" (click)="handleLogoClick($event)">
+                <mat-icon class="logo-icon">shopping_cart</mat-icon>
+                <div class="logo-text">
+                    <span class="brand-name">SnapCart</span>
+                    <span class="brand-tagline">Small scale, big choice</span>
+                </div>
+            </a>
+
+            <!-- Search Area (Wide) -->
+            <div class="search-central">
+                <app-search-dropdown></app-search-dropdown>
+            </div>
+
+            <!-- Profile, Cart, Wishlist -->
+            <div class="action-icons">
+                <button mat-icon-button routerLink="/wishlist" matTooltip="Wishlist">
+                    <mat-icon [matBadge]="wishlistCount()" matBadgeColor="warn" [matBadgeHidden]="wishlistCount() === 0"
+                        aria-hidden="false">
+                        favorite_border
+                    </mat-icon>
+                </button>
+
+                <app-animated-cart-counter></app-animated-cart-counter>
+
+                <div class="user-control">
+                    @if (user()) {
+                    <button mat-button [matMenuTriggerFor]="userMenu" class="user-btn">
+                        <mat-icon>account_circle</mat-icon>
+                        <span class="user-name">Welcome, {{ user().name.split(' ')[0] }}</span>
+                    </button>
+                    } @else {
+                    <div class="auth-guest">
+                        <button mat-button routerLink="/login" class="login-link">Sign In</button>
+                        <button mat-flat-button color="primary" routerLink="/signup" class="join-btn">Join</button>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Menu Template -->
+    <mat-menu #userMenu="matMenu" xPosition="before" class="premium-menu">
+        <div class="menu-header" *ngIf="user()">
+            <span class="welcome">Welcome,</span>
+            <span class="name">{{ user().name }}</span>
+        </div>
+        <mat-divider></mat-divider>
+        <button mat-menu-item routerLink="/my-profile">
+            <mat-icon>person</mat-icon>
+            <span>My Profile</span>
+        </button>
+        <button mat-menu-item routerLink="/my-orders">
+            <mat-icon>shopping_bag</mat-icon>
+            <span>My Orders</span>
+        </button>
+        @if (primaryRole() === 'ADMIN' || primaryRole() === 'SUPER_ADMIN') {
+        <button mat-menu-item routerLink="/admin/dashboard">
+            <mat-icon>admin_panel_settings</mat-icon>
+            <span>Admin Dashboard</span>
+        </button>
+        }
+        @if (primaryRole() === 'SUPER_ADMIN') {
+        <button mat-menu-item routerLink="/super-admin/dashboard">
+            <mat-icon>security</mat-icon>
+            <span>SuperAdmin Control</span>
+        </button>
+        }
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Sign Out</span>
+        </button>
+    </mat-menu>
+</div>
+
+<!-- Side Drawer (Replaces Mobile Drawer & Category Strip) -->
+<div class="mobile-drawer" [class.open]="isMobileMenuOpen()">
+    <div class="drawer-header">
+        <h3>Menu</h3>
+        <button mat-icon-button (click)="toggleMobileMenu()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div class="drawer-content">
+        <!-- User Profile Section -->
+        @if (user()) {
+        <div class="mobile-user-section">
+            <div class="mobile-user-info">
+                <mat-icon class="mobile-user-avatar">account_circle</mat-icon>
+                <div>
+                    <span class="mobile-user-name">{{ user().name }}</span>
+                    <span class="mobile-user-email">{{ user().email }}</span>
+                </div>
+            </div>
+            <a routerLink="/my-profile" (click)="toggleMobileMenu()" class="mobile-profile-link">
+                <mat-icon>person</mat-icon> My Profile
+            </a>
+            <a routerLink="/my-orders" (click)="toggleMobileMenu()" class="mobile-profile-link">
+                <mat-icon>shopping_bag</mat-icon> My Orders
+            </a>
+            <a routerLink="/wishlist" (click)="toggleMobileMenu()" class="mobile-profile-link">
+                <mat-icon>favorite_border</mat-icon> Wishlist
+            </a>
+            @if (primaryRole() === 'ADMIN' || primaryRole() === 'SUPER_ADMIN') {
+            <a routerLink="/admin/dashboard" (click)="toggleMobileMenu()" class="mobile-profile-link">
+                <mat-icon>admin_panel_settings</mat-icon> Admin Dashboard
+            </a>
+            }
+            <button class="mobile-profile-link logout-link" (click)="logout()">
+                <mat-icon>logout</mat-icon> Sign Out
+            </button>
+        </div>
+        } @else {
+        <div class="mobile-user-section">
+            <div class="mobile-user-info">
+                <span class="mobile-user-name">Welcome Guest</span>
+            </div>
+            <a routerLink="/login" (click)="toggleMobileMenu()" class="mobile-profile-link">
+                <mat-icon>login</mat-icon> Sign In
+            </a>
+            <a routerLink="/signup" (click)="toggleMobileMenu()" class="mobile-profile-link">
+                <mat-icon>person_add</mat-icon> Create Account
+            </a>
+        </div>
+        }
+
+        <mat-divider style="margin: 1rem 0;"></mat-divider>
+        <h4
+            style="padding-left: 0.5rem; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">
+            Categories</h4>
+
+        <!-- Category Navigation -->
+        @for (cat of categories; track cat) {
+        <div class="mobile-nav-item">
+            <div class="nav-expand-header">
+                <a [routerLink]="getCategoryPath(cat)" (click)="toggleMobileMenu()" class="mobile-cat-link">
+                    {{ getCategoryLabel(cat) }}
+                </a>
+                <mat-icon (click)="toggleMobileCategory(cat)">{{ mobileCategoryExpanded() === cat ? 'expand_less' :
+                    'expand_more' }}</mat-icon>
+            </div>
+            <div class="sub-menu" *ngIf="mobileCategoryExpanded() === cat">
+                @if (cat === 'MEN') {
+                <a routerLink="/cat/MEN/CASUAL" (click)="toggleMobileMenu()">Footwear</a>
+                <a routerLink="/cat/MEN/SHIRTS" (click)="toggleMobileMenu()">Clothing</a>
+                } @else if (cat === 'WOMEN') {
+                <a routerLink="/cat/WOMEN/CASUAL_SHOES" (click)="toggleMobileMenu()">Footwear</a>
+                <a routerLink="/cat/WOMEN/DRESSES" (click)="toggleMobileMenu()">Clothing</a>
+                } @else if (cat === 'ELECTRONICS') {
+                <a routerLink="/cat/ELECTRONICS/SMARTPHONES" (click)="toggleMobileMenu()">Smartphones</a>
+                <a routerLink="/cat/ELECTRONICS/LAPTOPS" (click)="toggleMobileMenu()">Laptops</a>
+                } @else if (cat === 'HOME_KITCHEN') {
+                <a routerLink="/cat/HOME_KITCHEN/HOME_DECOR" (click)="toggleMobileMenu()">Decor</a>
+                <a routerLink="/cat/HOME_KITCHEN/KITCHEN_APPLIANCES" (click)="toggleMobileMenu()">Appliances</a>
+                } @else if (cat === 'BEAUTY') {
+                <a routerLink="/cat/BEAUTY/SKINCARE" (click)="toggleMobileMenu()">Skincare</a>
+                <a routerLink="/cat/BEAUTY/MAKEUP" (click)="toggleMobileMenu()">Makeup</a>
+                } @else if (cat === 'KIDS') {
+                <a routerLink="/cat/KIDS/CASUAL" (click)="toggleMobileMenu()">Boys</a>
+                <a routerLink="/cat/KIDS/DRESSES" (click)="toggleMobileMenu()">Girls</a>
+                } @else if (cat === 'ACCESSORIES') {
+                <a routerLink="/cat/ACCESSORIES/WATCHES" (click)="toggleMobileMenu()">Watches</a>
+                } @else if (cat === 'JEWELLERY') {
+                <a routerLink="/cat/JEWELLERY/NECKLACES" (click)="toggleMobileMenu()">Necklaces</a>
+                } @else if (cat === 'BAGS_FOOTWEAR') {
+                <a routerLink="/cat/BAGS_FOOTWEAR/HANDBAGS" (click)="toggleMobileMenu()">Handbags</a>
+                }
+            </div>
+        </div>
+        }
+    </div>
+</div>
+<div class="mobile-overlay" *ngIf="isMobileMenuOpen()" (click)="toggleMobileMenu()"></div>

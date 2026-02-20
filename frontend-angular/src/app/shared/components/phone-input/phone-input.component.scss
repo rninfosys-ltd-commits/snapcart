@@ -1,0 +1,224 @@
+.phone-input-container {
+    position: relative;
+    width: 100%;
+}
+
+.phone-input-wrapper {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    /* Glassmorphism start */
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.phone-input-wrapper:focus-within {
+    border-color: #e63946;
+    box-shadow: 0 0 0 4px rgba(230, 57, 70, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.phone-input-wrapper.has-error {
+    border-color: #dc3545;
+}
+
+.country-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 120px;
+}
+
+.country-selector:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.country-flag {
+    font-size: 1.4rem;
+    line-height: 1;
+}
+
+.country-dial {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.dropdown-arrow {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-left: 2px;
+}
+
+.phone-number-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+    background: transparent;
+    color: var(--text);
+    font-weight: 500;
+}
+
+.phone-number-input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Dropdown Styles */
+.country-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 8px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-height: 350px;
+    overflow: hidden;
+    animation: dropdownSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme='dark'] .country-dropdown {
+    background: #1a1a2e;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes dropdownSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.dropdown-search {
+    padding: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='dark'] .dropdown-search {
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.dropdown-search input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+[data-theme='dark'] .dropdown-search input {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.dropdown-search input:focus {
+    border-color: #e63946;
+}
+
+.country-list {
+    list-style: none;
+    margin: 0;
+    padding: 8px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.country-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.15s;
+    color: #334155;
+}
+
+[data-theme='dark'] .country-option {
+    color: #cbd5e1;
+}
+
+.country-option:hover {
+    background: #f8fafc;
+    color: #e63946;
+}
+
+[data-theme='dark'] .country-option:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #e63946;
+}
+
+.country-option.selected {
+    background: #f1f5f9;
+    color: #e63946;
+    font-weight: 600;
+}
+
+[data-theme='dark'] .country-option.selected {
+    background: rgba(230, 57, 70, 0.1);
+}
+
+.country-name {
+    flex: 1;
+    font-size: 0.9rem;
+}
+
+.country-dial-code {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    font-weight: 500;
+}
+
+.no-results {
+    justify-content: center;
+    padding: 2rem !important;
+    opacity: 0.5;
+}
+
+/* Error Message */
+.phone-error {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 8px;
+    padding-left: 4px;
+    font-weight: 500;
+}
+
+/* Scrollbar Styling */
+.country-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.country-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.country-list::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+[data-theme='dark'] .country-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+}

@@ -1,0 +1,121 @@
+﻿curl.exe : Note: 
+Unnecessary use of -X or 
+--request, POST is 
+already inferred.
+At line:1 char:1
++ curl.exe -v -X POST http
+://localhost:8080/api/auth
+/signin -H "Content ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (N  
+  ote: Unnecessa...read   
+ y inferred.:String) [    
+], RemoteException
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+* Host localhost:8080 was 
+resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+  % Total    % Received % 
+Xferd  Average Speed   
+Time    Time     Time  
+Current
+                          
+       Dload  Upload   
+Total   Spent    Left  
+Speed
+
+  0     0    0     0    0 
+    0      0      0 
+--:--:-- --:--:-- 
+--:--:--     0*   Trying 
+[::1]:8080...
+* Established connection 
+to localhost (::1 port 
+8080) from ::1 port 52693 
+* using HTTP/1.x
+> POST /api/auth/signin 
+HTTP/1.1
+
+> Host: localhost:8080
+
+> User-Agent: curl/8.16.0
+
+> Accept: */*
+
+> Content-Type: 
+application/json
+
+> Content-Length: 2
+
+> 
+
+} [2 bytes data]
+* upload completely sent 
+off: 2 bytes
+< HTTP/1.1 500 
+
+< Vary: Origin
+
+< Vary: Access-Control-Req
+uest-Method
+
+< Vary: Access-Control-Req
+uest-Headers
+
+< X-Content-Type-Options: 
+nosniff
+
+< X-XSS-Protection: 0
+
+< Cache-Control: 
+no-cache, no-store, 
+max-age=0, must-revalidate
+
+< Pragma: no-cache
+
+< Expires: 0
+
+< X-Frame-Options: DENY
+
+< Content-Type: 
+application/json
+
+< Transfer-Encoding: 
+chunked
+
+< Date: Mon, 09 Feb 2026 
+16:01:48 GMT
+
+< Connection: close
+
+< 
+
+{ [158 bytes data]
+
+100   154    0   152  100 
+    2    162      2  
+0:00:01 --:--:--  0:00:01 
+  164
+100   154    0   152  100 
+    2    160      2  
+0:00:01 --:--:--  0:00:01 
+  162
+* shutting down 
+connection #0
+Note: Unnecessary use of 
+-X or --request, POST is 
+already inferred.
+* URL rejected: Malformed 
+input to a URL function
+* closing connection #-1
+curl: (3) URL rejected: 
+Malformed input to a URL 
+function
+{"message":"An internal server error occurred: JSON parse error: Unexpected character ('\\' (code 92)): was expecting double-quote to start field name"}

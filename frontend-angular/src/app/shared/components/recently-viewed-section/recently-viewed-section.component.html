@@ -1,0 +1,47 @@
+@if (items().length > 0) {
+<section class="history-wrapper py-6">
+    <div class="container-xl">
+        <div class="d-flex align-items-center justify-content-between mb-4 px-2">
+            <div class="d-flex align-items-center gap-3">
+                <mat-icon class="section-icon">visibility</mat-icon>
+                <h2 class="h4 fw-bold mb-0">Recently Viewed</h2>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button mat-icon-button class="nav-btn" (click)="scroll('left')">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+                <button mat-icon-button class="nav-btn" (click)="scroll('right')">
+                    <mat-icon>arrow_forward</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <div class="scroll-wrapper" #scrollContainer>
+            <div class="d-flex gap-3 pb-2">
+                @for (product of items(); track product.modelNo) {
+                <mat-card class="history-card" (click)="handleNavigate(product.modelNo)">
+                    <div class="img-box">
+                        <img [src]="getProductImage(product)" [alt]="product.name"
+                            (error)="$any($event.target).src='https://placehold.co/300x300/e2e8f0/64748b?text=No+Image'">
+                        @if (product.averageRating > 0) {
+                        <div class="rating-strip">
+                            <mat-icon>star</mat-icon>
+                            <span>{{ product.averageRating | number: '1.1-1' }}</span>
+                        </div>
+                        }
+                    </div>
+                    <mat-card-content class="p-2 pt-3">
+                        <h5 class="item-name text-truncate">{{ product.name }}</h5>
+                        <p class="category-text text-muted small text-capitalize m-0">
+                            {{ (product.category || 'General').toLowerCase().replace('_', ' ') }}
+                        </p>
+                        <p class="item-price fw-bold m-0 mt-1">{{ formatPrice(product.price) }}</p>
+                    </mat-card-content>
+                </mat-card>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+}

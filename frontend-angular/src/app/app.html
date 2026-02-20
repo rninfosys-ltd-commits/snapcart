@@ -1,0 +1,12 @@
+@if (showLayout()) {
+<app-navbar></app-navbar>
+}
+
+<main class="main" [class.with-navbar]="showLayout()">
+  <router-outlet></router-outlet>
+</main>
+
+@if (showLayout()) {
+<app-footer></app-footer>
+<app-smart-popup></app-smart-popup>
+}

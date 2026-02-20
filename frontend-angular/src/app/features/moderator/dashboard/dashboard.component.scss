@@ -1,0 +1,341 @@
+// Variables for the new theme
+$bg-color: #fcfcfc;
+$card-bg: #ffffff;
+$primary: #000000;
+$accent: #e63946;
+$text-main: #1a1a1a;
+$text-sub: #666666;
+$border-color: #f0f0f0;
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+$shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+$radius-lg: 16px;
+$radius-md: 12px;
+
+.dashboard-wrapper {
+    background-color: $bg-color;
+    min-height: calc(100vh - 64px);
+    /* Subtract navbar height */
+    padding: 1.5rem 2rem;
+    font-family: 'Outfit', sans-serif;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+// Header
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+
+    .header-content {
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: $text-main;
+            margin: 0 0 0.5rem 0;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            color: $text-sub;
+            font-size: 1rem;
+            margin: 0;
+        }
+    }
+
+    .controls {
+        .range-selector {
+            width: 150px;
+
+            ::ng-deep .mat-mdc-text-field-wrapper {
+                background-color: $card-bg;
+                border-radius: $radius-md;
+                box-shadow: $shadow-sm;
+            }
+
+            ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+                display: none;
+            }
+        }
+    }
+}
+
+// Section Headers
+.section-container {
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $primary;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-left: 1rem;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 16px;
+        background-color: $accent;
+        border-radius: 2px;
+    }
+}
+
+// Quick Management Cards
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.action-card {
+    background: #fdfdfd; // Extremely subtle grey for contrast
+    border-radius: $radius-lg;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+
+    &:hover {
+        background: $card-bg;
+        box-shadow: $shadow-md;
+        transform: translateY(-4px);
+        border-color: rgba($accent, 0.1);
+
+        .arrow-container {
+            transform: translateX(5px);
+            color: $accent;
+            background-color: rgba($accent, 0.1);
+        }
+
+        .icon-circle {
+            transform: scale(1.1);
+        }
+    }
+
+    .card-content {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+    }
+
+    .icon-circle {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f5f5f5;
+        color: $text-main;
+        transition: transform 0.3s ease;
+
+        &.inventory {
+            color: #3b82f6;
+            background: rgba(#3b82f6, 0.1);
+        }
+
+        &.add {
+            color: #10b981;
+            background: rgba(#10b981, 0.1);
+        }
+
+        &.orders {
+            color: #8b5cf6;
+            background: rgba(#8b5cf6, 0.1);
+        }
+
+        &.reviews {
+            color: #f59e0b;
+            background: rgba(#f59e0b, 0.1);
+        }
+
+        mat-icon {
+            font-size: 28px;
+            width: 28px;
+            height: 28px;
+        }
+    }
+
+    .text-content {
+        flex: 1;
+
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: $text-main;
+            margin: 0 0 0.25rem 0;
+        }
+
+        p {
+            font-size: 0.9rem;
+            color: $text-sub;
+            margin: 0;
+            line-height: 1.4;
+        }
+    }
+
+    .arrow-container {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: #d1d5db;
+        transition: all 0.3s ease;
+    }
+}
+
+// Summary Metrics
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.metric-card {
+    background: $card-bg;
+    padding: 1.5rem;
+    border-radius: $radius-lg;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    box-shadow: $shadow-sm;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: $shadow-md;
+    }
+
+    .metric-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        mat-icon {
+            font-size: 26px;
+            width: 26px;
+            height: 26px;
+        }
+    }
+
+    // Specific styling per metric
+    &.revenue .metric-icon {
+        background: rgba(#FFF1F2, 1);
+        color: #BE123C;
+    }
+
+    // Rose
+    &.orders .metric-icon {
+        background: rgba(#EFF6FF, 1);
+        color: #1D4ED8;
+    }
+
+    // Blue
+    &.customers .metric-icon {
+        background: rgba(#F0FDF4, 1);
+        color: #15803D;
+    }
+
+    // Green
+    &.aov .metric-icon {
+        background: rgba(#FFFBEB, 1);
+        color: #B45309;
+    }
+
+    // Amber
+
+    .metric-info {
+        display: flex;
+        flex-direction: column;
+
+        .label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: $text-sub;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: $text-main;
+            line-height: 1;
+        }
+    }
+}
+
+// Charts Grid
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-container {
+        background: #fff5f5; // Very subtle pink/warm tint as requested in "pink" design
+        border-radius: $radius-lg;
+        padding: 1.5rem;
+        box-shadow: none; // Flat look for these specific containers
+
+        &.wide {
+            grid-column: 1 / -1;
+            height: 400px;
+        }
+
+        .chart-header {
+            margin-bottom: 1.5rem;
+
+            h3 {
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: $text-main;
+                margin: 0;
+            }
+        }
+
+        .chart-body {
+            position: relative;
+            height: calc(100% - 40px);
+            width: 100%;
+        }
+    }
+}
+
+// Loading
+.loading-state {
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: $text-sub;
+}

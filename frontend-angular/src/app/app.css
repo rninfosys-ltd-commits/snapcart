@@ -1,0 +1,4 @@
+.main.with-navbar {
+    padding-top: 80px;
+    /* Compensation for fixed navbar only when it is visible */
+}

@@ -1,0 +1,159 @@
+<h2 mat-dialog-title class="fw-bold">Edit Product: {{ formData.modelNo }}</h2>
+
+<mat-dialog-content class="mat-typography">
+    <div class="row g-3 pt-2">
+        <!-- Model No (Read Only) -->
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Model Number</mat-label>
+                <input matInput [(ngModel)]="formData.modelNo" name="modelNo" readonly>
+            </mat-form-field>
+        </div>
+
+        <!-- Name -->
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Product Name</mat-label>
+                <input matInput [(ngModel)]="formData.name" name="name" required>
+            </mat-form-field>
+        </div>
+
+        <!-- Brand Name -->
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Brand Name</mat-label>
+                <input matInput [(ngModel)]="formData.brandName" name="brandName">
+            </mat-form-field>
+        </div>
+
+        <!-- Color -->
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Color Name</mat-label>
+                <input matInput [(ngModel)]="formData.color" name="color">
+            </mat-form-field>
+        </div>
+
+        <!-- Color Hex -->
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Color Hex (e.g. #ff0000)</mat-label>
+                <input matInput [(ngModel)]="formData.colorHex" name="colorHex">
+            </mat-form-field>
+        </div>
+
+        <!-- Style Code -->
+        <div class="col-md-12">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Style Group Code (to link variants)</mat-label>
+                <input matInput [(ngModel)]="formData.styleCode" name="styleCode">
+            </mat-form-field>
+        </div>
+
+        <!-- Category -->
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Category</mat-label>
+                <mat-select [(ngModel)]="formData.category" name="category">
+                    @for (cat of categories; track cat) {
+                    <mat-option [value]="cat">{{ cat }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <!-- Subcategory -->
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Sub-Category</mat-label>
+                <mat-select [(ngModel)]="formData.subCategory" name="subCategory">
+                    @for (sub of subCategories; track sub) {
+                    <mat-option [value]="sub">{{ sub }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <!-- Price -->
+        <div class="col-md-12">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Price (₹)</mat-label>
+                <input matInput type="number" [(ngModel)]="formData.price" name="price" required>
+                <span matPrefix class="me-1">₹</span>
+            </mat-form-field>
+        </div>
+
+        <mat-divider class="my-3"></mat-divider>
+        <h6 class="text-muted fw-bold mb-0">Product Visuals (Image URLs)</h6>
+
+        <!-- Image 1 -->
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Image 1</mat-label>
+                <input matInput [value]="'Backend Managed'" readonly>
+                <mat-icon matSuffix>image</mat-icon>
+            </mat-form-field>
+            <div class="img-preview mb-3">
+                <img [src]="environment.apiUrl + '/images/product/' + formData.modelNo + '/1'" alt="Preview"
+                    class="img-fluid rounded border shadow-sm" (error)="$any($event.target).style.display='none'">
+            </div>
+        </div>
+
+        <!-- Image 2 -->
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Image 2</mat-label>
+                <input matInput [value]="'Backend Managed'" readonly>
+                <mat-icon matSuffix>image</mat-icon>
+            </mat-form-field>
+            <div class="img-preview mb-3">
+                <img [src]="environment.apiUrl + '/images/product/' + formData.modelNo + '/2'" alt="Preview"
+                    class="img-fluid rounded border shadow-sm" (error)="$any($event.target).style.display='none'">
+            </div>
+        </div>
+
+        <!-- Image 3 -->
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Image 3</mat-label>
+                <input matInput [value]="'Backend Managed'" readonly>
+                <mat-icon matSuffix>image</mat-icon>
+            </mat-form-field>
+            <div class="img-preview mb-3">
+                <img [src]="environment.apiUrl + '/images/product/' + formData.modelNo + '/3'" alt="Preview"
+                    class="img-fluid rounded border shadow-sm" (error)="$any($event.target).style.display='none'">
+            </div>
+        </div>
+
+        <!-- Image 4 -->
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Image 4</mat-label>
+                <input matInput [value]="'Backend Managed'" readonly>
+                <mat-icon matSuffix>image</mat-icon>
+            </mat-form-field>
+            <div class="img-preview mb-3">
+                <img [src]="environment.apiUrl + '/images/product/' + formData.modelNo + '/4'" alt="Preview"
+                    class="img-fluid rounded border shadow-sm" (error)="$any($event.target).style.display='none'">
+            </div>
+        </div>
+
+        <!-- Image 5 -->
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Image 5</mat-label>
+                <input matInput [value]="'Backend Managed'" readonly>
+                <mat-icon matSuffix>image</mat-icon>
+            </mat-form-field>
+            <div class="img-preview mb-3">
+                <img [src]="environment.apiUrl + '/images/product/' + formData.modelNo + '/5'" alt="Preview"
+                    class="img-fluid rounded border shadow-sm" (error)="$any($event.target).style.display='none'">
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
+
+<div mat-dialog-actions align="end" class="gap-2 p-3">
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-flat-button color="primary" (click)="onSave()">Save Changes</button>
+</div>

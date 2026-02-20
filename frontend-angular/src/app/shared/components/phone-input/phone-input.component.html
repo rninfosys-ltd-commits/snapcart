@@ -1,0 +1,41 @@
+<div class="phone-input-container" #dropdownRef>
+    <div class="phone-input-wrapper" [class.has-error]="error">
+        <!-- Country Selector -->
+        <button type="button" class="country-selector" (click)="toggleDropdown()">
+            <span class="country-flag">{{ selectedCountry().flag }}</span>
+            <span class="country-dial">{{ selectedCountry().dial }}</span>
+            <mat-icon class="dropdown-arrow">arrow_drop_down</mat-icon>
+        </button>
+
+        <!-- Phone Number Input -->
+        <input type="tel" class="phone-number-input" [value]="value" (input)="handlePhoneChange($event)"
+            placeholder="XXXXXXXXXX" maxlength="15" />
+    </div>
+
+    <!-- Dropdown -->
+    @if (isOpen()) {
+    <div class="country-dropdown">
+        <div class="dropdown-search">
+            <input type="text" placeholder="Search country..." [ngModel]="searchTerm()"
+                (ngModelChange)="searchTerm.set($event)" autoFocus />
+        </div>
+        <ul class="country-list">
+            @for (country of filteredCountries(); track country.code) {
+            <li class="country-option" [class.selected]="selectedCountry().code === country.code"
+                (click)="handleCountrySelect(country)">
+                <span class="country-flag">{{ country.flag }}</span>
+                <span class="country-name">{{ country.name }}</span>
+                <span class="country-dial-code">{{ country.dial }}</span>
+            </li>
+            } @empty {
+            <li class="country-option no-results">No countries found</li>
+            }
+        </ul>
+    </div>
+    }
+
+    <!-- Error Message -->
+    @if (error) {
+    <div class="phone-error">{{ error }}</div>
+    }
+</div>

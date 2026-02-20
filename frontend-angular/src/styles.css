@@ -1,0 +1,257 @@
+/* Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap');
+
+/* Light Mode (Modern SaaS Default) */
+:root {
+    --background: #ffffff;
+    --surface: #ffffff;
+    --surface-elevated: #f8fafc;
+    --primary: #4db6ac;
+    /* Original Teal Color */
+    --primary-dark: #00897b;
+    --primary-light: #80cbc4;
+    --secondary: #64748b;
+    --text-main: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --text-disabled: #cbd5e1;
+
+    /* Form & Input Colors - Explicit Borders */
+    --input-background: #ffffff;
+    --input-border: #cbd5e1;
+    /* Visible borders */
+    --input-border-focus: #0f172a;
+    --input-text: #0f172a;
+    --input-placeholder: #94a3b8;
+    --input-disabled-bg: #f8fafc;
+    --input-disabled-text: #94a3b8;
+
+    /* Borders & Dividers */
+    --border: #e2e8f0;
+    --border-light: #f1f5f9;
+    --divider: #e2e8f0;
+
+    /* Navbar */
+    --navbar-height: 64px;
+    /* Reduced height */
+
+    /* RGB Values */
+    --primary-rgb: 15, 23, 42;
+    --secondary-bg: #f8fafc;
+}
+
+
+body {
+    background-color: var(--background);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    /* padding-top: 80px; Removed - handled in app.component based on layout */
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-main);
+}
+
+/* Form Elements Styling */
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'],
+input[type='tel'],
+input[type='search'],
+input[type='url'],
+textarea,
+select {
+    background-color: var(--input-background);
+    border: 1px solid var(--input-border);
+    color: var(--input-text);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type='text']::placeholder,
+input[type='email']::placeholder,
+input[type='password']::placeholder,
+input[type='number']::placeholder,
+input[type='tel']::placeholder,
+input[type='search']::placeholder,
+input[type='url']::placeholder,
+textarea::placeholder {
+    color: var(--input-placeholder);
+    opacity: 1;
+}
+
+input[type='text']:focus,
+input[type='email']:focus,
+input[type='password']:focus,
+input[type='number']:focus,
+input[type='tel']:focus,
+input[type='search']:focus,
+input[type='url']:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--input-border-focus);
+    box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+input[type='text']:disabled,
+input[type='email']:disabled,
+input[type='password']:disabled,
+input[type='number']:disabled,
+input[type='tel']:disabled,
+input[type='search']:disabled,
+input[type='url']:disabled,
+textarea:disabled,
+select:disabled {
+    background-color: var(--input-disabled-bg);
+    color: var(--input-disabled-text);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 40px;
+}
+
+
+/* Label Styling */
+label {
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 6px;
+    display: inline-block;
+}
+
+/* Utilities */
+.text-primary {
+    color: var(--primary) !important;
+}
+
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+.text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+.bg-secondary {
+    background-color: var(--secondary) !important;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Card/Surface Styling */
+.surface {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.surface-elevated {
+    background-color: var(--surface-elevated);
+}
+
+/* Material UI Overrides for consistency */
+.mat-mdc-button,
+.mat-mdc-raised-button {
+    font-family: 'Inter', sans-serif !important;
+    letter-spacing: 0.5px !important;
+}
+
+.mat-mdc-form-field {
+    width: 100%;
+}
+
+.mat-mdc-text-field-wrapper {
+    background-color: var(--input-background) !important;
+}
+
+.mat-mdc-form-field-focus-overlay {
+    background-color: transparent !important;
+}
+
+.mat-mdc-input-element {
+    color: var(--input-text) !important;
+    caret-color: var(--input-text) !important;
+}
+
+.mat-mdc-input-element::placeholder {
+    color: var(--input-placeholder) !important;
+}
+
+/* Material form field label colors */
+.mat-mdc-form-field-label,
+.mat-mdc-floating-label {
+    color: var(--text-secondary) !important;
+}
+
+/* Material form field focused label */
+.mat-mdc-form-field-focus-overlay~.mat-mdc-floating-label,
+.mat-focused .mat-mdc-floating-label {
+    color: var(--primary) !important;
+}
+
+/* Material form field outline colors */
+.mat-mdc-text-field-wrapper {
+    border: 1px solid var(--input-border) !important;
+    border-radius: 8px !important;
+    transition: all 0.2s ease !important;
+}
+
+.mat-focused .mat-mdc-text-field-wrapper {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 2px rgba(77, 182, 172, 0.1) !important;
+}
+
+.mdc-notched-outline__leading,
+.mdc-notched-outline__notch,
+.mdc-notched-outline__trailing {
+    border-color: transparent !important;
+    /* Managed by wrapper now for consistency */
+}
+
+/* Material icon colors */
+.mat-mdc-form-field .mat-icon {
+    color: var(--text-muted) !important;
+}
+
+/* Smooth transitions for theme changes */
+* {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+
+.mat-mdc-flat-button.mat-primary {
+    background-color: var(--primary) !important;
+    color: white !important;
+}

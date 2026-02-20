@@ -1,0 +1,133 @@
+<div class="dashboard-wrapper">
+    <div class="dashboard-header">
+        <div class="header-content">
+            <h1>Dashboard</h1>
+            <p>Welcome back, Moderator</p>
+        </div>
+
+        <div class="controls">
+            <mat-form-field appearance="outline" class="range-selector">
+                <mat-select [value]="selectedRange()" (selectionChange)="onRangeChange($event.value)">
+                    <mat-option value="daily">Daily</mat-option>
+                    <mat-option value="weekly">Weekly</mat-option>
+                    <mat-option value="monthly">Monthly</mat-option>
+                    <mat-option value="yearly">Yearly</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    @if (loading()) {
+    <div class="loading-state">
+        <mat-spinner diameter="40"></mat-spinner>
+        <p>Loading analytics...</p>
+    </div>
+    } @else {
+
+    <!-- Quick Management Section -->
+    <div class="section-container">
+        <h2 class="section-title">Quick Management</h2>
+
+        <div class="cards-grid">
+            <div class="action-card" *ngFor="let card of cards" (click)="navigate(card.link)">
+                <div class="card-content">
+                    <div class="icon-circle" [ngClass]="getIconClass(card.icon)">
+                        <mat-icon>{{card.icon}}</mat-icon>
+                    </div>
+                    <div class="text-content">
+                        <h3>{{card.title}}</h3>
+                        <p>{{card.description}}</p>
+                    </div>
+                    <div class="arrow-container">
+                        <mat-icon>chevron_right</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analytics Section -->
+    <div class="section-container">
+        <h2 class="section-title">Analytics Overview</h2>
+
+        <!-- Summary Metrics -->
+        <div class="summary-grid">
+            <div class="metric-card revenue">
+                <div class="metric-icon">
+                    <mat-icon>attach_money</mat-icon>
+                </div>
+                <div class="metric-info">
+                    <span class="label">Total Revenue</span>
+                    <span class="value">{{ summary()?.totalRevenue | currency:'INR':'symbol':'1.0-0' }}</span>
+                </div>
+            </div>
+
+            <div class="metric-card orders">
+                <div class="metric-icon">
+                    <mat-icon>shopping_bag</mat-icon>
+                </div>
+                <div class="metric-info">
+                    <span class="label">Total Orders</span>
+                    <span class="value">{{ summary()?.totalOrders }}</span>
+                </div>
+            </div>
+
+            <div class="metric-card customers">
+                <div class="metric-icon">
+                    <mat-icon>group</mat-icon>
+                </div>
+                <div class="metric-info">
+                    <span class="label">New Customers</span>
+                    <span class="value">{{ summary()?.newCustomers }}</span>
+                </div>
+            </div>
+
+            <div class="metric-card aov">
+                <div class="metric-icon">
+                    <mat-icon>trending_up</mat-icon>
+                </div>
+                <div class="metric-info">
+                    <span class="label">Avg Order Value</span>
+                    <span class="value">{{ summary()?.avgOrderValue | currency:'INR':'symbol':'1.0-0' }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="charts-grid">
+            <!-- Revenue Growth (Full Width) -->
+            <div class="chart-container wide">
+                <div class="chart-header">
+                    <h3>Revenue Growth</h3>
+                </div>
+                <div class="chart-body">
+                    <canvas baseChart [data]="revenueChartData" [options]="lineChartOptions" [type]="'line'">
+                    </canvas>
+                </div>
+            </div>
+
+            <!-- Order Volume (Half Width) -->
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3>Order Volume</h3>
+                </div>
+                <div class="chart-body">
+                    <canvas baseChart [data]="ordersChartData" [options]="barChartOptions" [type]="'bar'">
+                    </canvas>
+                </div>
+            </div>
+
+            <!-- Sales by Category (Half Width) -->
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3>Sales by Category</h3>
+                </div>
+                <div class="chart-body">
+                    <canvas baseChart [data]="categoryChartData" [options]="pieChartOptions" [type]="'pie'">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</div>

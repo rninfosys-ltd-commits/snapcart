@@ -1,0 +1,41 @@
+<div class="payment-modal-overlay" *ngIf="isVisible">
+    <div class="payment-modal">
+        <button class="close-btn" (click)="close()">×</button>
+
+        <div class="modal-header">
+            <h2>Scan to Pay</h2>
+            <p>Order #{{payment?.orderId}}</p>
+        </div>
+
+        <div class="modal-body">
+            <div class="qr-container" *ngIf="qrCodeUrl; else loading">
+                <img [src]="qrCodeUrl" alt="Payment QR Code">
+            </div>
+            <ng-template #loading>
+                <div class="loading-spinner">Generating QR Code...</div>
+            </ng-template>
+
+            <div class="payment-details" *ngIf="payment">
+                <div class="amount">₹{{payment.amount}}</div>
+                <p class="instruction">Scan with any UPI App</p>
+                <div class="payment-methods">
+                    <span class="method">GPay</span>
+                    <span class="method">PhonePe</span>
+                    <span class="method">Paytm</span>
+                </div>
+            </div>
+
+            <div class="status-message" [ngClass]="paymentStatus">
+                <span *ngIf="paymentStatus === 'PENDING'">Waiting for payment...</span>
+                <span *ngIf="paymentStatus === 'COMPLETED'">Payment Successful! ✅</span>
+                <span *ngIf="paymentStatus === 'FAILED'">Payment Failed ❌</span>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="verify-btn" (click)="verifyPayment()" [disabled]="isValidating">
+                {{ isValidating ? 'Verifying...' : 'I have made the payment' }}
+            </button>
+        </div>
+    </div>
+</div>

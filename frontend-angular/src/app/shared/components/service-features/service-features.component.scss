@@ -1,0 +1,35 @@
+.service-features {
+  // Use React design variable logic or hardcoded for SCSS isolation
+  background-color: transparent;
+
+  .feature-item {
+    background-color: transparent;
+    border-radius: 16px; // More rounded
+    padding: 2rem !important; // More padding
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+
+    &:hover {
+      background-color: white;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); // Soft shadow
+      transform: translateY(-5px);
+    }
+  }
+
+  .icon-wrapper {
+    margin-bottom: 24px;
+
+    .feature-icon {
+      font-size: 48px; // Larger icon as per React code
+      height: 48px;
+      width: 48px;
+      color: #e63946; // React primary color
+      transition: transform 0.3s ease;
+    }
+  }
+
+  // Hover effect to scale icon slightly
+  .feature-item:hover .feature-icon {
+    transform: scale(1.1);
+  }
+}

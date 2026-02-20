@@ -1,0 +1,129 @@
+﻿
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.2)
+
+2026-01-30T12:44:51.795+05:30  INFO 11912 --- [BACKEND] [           main] com.BackendApplication                   : Starting BackendApplication v0.0.1-SNAPSHOT using Java 24 with PID 11912 (C:\Users\kashi\redtape\backend\target\demo-0.0.1-SNAPSHOT.jar started by yashk in C:\Users\kashi\redtape\backend)
+2026-01-30T12:44:51.813+05:30  INFO 11912 --- [BACKEND] [           main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
+2026-01-30T12:44:56.112+05:30  INFO 11912 --- [BACKEND] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-30T12:44:57.145+05:30  INFO 11912 --- [BACKEND] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1015 ms. Found 1 JPA repository interface.
+2026-01-30T12:44:59.222+05:30  INFO 11912 --- [BACKEND] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-01-30T12:44:59.258+05:30  INFO 11912 --- [BACKEND] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-30T12:44:59.259+05:30  INFO 11912 --- [BACKEND] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-01-30T12:44:59.344+05:30  INFO 11912 --- [BACKEND] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 7285 ms
+2026-01-30T12:44:59.394+05:30 ERROR 11912 --- [BACKEND] [           main] t.s.DeferredServletContainerInitializers : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtAuthenticationFilter': Unsatisfied dependency expressed through field 'jwtUtils': Error creating bean with name 'jwtUtils': Unsatisfied dependency expressed through field 'jwtExpirationMs': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "8640000000"
+2026-01-30T12:44:59.453+05:30  INFO 11912 --- [BACKEND] [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-01-30T12:44:59.478+05:30  WARN 11912 --- [BACKEND] [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2026-01-30T12:44:59.497+05:30  INFO 11912 --- [BACKEND] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-01-30T12:44:59.544+05:30 ERROR 11912 --- [BACKEND] [           main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:167) ~[spring-boot-web-server-4.0.2.jar!/:4.0.2]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:614) ~[spring-context-7.0.3.jar!/:7.0.3]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.0.2.jar!/:4.0.2]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756) ~[spring-boot-4.0.2.jar!/:4.0.2]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445) ~[spring-boot-4.0.2.jar!/:4.0.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.0.2.jar!/:4.0.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.0.2.jar!/:4.0.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.0.2.jar!/:4.0.2]
+	at com.BackendApplication.main(BackendApplication.java:10) ~[!/:0.0.1-SNAPSHOT]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[na:na]
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:106) ~[demo-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:64) ~[demo-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:40) ~[demo-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:150) ~[spring-boot-tomcat-4.0.2.jar!/:4.0.2]
+	at org.springframework.boot.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:110) ~[spring-boot-tomcat-4.0.2.jar!/:4.0.2]
+	at org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:408) ~[spring-boot-tomcat-4.0.2.jar!/:4.0.2]
+	at org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:166) ~[spring-boot-tomcat-4.0.2.jar!/:4.0.2]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:190) ~[spring-boot-web-server-4.0.2.jar!/:4.0.2]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:164) ~[spring-boot-web-server-4.0.2.jar!/:4.0.2]
+	... 13 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jwtAuthenticationFilter': Unsatisfied dependency expressed through field 'jwtUtils': Error creating bean with name 'jwtUtils': Unsatisfied dependency expressed through field 'jwtExpirationMs': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "8640000000"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:766) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:747) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:492) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1446) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:602) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:231) ~[spring-boot-4.0.2.jar!/:4.0.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:185) ~[spring-boot-4.0.2.jar!/:4.0.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:180) ~[spring-boot-4.0.2.jar!/:4.0.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:165) ~[spring-boot-4.0.2.jar!/:4.0.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:97) ~[spring-boot-4.0.2.jar!/:4.0.2]
+	at org.springframework.boot.web.context.servlet.WebApplicationContextInitializer.initialize(WebApplicationContextInitializer.java:53) ~[spring-boot-4.0.2.jar!/:4.0.2]
+	at org.springframework.boot.tomcat.servlet.DeferredServletContainerInitializers.onStartup(DeferredServletContainerInitializers.java:55) ~[spring-boot-tomcat-4.0.2.jar!/:4.0.2]
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4416) ~[tomcat-embed-core-11.0.15.jar!/:na]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-11.0.15.jar!/:na]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1162) ~[tomcat-embed-core-11.0.15.jar!/:na]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1158) ~[tomcat-embed-core-11.0.15.jar!/:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:328) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:81) ~[tomcat-embed-core-11.0.15.jar!/:na]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:148) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:714) ~[tomcat-embed-core-11.0.15.jar!/:na]
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:780) ~[tomcat-embed-core-11.0.15.jar!/:na]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-11.0.15.jar!/:na]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1162) ~[tomcat-embed-core-11.0.15.jar!/:na]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1158) ~[tomcat-embed-core-11.0.15.jar!/:na]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:328) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:81) ~[tomcat-embed-core-11.0.15.jar!/:na]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:148) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:714) ~[tomcat-embed-core-11.0.15.jar!/:na]
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:201) ~[tomcat-embed-core-11.0.15.jar!/:na]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-11.0.15.jar!/:na]
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:410) ~[tomcat-embed-core-11.0.15.jar!/:na]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-11.0.15.jar!/:na]
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:864) ~[tomcat-embed-core-11.0.15.jar!/:na]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-11.0.15.jar!/:na]
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:435) ~[tomcat-embed-core-11.0.15.jar!/:na]
+	at org.springframework.boot.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:131) ~[spring-boot-tomcat-4.0.2.jar!/:4.0.2]
+	... 18 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jwtUtils': Unsatisfied dependency expressed through field 'jwtExpirationMs': Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "8640000000"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:766) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:747) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:492) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1446) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:602) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:1225) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1704) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1651) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:763) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	... 59 common frames omitted
+Caused by: org.springframework.beans.TypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "8640000000"
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:82) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:67) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1679) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1651) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:763) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	... 73 common frames omitted
+Caused by: java.lang.NumberFormatException: For input string: "8640000000"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67) ~[na:na]
+	at java.base/java.lang.Integer.parseInt(Integer.java:564) ~[na:na]
+	at java.base/java.lang.Integer.valueOf(Integer.java:911) ~[na:na]
+	at org.springframework.util.NumberUtils.parseNumber(NumberUtils.java:201) ~[spring-core-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.propertyeditors.CustomNumberEditor.setAsText(CustomNumberEditor.java:115) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.TypeConverterDelegate.doConvertTextValue(TypeConverterDelegate.java:434) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.TypeConverterDelegate.doConvertValue(TypeConverterDelegate.java:407) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.TypeConverterDelegate.convertIfNecessary(TypeConverterDelegate.java:158) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:75) ~[spring-beans-7.0.3.jar!/:7.0.3]
+	... 77 common frames omitted
+

@@ -1,0 +1,28 @@
+@if (loading()) {
+<div class="p-5 text-center">
+    <mat-spinner diameter="40" class="mx-auto"></mat-spinner>
+</div>
+} @else if (products().length > 0) {
+<section class="similar-box mt-5 pt-4">
+    <h3 class="mb-4 fw-bold">Frequently Bought Together</h3>
+
+    <div class="row g-4">
+        @for (product of products(); track product.modelNo) {
+        <div class="col-6 col-md-3">
+            <mat-card class="s-card h-100" (click)="handleNavigate(product.modelNo)">
+                <div class="ratio ratio-1x1 overflow-hidden">
+                    <img [src]="environment.apiUrl + '/images/product/' + (product.modelNo || product.id) + '/1'"
+                        [alt]="product.name" class="s-img"
+                        (error)="$any($event.target).src='https://via.placeholder.com/300'">
+                </div>
+                <mat-card-content class="p-3">
+                    <h6 class="text-truncate fw-bold mb-1">{{ product.name }}</h6>
+                    <p class="small text-muted mb-2">{{ product.category }}</p>
+                    <p class="text-danger fw-bold m-0">{{ formatPrice(product.price) }}</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        }
+    </div>
+</section>
+}

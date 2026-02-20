@@ -1,0 +1,233 @@
+<div class="checkout-container">
+    <div *ngIf="orderPlaced()" class="success-screen">
+        <mat-icon class="success-icon">check_circle</mat-icon>
+        <h2>Order Placed Successfully!</h2>
+        <p>Your order ID is #{{orderId()}}</p>
+        <button mat-raised-button color="primary" routerLink="/shop">Continue Shopping</button>
+    </div>
+
+    <div *ngIf="!orderPlaced()" class="content-row">
+        <!-- Main Form Area -->
+        <div class="stepper-area">
+            <mat-stepper #stepper linear>
+                <!-- Step 1: Shipping -->
+                <mat-step [stepControl]="shippingForm">
+                    <ng-template matStepLabel>Shipping</ng-template>
+
+                    <div class="step-content">
+                        <h3>Select Address</h3>
+                        <div class="saved-addresses" *ngIf="savedAddresses().length">
+                            <div *ngFor="let addr of savedAddresses()" class="addr-card"
+                                [class.selected]="selectedAddressId() === addr.id" (click)="selectAddress(addr)">
+                                <strong>{{addr.label}}</strong>
+                                <p>{{addr.fullName}}, {{addr.addressLine}}, {{addr.city}}</p>
+                            </div>
+                        </div>
+
+                        <button mat-stroked-button color="primary" (click)="clearAddress()" *ngIf="selectedAddressId()">
+                            + New Address
+                        </button>
+
+                        <form [formGroup]="shippingForm" class="shipping-form">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Full Name</mat-label>
+                                <input matInput formControlName="fullName">
+                            </mat-form-field>
+
+                            <div class="row-2">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput formControlName="email">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Phone</mat-label>
+                                    <input matInput formControlName="phone">
+                                </mat-form-field>
+                            </div>
+
+                            <mat-form-field appearance="outline">
+                                <mat-label>Address</mat-label>
+                                <textarea matInput formControlName="address"></textarea>
+                            </mat-form-field>
+
+                            <div class="row-3">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>City</mat-label>
+                                    <input matInput formControlName="city">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>State</mat-label>
+                                    <input matInput formControlName="state">
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Pincode</mat-label>
+                                    <input matInput formControlName="pincode">
+                                </mat-form-field>
+                            </div>
+
+                            <div *ngIf="!selectedAddressId()">
+                                <mat-checkbox formControlName="saveAddress">Save this address for future
+                                    use</mat-checkbox>
+                            </div>
+
+                            <div class="actions">
+                                <button mat-raised-button color="primary" matStepperNext
+                                    [disabled]="shippingForm.invalid">Next</button>
+                            </div>
+                        </form>
+                    </div>
+                </mat-step>
+
+                <!-- Step 2: Payment -->
+                <mat-step>
+                    <ng-template matStepLabel>Payment</ng-template>
+                    <div class="step-content">
+                        <h3>Payment Method</h3>
+
+                        <!-- Saved Cards List -->
+                        <div class="saved-addresses" *ngIf="savedCards().length">
+                            <div *ngFor="let card of savedCards()" class="addr-card"
+                                [class.selected]="selectedCardId() === card.id" (click)="selectCard(card)">
+                                <strong>{{card.brand}} •••• {{card.last4}}</strong>
+                                <p>{{card.cardHolderName}}</p>
+                                <p>Expires: {{card.expiry}}</p>
+                            </div>
+                        </div>
+
+                        <button mat-stroked-button color="primary" (click)="addNewCard()" *ngIf="selectedCardId()"
+                            class="mb-3">
+                            + New Card
+                        </button>
+
+                        <div *ngIf="!selectedCardId()">
+                            <mat-radio-group [(ngModel)]="paymentMethod" class="payment-group">
+                                <mat-radio-button value="card" class="pay-option"
+                                    (click)="onPaymentMethodChange('card')">
+                                    <div class="pay-label"><mat-icon>credit_card</mat-icon> Credit / Debit Card</div>
+                                </mat-radio-button>
+                                <mat-radio-button value="upi" class="pay-option" (click)="onPaymentMethodChange('upi')">
+                                    <div class="pay-label"><mat-icon>qr_code</mat-icon> UPI</div>
+                                </mat-radio-button>
+                                <mat-radio-button value="cod" class="pay-option" (click)="onPaymentMethodChange('cod')">
+                                    <div class="pay-label"><mat-icon>money</mat-icon> Cash on Delivery</div>
+                                </mat-radio-button>
+                            </mat-radio-group>
+
+                            <div class="payment-details" *ngIf="paymentMethod === 'card'" [formGroup]="paymentForm">
+                                <mat-form-field appearance="outline" class="full-width">
+                                    <mat-label>Card Holder Name</mat-label>
+                                    <input matInput formControlName="cardHolderName">
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" class="full-width">
+                                    <mat-label>Card Number</mat-label>
+                                    <input matInput placeholder="0000 0000 0000 0000" formControlName="cardNumber"
+                                        maxlength="16">
+                                    <mat-error *ngIf="paymentForm.get('cardNumber')?.invalid">Invalid card number (16
+                                        digits)</mat-error>
+                                </mat-form-field>
+                                <div class="row-2">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>MM/YY</mat-label>
+                                        <input matInput formControlName="expiry" placeholder="MM/YY" maxlength="5">
+                                        <mat-error *ngIf="paymentForm.get('expiry')?.invalid">Invalid expiry
+                                            (MM/YY)</mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>CVV</mat-label>
+                                        <input matInput formControlName="cvv" maxlength="4">
+                                        <mat-error *ngIf="paymentForm.get('cvv')?.invalid">Invalid CVV (3-4
+                                            digits)</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div>
+                                    <mat-checkbox formControlName="saveCard">Save this card securely</mat-checkbox>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="actions">
+                            <button mat-button matStepperPrevious>Back</button>
+                            <button mat-raised-button color="primary" (click)="placeOrder()"
+                                [disabled]="placingOrder()">
+                                <mat-spinner diameter="20" *ngIf="placingOrder()"></mat-spinner>
+                                <span *ngIf="!placingOrder()">
+                                    {{ paymentMethod === 'upi' ? 'Pay with UPI' : (paymentMethod === 'cod' ? 'Place
+                                    Order' : 'Pay ' + (finalTotal() | currency:'INR')) }}
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </mat-step>
+            </mat-stepper>
+        </div>
+
+        <!-- Order Summary Sidebar -->
+        <div class="summary-area">
+            <!-- First Order Promo Banner -->
+            <div class="promo-banner first-order" *ngIf="isEligibleForFirstOrder()">
+                <div class="promo-content">
+                    <mat-icon>celebration</mat-icon>
+                    <div class="text">
+                        <h4>Welcome to SnapCart!</h4>
+                        <p>Get <strong>20% OFF</strong> your first order.</p>
+                        <span class="code">Use Code: <strong>WELCOME20</strong></span>
+                    </div>
+                </div>
+                <button mat-button (click)="applyCoupon('WELCOME20')">Apply Now</button>
+            </div>
+
+            <div class="summary-card">
+                <h3>Order Summary</h3>
+                <div class="cart-items">
+                    <div class="item" *ngFor="let item of cart.cartItems()">
+                        <img [src]="environment.apiUrl + '/images/product/' + item.productModelNo + '/1'" class="thumb"
+                            (error)="$any($event.target).style.display='none'">
+                        <div class="info">
+                            <p class="name">{{item.productName}}</p>
+                            <small>Qty: {{item.quantity}}</small>
+                        </div>
+                        <div class="price">{{ item.price * item.quantity | currency:'INR' }}</div>
+                    </div>
+                </div>
+
+                <div class="coupon-box">
+                    <input placeholder="Coupon Code" #couponInput>
+                    <button mat-flat-button (click)="applyCoupon(couponInput.value)">Apply</button>
+                </div>
+                <p class="coupon-msg" [class.error]="!couponValid()" *ngIf="couponMsg()">{{couponMsg()}}</p>
+
+                <div class="available-coupons" *ngIf="availableCoupons().length > 0">
+                    <small class="text-muted mb-2 d-block">Available Coupons</small>
+                    <div class="coupon-item" *ngFor="let coupon of availableCoupons()"
+                        (click)="couponInput.value = coupon.code; applyCoupon(coupon.code)">
+                        <div>
+                            <span class="coupon-code">{{coupon.code}}</span>
+                            <div class="coupon-desc">Save {{coupon.discountAmount | currency:'INR':'symbol':'1.0-0'}} on
+                                min order {{coupon.minOrderAmount}}</div>
+                        </div>
+                        <mat-icon
+                            style="font-size: 16px; width: 16px; height: 16px; color: #666">add_circle_outline</mat-icon>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="totals">
+                    <div class="row"><span>Subtotal</span> <span>{{ cart.totalAmount() | currency:'INR' }}</span></div>
+                    <div class="row"><span>Shipping</span> <span class="free">Free</span></div>
+                    <div class="row" *ngIf="discount() > 0"><span>Discount</span> <span class="discount">-{{ discount()
+                            | currency:'INR' }}</span></div>
+                    <div class="row total"><span>Total</span> <span>{{ finalTotal() | currency:'INR' }}</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-payment-modal [isVisible]="showPaymentModal" [orderId]="orderId()" (closeEvent)="closePaymentModal()"
+        (paymentCompleted)="onPaymentCompleted()">
+    </app-payment-modal>
+</div>

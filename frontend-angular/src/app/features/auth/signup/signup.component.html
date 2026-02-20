@@ -1,0 +1,132 @@
+<div class="auth-page">
+    <div class="auth-container">
+        @if (success) {
+        <div class="success-screen">
+            <mat-card class="success-card">
+                <mat-icon class="success-icon">check_circle</mat-icon>
+                <h1>Welcome to SnapCart!</h1>
+                <p>Your account has been created successfully. We're getting things ready for you...</p>
+                <mat-spinner diameter="30"></mat-spinner>
+            </mat-card>
+        </div>
+        } @else {
+        <!-- Branding Side -->
+        <div class="auth-info">
+            <div class="info-content">
+                <div class="logo-area">
+                    <mat-icon class="logo-icon">shopping_cart</mat-icon>
+                    <span class="logo-name">SnapCart</span>
+                </div>
+                <h1 class="welcome-text">Start your curated journey today.</h1>
+                <p class="tagline">Join thousands of shoppers who enjoy premium quality and local convenience.</p>
+
+                <div class="benefits-list">
+                    <div class="benefit">
+                        <mat-icon>verified</mat-icon>
+                        <div class="benefit-texts">
+                            <strong>Authentic Products</strong>
+                            <span>100% verified quality from top sellers.</span>
+                        </div>
+                    </div>
+                    <div class="benefit">
+                        <mat-icon>local_shipping</mat-icon>
+                        <div class="benefit-texts">
+                            <strong>Priority Support</strong>
+                            <span>Dedicated assistance for members.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Side -->
+        <div class="auth-form-side">
+            <mat-card class="form-card expanded">
+                <div class="form-header">
+                    <h2>Join SnapCart</h2>
+                    <p>Enter your details to create a free account.</p>
+                </div>
+
+                @if (error) {
+                <div class="form-error">
+                    <mat-icon>error_outline</mat-icon>
+                    <span>{{ error }}</span>
+                </div>
+                }
+
+                <form [formGroup]="signupForm" (ngSubmit)="submit()">
+                    <div class="field-group">
+                        <label>Full Name</label>
+                        <mat-form-field appearance="outline">
+                            <mat-icon matPrefix>person_outline</mat-icon>
+                            <input matInput placeholder="John Doe" formControlName="name">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="field-group">
+                        <label>Email Address</label>
+                        <mat-form-field appearance="outline">
+                            <mat-icon matPrefix>mail_outline</mat-icon>
+                            <input matInput placeholder="name@example.com" formControlName="email" type="email">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field-group">
+                            <label>Mobile</label>
+                            <mat-form-field appearance="outline">
+                                <mat-icon matPrefix>phone_iphone</mat-icon>
+                                <input matInput placeholder="9876543210" formControlName="mobile">
+                            </mat-form-field>
+                        </div>
+                        <div class="field-group">
+                            <label>Gender</label>
+                            <mat-form-field appearance="outline">
+                                <mat-select formControlName="gender">
+                                    <mat-option value="MALE">Male</mat-option>
+                                    <mat-option value="FEMALE">Female</mat-option>
+                                    <mat-option value="OTHER">Other</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <label>Password</label>
+                        <mat-form-field appearance="outline">
+                            <mat-icon matPrefix>lock_open</mat-icon>
+                            <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password">
+                            <button mat-icon-button matSuffix (click)="showPassword = !showPassword" type="button">
+                                <mat-icon>{{ showPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="field-group">
+                        <label>Confirm Password</label>
+                        <mat-form-field appearance="outline">
+                            <mat-icon matPrefix>lock</mat-icon>
+                            <input matInput [type]="showConfirmPassword ? 'text' : 'password'"
+                                formControlName="confirmPassword">
+                            <button mat-icon-button matSuffix (click)="showConfirmPassword = !showConfirmPassword"
+                                type="button">
+                                <mat-icon>{{ showConfirmPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+
+                    <button mat-flat-button color="primary" class="submit-btn" type="submit"
+                        [disabled]="loading || signupForm.invalid">
+                        <span *ngIf="!loading">Create Account</span>
+                        <mat-spinner diameter="20" color="accent" *ngIf="loading"></mat-spinner>
+                    </button>
+                </form>
+
+                <div class="form-footer">
+                    <p>Already have an account? <a routerLink="/login">Sign In</a></p>
+                </div>
+            </mat-card>
+        </div>
+        }
+    </div>
+</div>

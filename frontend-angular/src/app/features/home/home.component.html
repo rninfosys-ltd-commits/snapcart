@@ -1,0 +1,99 @@
+<main class="home-page">
+    <!-- 1. Hero Slider (Always Visible) -->
+    <app-hero-slider></app-hero-slider>
+
+    <div class="container mx-auto mt-4 px-2">
+        <!-- Category Section -->
+        <app-category-section class="mb-4 d-block"></app-category-section>
+
+        <!-- Suggested For You (Horizontal Scroller) -->
+        <div class="horizontal-scroller">
+            <div class="section-header">
+                <h2>Suggested For You</h2>
+                <button class="view-all-btn btn btn-sm" routerLink="/products">VIEW ALL</button>
+            </div>
+
+            <!-- Category Filter Chips -->
+            <div class="category-filters">
+                <button class="filter-chip" [class.active]="selectedCategory() === 'All'"
+                    (click)="filterByCategory('All')">
+                    All
+                </button>
+                <button class="filter-chip" [class.active]="selectedCategory() === 'MEN'"
+                    (click)="filterByCategory('MEN')">
+                    Men
+                </button>
+                <button class="filter-chip" [class.active]="selectedCategory() === 'WOMEN'"
+                    (click)="filterByCategory('WOMEN')">
+                    Women
+                </button>
+                <button class="filter-chip" [class.active]="selectedCategory() === 'KIDS'"
+                    (click)="filterByCategory('KIDS')">
+                    Kids
+                </button>
+                <button class="filter-chip" [class.active]="selectedCategory() === 'ELECTRONICS'"
+                    (click)="filterByCategory('ELECTRONICS')">
+                    Electronics
+                </button>
+                <button class="filter-chip" [class.active]="selectedCategory() === 'BEAUTY'"
+                    (click)="filterByCategory('BEAUTY')">
+                    Beauty
+                </button>
+            </div>
+
+            @if (loading()) {
+            <div class="scroll-container">
+                @for (i of [1,2,3,4,5,6]; track i) {
+                <div class="skeleton-card" style="min-width: 200px;">
+                    <div class="skeleton-image shine"></div>
+                    <div class="skeleton-content p-2">
+                        <div class="skeleton-text short mb-1 shine"></div>
+                        <div class="skeleton-text long shine"></div>
+                    </div>
+                </div>
+                }
+            </div>
+            } @else {
+            <div class="scroll-container">
+                @for (product of displayedProducts(); track product.modelNo) {
+                <app-product-card [product]="product"></app-product-card>
+                }
+            </div>
+            }
+        </div>
+
+        <!-- Flash Deals / Sponsored -->
+        @if (flashDeals().length > 0) {
+        <div class="horizontal-scroller">
+            <div class="section-header">
+                <h2>Hot Deals ✨</h2>
+                <span class="badge bg-danger">Limited Time</span>
+            </div>
+            <div class="scroll-container">
+                @for (deal of flashDeals(); track deal.modelNo) {
+                <app-product-card [product]="deal"></app-product-card>
+                }
+            </div>
+        </div>
+        }
+
+        <!-- Advertisement / Banner -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="promo-banner bg-white rounded-2 overflow-hidden shadow-sm d-flex align-items-center justify-content-between p-4"
+                    style="background: linear-gradient(90deg, #ff9f00 0%, #ff6f00 100%);">
+                    <div>
+                        <h2 class="text-white h3 mb-1 fw-bold">Big Billion Days</h2>
+                        <p class="text-white opacity-90 mb-0">Minimum 50% Off on everything!</p>
+                    </div>
+                    <button class="btn btn-light fw-bold px-4">SHOP NOW</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recently Viewed -->
+        <div class="horizontal-scroller">
+            <app-recently-viewed-section></app-recently-viewed-section>
+        </div>
+    </div>
+</main>

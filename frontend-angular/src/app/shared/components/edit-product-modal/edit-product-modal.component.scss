@@ -1,0 +1,29 @@
+.img-preview {
+    height: 120px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8fafc;
+    overflow: hidden;
+
+    img {
+        max-height: 100%;
+        object-fit: contain;
+    }
+}
+
+mat-dialog-content {
+    max-height: 70vh;
+}
+
+.mat-mdc-dialog-title {
+    color: #1a1a2e;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 16px !important;
+    margin-bottom: 0 !important;
+}
+
+.mat-mdc-dialog-actions {
+    border-top: 1px solid #f1f5f9;
+}

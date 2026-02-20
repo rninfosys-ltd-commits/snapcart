@@ -1,0 +1,22 @@
+.cta-section {
+    background-color: var(--surface-elevated);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    color: var(--text-main);
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+
+    .cta-btn {
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-md);
+
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            /* Keep button style consistent or adapt if needed */
+        }
+    }
+}

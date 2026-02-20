@@ -1,0 +1,137 @@
+.recommended-wrapper {
+    background-color: #f8fafc;
+    overflow: hidden;
+}
+
+.section-title {
+    font-weight: 800;
+    color: #1a1a2e;
+    letter-spacing: -0.5px;
+}
+
+.section-subtitle {
+    font-size: 1rem;
+}
+
+.scroll-container {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    padding: 10px;
+}
+
+.product-item {
+    min-width: 260px;
+    max-width: 260px;
+    cursor: pointer;
+}
+
+.product-card {
+    border-radius: 16px;
+    background: white;
+    transition: all 0.3s ease;
+    border: 1px solid #f1f5f9;
+
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08) !important;
+        border-color: transparent;
+
+        img {
+            transform: scale(1.05);
+        }
+    }
+}
+
+.card-img-wrapper {
+    position: relative;
+    height: 260px;
+    overflow: hidden;
+    border-radius: 16px 16px 0 0;
+    background: #f1f5f9;
+
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+}
+
+.wishlist-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: white !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    color: #64748b;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+
+    &:hover {
+        color: #e63946;
+    }
+
+    mat-icon {
+        font-size: 20px;
+    }
+}
+
+.category-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.product-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin: 0;
+}
+
+.price-tag {
+    color: #e63946;
+    font-size: 1.1rem;
+}
+
+.rating-badge {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+
+    .star-icon {
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+        color: #fbbf24;
+    }
+}
+
+.scroll-btn {
+    min-width: 44px !important;
+    width: 44px !important;
+    height: 44px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    border-color: #e2e8f0 !important;
+
+    &:hover {
+        background-color: #e63946 !important;
+        color: white !important;
+        border-color: #e63946 !important;
+    }
+}

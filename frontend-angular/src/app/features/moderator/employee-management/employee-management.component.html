@@ -1,0 +1,112 @@
+<div class="employee-container">
+    <div class="header">
+        <div>
+            <h1>Team Management</h1>
+            <p>Manage your employee accounts and access.</p>
+        </div>
+        <button mat-flat-button color="primary" (click)="toggleForm()">
+            <mat-icon>{{ showAddForm() ? 'close' : 'add' }}</mat-icon>
+            {{ showAddForm() ? 'Cancel' : 'Add Employee' }}
+        </button>
+    </div>
+
+    @if (showAddForm()) {
+    <mat-card class="add-form-card">
+        <h2>Add New Employee</h2>
+        <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Full Name</mat-label>
+                    <input matInput formControlName="name" placeholder="John Doe">
+                    <mat-error *ngIf="employeeForm.get('name')?.hasError('required')">Name is required</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Email Address</mat-label>
+                    <input matInput formControlName="email" placeholder="employee@example.com">
+                    <mat-error *ngIf="employeeForm.get('email')?.hasError('email')">Invalid email format</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="form-row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Mobile Number</mat-label>
+                    <input matInput formControlName="mobile" placeholder="9876543210">
+                    <mat-error *ngIf="employeeForm.get('mobile')?.hasError('pattern')">Invalid mobile number</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Gender</mat-label>
+                    <mat-select formControlName="gender">
+                        <mat-option value="MALE">Male</mat-option>
+                        <mat-option value="FEMALE">Female</mat-option>
+                        <mat-option value="OTHER">Other</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="form-row">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" type="password">
+                    <mat-error *ngIf="employeeForm.get('password')?.hasError('minlength')">Must be at least 6
+                        characters</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="form-actions">
+                <button mat-stroked-button type="button" (click)="toggleForm()">Cancel</button>
+                <button mat-flat-button color="primary" type="submit" [disabled]="employeeForm.invalid || loading()">
+                    {{ loading() ? 'Adding...' : 'Create Account' }}
+                </button>
+            </div>
+        </form>
+    </mat-card>
+    }
+
+    <mat-card class="table-card">
+        <table mat-table [dataSource]="employees()">
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <!-- Email Column -->
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef> Email </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+
+            <!-- Mobile Column -->
+            <ng-container matColumnDef="mobile">
+                <th mat-header-cell *matHeaderCellDef> Mobile </th>
+                <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+            </ng-container>
+
+            <!-- Gender Column -->
+            <ng-container matColumnDef="gender">
+                <th mat-header-cell *matHeaderCellDef> Gender </th>
+                <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+            </ng-container>
+
+            <!-- Role Column -->
+            <ng-container matColumnDef="role">
+                <th mat-header-cell *matHeaderCellDef> Role </th>
+                <td mat-cell *matCellDef="let element">
+                    <span class="role-badge">{{element.role}}</span>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="5"
+                    style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+                    No employees found. Click "Add Employee" to create one.
+                </td>
+            </tr>
+        </table>
+    </mat-card>
+</div>

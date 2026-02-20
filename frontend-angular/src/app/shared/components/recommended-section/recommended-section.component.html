@@ -1,0 +1,58 @@
+@if (products().length > 0) {
+<section class="recommended-wrapper py-5">
+    <div class="container-xl">
+        <!-- Header -->
+        <div class="row align-items-end mb-4 px-2">
+            <div class="col-sm-8">
+                <h2 class="section-title mb-1">
+                    {{ currentUser() ? 'Tailored For You' : 'Trending Now' }}
+                </h2>
+                <p class="text-muted section-subtitle mb-0">
+                    {{ currentUser() ? 'Styles that match your recent boutique visits' : 'Discover this season\'s most
+                    coveted arrivals' }}
+                </p>
+            </div>
+            <div class="col-sm-4 text-end d-none d-sm-block">
+                <div class="scroll-controls d-flex gap-2 justify-content-end">
+                    <button mat-stroked-button color="primary" class="scroll-btn" (click)="scroll('left')">
+                        <mat-icon>chevron_left</mat-icon>
+                    </button>
+                    <button mat-stroked-button color="primary" class="scroll-btn" (click)="scroll('right')">
+                        <mat-icon>chevron_right</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scrollable Area -->
+        <div class="scroll-container" #scrollContainer>
+            <div class="d-flex gap-4 pb-4">
+                @for (product of products(); track product.modelNo) {
+                <div class="product-item" @fadeInScale (click)="handleNavigate(product.modelNo)">
+                    <mat-card class="product-card border-0">
+                        <div class="card-img-wrapper">
+                            <img mat-card-image [src]="environment.apiUrl + '/images/product/' + product.modelNo + '/1'"
+                                [alt]="product.name">
+                            <button mat-icon-button class="wishlist-btn" (click)="$event.stopPropagation()">
+                                <mat-icon>favorite_border</mat-icon>
+                            </button>
+                        </div>
+                        <mat-card-content class="p-3">
+                            <span class="category-label text-uppercase">{{ product.category || 'Footwear' }}</span>
+                            <h4 class="product-name text-truncate">{{ product.name }}</h4>
+                            <div class="d-flex align-items-center justify-content-between mt-2">
+                                <span class="price-tag fw-bold">{{ formatPrice(product.price) }}</span>
+                                <div class="rating-badge">
+                                    <mat-icon class="star-icon">star</mat-icon>
+                                    <span>4.5</span>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+}

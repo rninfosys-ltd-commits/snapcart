@@ -1,0 +1,71 @@
+<div class="flash-sale-wrapper py-5">
+    <div class="container">
+        <!-- Header & Timer -->
+        <!-- Header & Timer -->
+        <div class="d-flex align-items-center justify-content-between mb-5 flex-wrap gap-4">
+            <div class="section-title">
+                <div class="subtitle">LIMITED TIME OFFER</div>
+                <h2 class="display-5 fw-black text-white mb-0">FLASH DEALS</h2>
+            </div>
+
+            <!-- Modern Digital Timer -->
+            <div class="digital-timer">
+                <span class="timer-label">TIME REMAINING</span>
+                <div class="timer-values">
+                    <div class="time-unit">
+                        <span class="value">{{ timeLeft().hours | number: '2.0-0' }}</span>
+                        <span class="unit">HRS</span>
+                    </div>
+                    <span class="separator">:</span>
+                    <div class="time-unit">
+                        <span class="value">{{ timeLeft().minutes | number: '2.0-0' }}</span>
+                        <span class="unit">MIN</span>
+                    </div>
+                    <span class="separator">:</span>
+                    <div class="time-unit">
+                        <span class="value">{{ timeLeft().seconds | number: '2.0-0' }}</span>
+                        <span class="unit">SEC</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="row g-4">
+            @for (product of products(); track product.modelNo) {
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="flash-card position-relative bg-white h-100 d-flex flex-column"
+                    (click)="handleNavigate(product.modelNo)">
+                    <!-- Discount Badge -->
+                    <div class="discount-badge position-absolute top-0 start-0 m-3 z-2">
+                        -{{ calculateDiscount(product.price, product.salePrice) }}% OFF
+                    </div>
+
+                    <!-- Image -->
+                    <div class="img-wrapper position-relative overflow-hidden">
+                        <img [src]="environment.apiUrl + '/images/product/' + product.modelNo + '/1'"
+                            [alt]="product.name" class="w-100 h-100 object-fit-cover">
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <h5 class="product-name fw-bold mb-1">{{ product.name }}</h5>
+
+                        <div class="d-flex align-items-baseline gap-2 mb-3">
+                            <span class="text-danger fw-bold fs-4">{{ formatCurrency(product.salePrice || product.price)
+                                }}</span>
+                            <span class="text-muted text-decoration-line-through small" *ngIf="product.salePrice">
+                                {{ formatCurrency(product.price) }}
+                            </span>
+                        </div>
+
+                        <button mat-flat-button color="warn" class="grab-btn w-100 mt-auto py-2">
+                            GRAB NOW
+                        </button>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>

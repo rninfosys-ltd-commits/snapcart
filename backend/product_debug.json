@@ -1,0 +1,42 @@
+﻿{
+    "value":  [
+                  {
+                      "modelNo":  259,
+                      "name":  "Campus Men\u0027s Avenue Sneakers",
+                      "color":  "OFF WHT/L.BLUE",
+                      "brandName":  "Campus",
+                      "styleCode":  "Sneakers",
+                      "colorHex":  "#F0F8FF",
+                      "price":  2799.0,
+                      "quantity":  100,
+                      "salePrice":  null,
+                      "saleEndTime":  null,
+                      "category":  "MEN",
+                      "subCategory":  "CASUAL",
+                      "productGroup":  null,
+                      "sizes":  [
+
+                                ],
+                      "aboutItems":  [
+
+                                     ],
+                      "manufacturer":  null,
+                      "packer":  null,
+                      "importer":  null,
+                      "itemWeight":  null,
+                      "itemDimensions":  null,
+                      "netQuantity":  null,
+                      "genericName":  null,
+                      "description":  "N/A",
+                      "image1Type":  "image/jpeg",
+                      "image2Type":  "image/jpeg",
+                      "image3Type":  "image/jpeg",
+                      "image4Type":  "image/jpeg",
+                      "image5Type":  "image/jpeg",
+                      "averageRating":  0.0,
+                      "lowStockThreshold":  5,
+                      "reviewCount":  0
+                  }
+              ],
+    "Count":  1
+}

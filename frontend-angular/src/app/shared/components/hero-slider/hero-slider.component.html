@@ -1,0 +1,77 @@
+<div class="hero-container" [class.loading]="loading()">
+    @if (loading()) {
+    <div class="loader-overlay">
+        <mat-spinner diameter="50" color="warn"></mat-spinner>
+    </div>
+    } @else if (products().length > 0) {
+    <div class="hero-section-wrapper">
+        <div class="container py-4">
+            <div class="row g-4">
+                <!-- Main Slider (80%) -->
+                <div class="col-lg-8" *ngIf="products().length > 0">
+                    <div class="hero-main shadow-lg">
+                        <div class="slider-box" *ngFor="let product of products(); let i = index"
+                            [hidden]="currentIndex() !== i">
+                            <div class="slide-item">
+                                <div class="hero-content">
+                                    <div class="glass-container">
+                                        <span class="category-tag">EXCLUSIVE</span>
+                                        <h1 class="product-title">{{product.name}}</h1>
+                                        <div class="price-badge">
+                                            <span class="label">Starting at</span>
+                                            <span class="amount">₹{{product.price}}</span>
+                                        </div>
+                                        <button mat-flat-button class="shop-btn"
+                                            [routerLink]="['/product', product.modelNo]">
+                                            <span class="desktop-text">SHOP THE COLLECTION</span>
+                                            <span class="mobile-text">SHOP NOW</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="hero-image-wrapper">
+                                    <img [src]="product.variants?.[0]?.images?.[0]?.id ? environment.apiUrl + '/images/' + product.variants[0].images[0].id : environment.apiUrl + '/images/product/' + product.modelNo + '/1'"
+                                        [alt]="product.name" class="hero-image"
+                                        (error)="$event.target.src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800'">
+                                    <div class="image-reflection"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pagination-dots">
+                            <span class="dot" *ngFor="let p of products(); let i = index"
+                                [class.active]="currentIndex() === i" (click)="setIndex(i)"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Side Banner (20%) -->
+                <div class="col-lg-4 d-none d-lg-block">
+                    <div class="side-banner-premium shadow-lg">
+                        <div class="banner-overlay"></div>
+                        <div class="banner-content">
+                            <div class="top-info">
+                                <span class="badge-premium">LIMITED EDITION</span>
+                                <h3 class="banner-title">Premium Footwear</h3>
+                                <p class="banner-subtitle">Curated styles for the modern explorer</p>
+                            </div>
+
+                            <div class="offer-box">
+                                <span class="upto">UP TO</span>
+                                <span class="discount">60% OFF</span>
+                            </div>
+
+                            <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=400"
+                                class="banner-img" alt="Side Banner">
+
+                            <button class="explore-btn">
+                                EXPLORE BRANDS
+                                <mat-icon>trending_flat</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</div>

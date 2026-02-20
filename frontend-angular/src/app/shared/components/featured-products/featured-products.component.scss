@@ -1,0 +1,41 @@
+.featured-products {
+    .section-title {
+        color: #1a1a2e;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .product-card {
+        border: none;
+        border-radius: 12px; // React design radius
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); // React initial shadow
+        transition: all 0.3s ease;
+        cursor: pointer;
+        background: white;
+        overflow: hidden;
+
+        &:hover {
+            transform: translateY(-10px); // React lift effect
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12); // React hover shadow
+        }
+
+        .img-wrapper {
+            padding-top: 100%; // 1:1 Aspect ratio for images
+            position: relative;
+            overflow: hidden;
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+            }
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+    }
+}

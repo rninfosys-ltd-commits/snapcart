@@ -1,0 +1,368 @@
+@use "sass:color";
+
+:host {
+    display: block;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1100;
+}
+
+.navbar-wrapper {
+    width: 100%;
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+
+.container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem !important;
+    /* Minimal padding for breathing room */
+}
+
+/* ---------- Top Bar (Actions) ---------- */
+.top-bar {
+    height: 80px;
+    /* Increased height */
+    background: var(--primary);
+    /* Teal #4db6ac from styles.css */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    .actions-container {
+        height: 100%;
+        display: grid;
+        grid-template-columns: auto auto 1fr auto;
+        /* Menu, Logo, Search, Actions */
+        align-items: center;
+        gap: 1.5rem;
+    }
+}
+
+/* Mobile/Sidebar Toggle */
+.mobile-menu-btn {
+    display: flex;
+    /* Always visible now */
+    align-items: center;
+    margin-right: 0;
+    padding: 0 !important;
+    justify-content: center;
+    color: white !important;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    margin-right: 0.5rem;
+    transition: background 0.2s;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.25);
+    }
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+
+    .logo-icon {
+        font-size: 36px;
+        /* Slightly larger */
+        width: 36px;
+        height: 36px;
+        color: white;
+    }
+
+    .logo-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.1;
+
+        .brand-name {
+            font-size: 1.6rem;
+            /* Slightly larger */
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-tagline {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 500;
+        }
+    }
+}
+
+/* Search Area */
+.search-central {
+    width: 100%;
+    max-width: 600px;
+    justify-self: center;
+}
+
+/* Icons & Actions */
+.action-icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+
+    .icon-btn,
+    button {
+        color: white !important;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    }
+}
+
+.user-control {
+    margin-left: 12px;
+    padding-left: 12px;
+    padding-right: 0.5rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+
+    .auth-guest {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        .login-link {
+            font-weight: 600;
+            color: white;
+        }
+
+        .join-btn {
+            background: white !important;
+            color: var(--primary) !important;
+            border-radius: 6px;
+            font-weight: 700;
+            padding: 0 1.25rem;
+            height: 36px;
+            line-height: 36px;
+        }
+    }
+
+    .user-btn {
+        color: white !important;
+        font-weight: 600;
+        font-size: 0.9rem;
+
+        .user-name {
+            display: inline-block;
+            /* Start visible on desk */
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+}
+
+/* Category Strip & Mega Menu Removed */
+/* Category Strip & Mega Menu Removed */
+
+/* ---------- Mobile Responsive ---------- */
+/* .mobile-menu-btn is already styled above to be flex/visible */
+
+@media (max-width: 991px) {
+    .top-bar {
+        /* Height stays 80px or can be reduced if too tall for mobile? Let's keep 80 or slightly less (64) */
+        height: 64px;
+
+        .actions-container {
+            /* Keep logical order: Toggle, Logo, (gap), Actions */
+            grid-template-columns: auto auto 1fr auto;
+            gap: 0.5rem;
+        }
+    }
+
+    .search-central {
+        display: none;
+    }
+
+    /* Keep user-control visible but compact */
+    .user-control {
+        margin-left: 4px;
+        padding-left: 4px;
+        border-left: none;
+
+        .user-name {
+            display: none;
+        }
+
+        .user-btn {
+            min-width: auto !important;
+            padding: 0 4px !important;
+        }
+
+        .auth-guest {
+            .login-link {
+                font-size: 0.8rem;
+                min-width: auto !important;
+                padding: 0 6px !important;
+            }
+
+            .join-btn {
+                font-size: 0.75rem;
+                padding: 0 0.75rem !important;
+                height: 30px;
+                line-height: 30px;
+            }
+        }
+    }
+
+    /* Hide action icons except profile on very small screens if needed */
+    .action-icons {
+        gap: 0.5rem;
+    }
+}
+
+/* Mobile Drawer */
+.mobile-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100%;
+    background: var(--surface);
+    z-index: 2000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
+
+    &.open {
+        transform: translateX(0);
+    }
+}
+
+.drawer-header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.drawer-content {
+    overflow-y: auto;
+    max-height: calc(100vh - 80px);
+
+    .mobile-nav-item {
+        border-bottom: 1px solid var(--border-light);
+
+        .nav-expand-header {
+            padding: 1rem 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+        }
+
+        .sub-menu {
+            padding: 0.5rem 1rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+
+            a {
+                text-decoration: none;
+                color: var(--text-secondary);
+            }
+        }
+    }
+}
+
+/* Mobile User Section */
+.mobile-user-section {
+    padding: 0 0.5rem 1rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border);
+
+    .mobile-user-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0.5rem 0 1rem;
+
+        .mobile-user-avatar {
+            font-size: 40px;
+            width: 40px;
+            height: 40px;
+            color: var(--primary);
+        }
+
+        .mobile-user-name {
+            display: block;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        .mobile-user-email {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+    }
+}
+
+.mobile-profile-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0.6rem 0.5rem;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+    background: none;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
+
+    mat-icon {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+        color: var(--text-muted);
+    }
+
+    &:hover {
+        background: var(--border-light);
+        color: var(--primary);
+
+        mat-icon {
+            color: var(--primary);
+        }
+    }
+
+    &.logout-link {
+        color: #ef4444;
+
+        mat-icon {
+            color: #ef4444;
+        }
+    }
+}
+
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1999;
+}

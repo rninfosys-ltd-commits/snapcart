@@ -1,0 +1,70 @@
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-content">
+            <!-- Brand Section -->
+            <div class="footer-brand">
+                <div class="brand-logo">
+                    <mat-icon class="brand-icon">local_mall</mat-icon>
+                    <span class="brand-name">SnapCart</span>
+                </div>
+                <p class="brand-description">
+                    Your friendly marketplace for curated essentials. Handpicked quality across electronics, fashion,
+                    and home.
+                </p>
+            </div>
+
+            <!-- Shop Section -->
+            <div class="footer-section">
+                <h3 class="footer-heading">Shop</h3>
+                <ul class="footer-links">
+                    <li *ngFor="let link of shopLinks">
+                        <a [routerLink]="link.path" class="footer-link">{{ link.name }}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Help Section -->
+            <div class="footer-section">
+                <h3 class="footer-heading">Help</h3>
+                <ul class="footer-links">
+                    <li *ngFor="let link of helpLinks">
+                        <a href="#">{{ link }}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Newsletter Section -->
+            <div class="footer-newsletter">
+                <h3 class="footer-heading">Newsletter</h3>
+                <p class="newsletter-text">Subscribe for exclusive offers and updates</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" class="newsletter-input">
+                    <button mat-raised-button color="primary" class="newsletter-button">Subscribe</button>
+                </div>
+            </div>
+        </div>
+
+        <mat-divider class="footer-divider"></mat-divider>
+
+        <!-- Bottom Section -->
+        <div class="footer-bottom">
+            <!-- Social Icons -->
+            <div class="social-icons">
+                <a *ngFor="let social of socialIcons" [href]="social.url" class="social-link"
+                    [attr.aria-label]="social.name">
+                    <mat-icon>{{ social.name }}</mat-icon>
+                </a>
+            </div>
+
+            <!-- Footer Links -->
+            <div class="footer-bottom-links">
+                <a *ngFor="let link of footerLinks" href="#" class="bottom-link">{{ link }}</a>
+            </div>
+
+            <!-- Copyright -->
+            <p class="copyright">
+                © 2024 SnapCart. All rights reserved.
+            </p>
+        </div>
+    </div>
+</footer>

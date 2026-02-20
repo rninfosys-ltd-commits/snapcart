@@ -1,0 +1,60 @@
+package com.config;
+
+import java.io.IOException;
+
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequestWrapper;
+import jakarta.servlet.http.HttpServletResponse;
+
+/**
+ * RouteAliasFilter
+ * ================
+ * 
+ * Aliases requests from /demo/** to /**.
+ * This allows the API to be accessible via both:
+ * - http://localhost:8080/api/...
+ * - http://localhost:8080/demo/api/...
+ */
+@Component
+@Order(Ordered.HIGHEST_PRECEDENCE)
+public class RouteAliasFilter extends OncePerRequestFilter {
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
+
+        String requestURI = request.getRequestURI();
+
+        // Check if the request starts with /demo
+        if (requestURI.startsWith("/demo/")) {
+            // Remove /demo prefix
+            String newURI = requestURI.substring("/demo".length());
+            
+            // Create a wrapper to override getRequestURI and getServletPath
+            HttpServletRequestWrapper wrapper = new HttpServletRequestWrapper(request) {
+                @Override
+                public String getRequestURI() {
+                    return newURI;
+                }
+
+                @Override
+                public String getServletPath() {
+                    return newURI;
+                }
+            };
+
+            // Continue chain with wrapped request
+            filterChain.doFilter(wrapper, response);
+        } else {
+            // Continue chain normally
+            filterChain.doFilter(request, response);
+        }
+    }
+}

@@ -1,0 +1,24 @@
+<div class="carousel-container">
+    <div class="slides-wrapper" [@slideAnimation]="currentIndex()">
+        @for (image of carouselImages; track image.src; let i = $index) {
+        @if (i === currentIndex()) {
+        <img [src]="image.src" [alt]="image.alt" class="carousel-image" draggable="false" />
+        }
+        }
+    </div>
+
+    <!-- Navigation Buttons -->
+    <button mat-icon-button class="control prev" (click)="prev()" aria-label="Previous Slide">
+        <mat-icon>chevron_left</mat-icon>
+    </button>
+    <button mat-icon-button class="control next" (click)="next()" aria-label="Next Slide">
+        <mat-icon>chevron_right</mat-icon>
+    </button>
+
+    <!-- Indicators (Optional but good for premium feel) -->
+    <div class="indicators">
+        @for (image of carouselImages; track image.src; let i = $index) {
+        <div class="indicator" [class.active]="i === currentIndex()" (click)="currentIndex.set(i)"></div>
+        }
+    </div>
+</div>

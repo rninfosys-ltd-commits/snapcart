@@ -1,0 +1,110 @@
+.employee-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin: 0 0 0.5rem 0;
+        color: var(--text-main);
+    }
+
+    p {
+        margin: 0;
+        color: var(--text-secondary);
+    }
+}
+
+.add-form-card {
+    margin-bottom: 2rem;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: none;
+
+    h2 {
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        font-size: 1.25rem;
+    }
+}
+
+.form-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+
+    mat-form-field {
+        flex: 1;
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+.full-width {
+    width: 100%;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.table-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: none;
+    padding: 0;
+
+    table {
+        width: 100%;
+
+        th.mat-header-cell {
+            background-color: var(--surface-elevated);
+            color: var(--text-secondary);
+            font-weight: 600;
+            padding: 1.25rem 1.5rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td.mat-cell {
+            padding: 1rem 1.5rem;
+            color: var(--text-main);
+            border-bottom-color: var(--border-light);
+        }
+
+        tr.mat-row:last-child td {
+            border-bottom: none;
+        }
+
+        tr.mat-row:hover {
+            background-color: var(--surface-elevated);
+        }
+    }
+}
+
+.role-badge {
+    padding: 4px 12px;
+    background-color: rgb(77 182 172 / 10%);
+    color: var(--primary);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}

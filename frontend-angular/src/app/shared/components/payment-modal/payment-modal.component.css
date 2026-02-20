@@ -1,0 +1,177 @@
+.payment-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(4px);
+}
+
+.payment-modal {
+    background: white;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 20px;
+    padding: 24px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.close-btn:hover {
+    background: #f5f5f5;
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.modal-header p {
+    margin: 4px 0 0;
+    color: #888;
+    font-size: 14px;
+}
+
+.qr-container {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 10px;
+    background: white;
+}
+
+.qr-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.loading-spinner {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f9f9f9;
+    border-radius: 12px;
+    color: #888;
+}
+
+.payment-details {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.amount {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.instruction {
+    color: #666;
+    margin: 0 0 12px;
+    font-size: 14px;
+}
+
+.payment-methods {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.method {
+    font-size: 12px;
+    color: #555;
+    background: #f5f5f5;
+    padding: 4px 10px;
+    border-radius: 100px;
+}
+
+.status-message {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 500;
+    min-height: 24px;
+}
+
+.status-message.PENDING {
+    color: #f39c12;
+}
+
+.status-message.COMPLETED {
+    color: #2ecc71;
+}
+
+.status-message.FAILED {
+    color: #e74c3c;
+}
+
+.verify-btn {
+    width: 100%;
+    padding: 14px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.verify-btn:hover {
+    background: #000;
+}
+
+.verify-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}

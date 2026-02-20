@@ -1,0 +1,13 @@
+<section class="cta-section py-5" *ngIf="!user()">
+    <div class="container text-center">
+        <div class="cta-content mx-auto" style="max-width: 800px;">
+            <h2 class="display-4 fw-bold mb-3">Get 20% Off Your First Order</h2>
+            <p class="lead mb-4 opacity-75">
+                Join the SnapCart community and discover handpicked essentials across tech, fashion, and home.
+            </p>
+            <button mat-raised-button color="warn" class="cta-btn px-5 py-2 fs-5" (click)="navigateToSignup()">
+                Create Account
+            </button>
+        </div>
+    </div>
+</section>
