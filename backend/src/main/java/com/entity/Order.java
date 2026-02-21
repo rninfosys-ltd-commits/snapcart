@@ -35,7 +35,7 @@ public class Order {
     private LocalDateTime orderDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "VARCHAR(50)")
     private OrderStatus status;
 
     @Column(columnDefinition = "TEXT")
@@ -55,6 +55,20 @@ public class Order {
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderTracking> trackingHistory = new ArrayList<>();
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Settlement> settlements = new ArrayList<>();
+
+    // ==================== MULTI-TENANT & FINANCIAL SETTLEMENT ====================
+
+    @Enumerated(EnumType.STRING)
+    private SettlementType settlementType;
+
+    @Column(name = "primary_tenant_id")
+    private Long primaryTenantId; // Set if single-tenant order for optimization
+
+    @Version
+    private Long version;
 
     @PrePersist
     protected void onCreate() {

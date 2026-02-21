@@ -51,8 +51,7 @@
             <!-- Social Icons -->
             <div class="social-icons">
                 <a *ngFor="let social of socialIcons" [href]="social.url" class="social-link"
-                    [attr.aria-label]="social.name">
-                    <mat-icon>{{ social.name }}</mat-icon>
+                    [attr.aria-label]="social.name" [innerHTML]="getSocialIcon(social.name)">
                 </a>
             </div>
 

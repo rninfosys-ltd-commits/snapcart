@@ -177,4 +177,15 @@ public class Moderator {
             this.isActive = true;
         }
     }
+
+    // ==================== MULTI-TENANT & SETTLEMENT ====================
+
+    @Column(name = "tenant_id", updatable = false)
+    private Long tenantId; // Mapped to id internally or set manually
+
+    @Column(length = 255)
+    private String paymentAccountId; // e.g., Stripe Connect account ID
+
+    @Column(nullable = false)
+    private Double platformCommissionPercent = 10.0;
 }

@@ -1,7 +1,6 @@
 package com.controller.admin;
 
 import com.dto.AdminOrderDTO;
-import com.entity.Order;
 import com.entity.OrderStatus;
 import com.service.InvoiceService;
 import com.service.OrderService;
@@ -35,12 +34,13 @@ public class AdminOrderController {
     }
 
     @PutMapping("/{orderId}/status")
-    public ResponseEntity<Order> updateStatus(@PathVariable Long orderId, @RequestParam OrderStatus status) {
+    public ResponseEntity<com.dto.OrderResponseDTO> updateStatus(@PathVariable Long orderId,
+            @RequestParam OrderStatus status) {
         return ResponseEntity.ok(orderService.updateOrderStatus(orderId, status));
     }
 
     @PutMapping("/{orderId}/tracking")
-    public ResponseEntity<Order> updateTracking(
+    public ResponseEntity<com.dto.OrderResponseDTO> updateTracking(
             @PathVariable Long orderId,
             @RequestParam String location,
             @RequestParam String status) {

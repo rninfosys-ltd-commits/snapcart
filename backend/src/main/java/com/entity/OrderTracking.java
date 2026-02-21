@@ -22,7 +22,7 @@ public class OrderTracking {
     private Order order;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "VARCHAR(255)")
+    @Column(nullable = false, columnDefinition = "VARCHAR(50)")
     private TrackingStatus status;
 
     @Column(nullable = false)
@@ -44,13 +44,27 @@ public class OrderTracking {
     public OrderTracking(Order order, TrackingStatus status, String city, String state, String description) {
         this.order = order;
         this.status = status;
-        this.city = city;
-        this.state = state;
+        this.city = city != null ? city : "Unknown";
+        this.state = state != null ? state : "Unknown";
         this.description = description;
 
-        // Defensive coding: Ensure location is never null
-        this.location = (city != null ? city : "") + ", " + (state != null ? state : "");
+        // Defensive coding: Ensure location is never null or empty
+        this.location = this.city + ", " + this.state;
 
         this.timestamp = LocalDateTime.now();
+    }
+
+    @PrePersist
+    protected void onPersist() {
+        if (this.timestamp == null) {
+            this.timestamp = LocalDateTime.now();
+        }
+        if (this.location == null) {
+            this.location = (city != null ? city : "Unknown") + ", " + (state != null ? state : "Unknown");
+        }
+        if (this.city == null)
+            this.city = "Unknown";
+        if (this.state == null)
+            this.state = "Unknown";
     }
 }

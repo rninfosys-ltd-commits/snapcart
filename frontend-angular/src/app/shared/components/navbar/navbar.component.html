@@ -70,6 +70,12 @@
             <span>Admin Dashboard</span>
         </button>
         }
+        @if (primaryRole() === 'MODERATOR' || primaryRole() === 'ADMIN' || primaryRole() === 'SUPER_ADMIN') {
+        <button mat-menu-item routerLink="/moderator/dashboard">
+            <mat-icon>dashboard</mat-icon>
+            <span>Moderator Dashboard</span>
+        </button>
+        }
         @if (primaryRole() === 'SUPER_ADMIN') {
         <button mat-menu-item routerLink="/super-admin/dashboard">
             <mat-icon>security</mat-icon>

@@ -26,6 +26,27 @@ import java.util.stream.Collectors;
 @Service
 public class ProductService {
 
+    @jakarta.annotation.PostConstruct
+    @Transactional
+    public void initMasterProducts() {
+        try {
+            List<Product> products = productRepository.findAll();
+            boolean changed = false;
+            for (Product p : products) {
+                if (p.getModerator() == null && !p.isMaster()) {
+                    p.setMaster(true);
+                    changed = true;
+                }
+            }
+            if (changed) {
+                productRepository.saveAll(products);
+                System.out.println(">>> Initialized Master Products for Procurement Catalog");
+            }
+        } catch (Exception e) {
+            System.err.println("Error initializing master products: " + e.getMessage());
+        }
+    }
+
     @Autowired
     private ProductRepository productRepository;
 
@@ -80,6 +101,10 @@ public class ProductService {
         return productRepository.findAll(pageable);
     }
 
+    public List<Product> getProductsByTenant(Long tenantId) {
+        return productRepository.findByTenantId(tenantId);
+    }
+
     public List<Product> getProductsByModerator(Long userId) {
         if (userId == null) {
             return new ArrayList<>();
@@ -112,6 +137,9 @@ public class ProductService {
         Product product = new Product();
         mapRequestToProduct(request, product);
         product.setModerator(moderator);
+        if (moderator != null) {
+            product.setTenantId(moderator.getId());
+        }
 
         Product savedProduct = productRepository.save(product);
 
@@ -457,6 +485,10 @@ public class ProductService {
             product.setSubCategory(productDto.getSubCategory());
         if (productDto.getProductGroup() != null)
             product.setProductGroup(productDto.getProductGroup());
+
+        if (product.getModerator() != null) {
+            product.setTenantId(product.getModerator().getId());
+        }
 
         if (productDto.getIsReplaceable() != null)
             product.setReplaceable(productDto.getIsReplaceable());

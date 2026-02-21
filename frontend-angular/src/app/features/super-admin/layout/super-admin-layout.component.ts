@@ -41,6 +41,14 @@ import { AuthService } from '../../../core/services/auth.service';
               <mat-icon matListItemIcon>admin_panel_settings</mat-icon>
               <span matListItemTitle>Admin Management</span>
             </a>
+            <a mat-list-item routerLink="/super-admin/products" routerLinkActive="active">
+              <mat-icon matListItemIcon>inventory_2</mat-icon>
+              <span matListItemTitle>Master Catalog</span>
+            </a>
+            <a mat-list-item routerLink="/super-admin/add-product" routerLinkActive="active">
+              <mat-icon matListItemIcon>add_box</mat-icon>
+              <span matListItemTitle>Add Supply</span>
+            </a>
             <a mat-list-item routerLink="/super-admin/audit-logs" routerLinkActive="active">
               <mat-icon matListItemIcon>history_edu</mat-icon>
               <span matListItemTitle>Audit Logs</span>

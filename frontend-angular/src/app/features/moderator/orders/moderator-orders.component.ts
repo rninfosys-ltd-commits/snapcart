@@ -33,10 +33,10 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   template: `
     <div class="orders-container">
       <div class="header">
-        <h1>Order Management (Moderator)</h1>
+        <h1>Order Management</h1>
         <div>
           <button mat-button color="primary" routerLink="/moderator/dashboard" style="margin-right: 10px;">
-            <mat-icon>arrow_back</mat-icon> Back to Dashboard
+            <mat-icon>arrow_back</mat-icon> Back to Home
           </button>
           <button mat-flat-button color="primary" (click)="refresh()" style="margin-right: 10px;">
             <mat-icon>refresh</mat-icon> Refresh
@@ -61,6 +61,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
           <mat-select [(ngModel)]="selectedStatus" (selectionChange)="filterOrders()">
             <mat-option value="">All Statuses</mat-option>
             <mat-option value="PENDING">Pending</mat-option>
+            <mat-option value="PROCESSING">Processing</mat-option>
             <mat-option value="SHIPPED">Shipped</mat-option>
             <mat-option value="DELIVERED">Delivered</mat-option>
             <mat-option value="CANCELLED">Cancelled</mat-option>
@@ -149,8 +150,11 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
             <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
             <mat-menu #menu="matMenu">
               <button mat-menu-item (click)="updateStatus(element.id || element.orderId, 'PENDING')">Mark Pending</button>
+              <button mat-menu-item (click)="updateStatus(element.id || element.orderId, 'PROCESSING')">Mark Processing</button>
               <button mat-menu-item (click)="updateStatus(element.id || element.orderId, 'SHIPPED')">Mark Shipped</button>
               <button mat-menu-item (click)="updateStatus(element.id || element.orderId, 'DELIVERED')">Mark Delivered</button>
+              <button mat-menu-item (click)="openTrackingDialog(element)"><mat-icon>local_shipping</mat-icon> Update Tracking</button>
+              <button mat-menu-item (click)="updateStatus(element.id || element.orderId, 'CANCELLED')" class="text-danger">Cancel Order</button>
             </mat-menu>
           </td>
         </ng-container>
@@ -164,10 +168,10 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
               <div class="order-items-list">
                  <h4>Order Items</h4>
                  <div class="item-row" *ngFor="let item of element.items">
-                    <img [src]="environment.apiUrl + '/images/product/' + (item.product.modelNo || item.product.id) + '/1'" class="item-thumb" alt="Product Image" (error)="$any($event.target).style.display='none'">
+                    <img [src]="item.productImage || environment.apiUrl + '/images/product/' + (item.product.modelNo || item.product.id) + '/1'" class="item-thumb" alt="Product Image" (error)="$any($event.target).style.display='none'">
                     <div class="item-details">
-                       <span class="item-name">{{item.product.name}}</span>
-                       <span class="item-meta">Model: {{item.product.modelNo}}</span>
+                       <span class="item-name">{{item.product?.name || item.productName}}</span>
+                       <span class="item-meta">Model: {{item.product?.modelNo || 'N/A'}}</span>
                     </div>
                     <div class="item-price">
                        {{item.quantity}} x {{item.price | currency:'INR':'symbol':'1.0-0'}}
@@ -336,6 +340,7 @@ export class ModeratorOrdersComponent {
   getStatusClass(status: string) {
     switch (status) {
       case 'PENDING': return 'status-pending';
+      case 'PROCESSING': return 'status-pending';
       case 'SHIPPED': return 'status-shipped';
       case 'DELIVERED': return 'status-delivered';
       case 'CANCELLED': return 'status-cancelled';
@@ -344,14 +349,31 @@ export class ModeratorOrdersComponent {
   }
 
   updateStatus(id: number, status: string) {
-    if (confirm(`Are you sure you want to update status to ${status}?`)) {
-      this.moderatorService.updateOrderStatus(id, status).then(() => {
-        this.snackBar.open('Order status updated successfully', 'Close', { duration: 3000 });
-        this.refresh();
-      }).catch(err => {
-        this.snackBar.open('Failed to update status', 'Close', { duration: 3000 });
-      });
-    }
+    this.moderatorService.updateOrderStatus(id, status).then(() => {
+      this.snackBar.open('Order status updated successfully', 'Close', { duration: 3000 });
+      this.refresh();
+    }).catch(err => {
+      this.snackBar.open('Failed to update status', 'Close', { duration: 3000 });
+    });
+  }
+
+  openTrackingDialog(order: any) {
+    const dialogRef = this.dialog.open(UpdateTrackingDialog, {
+      width: '500px',
+      data: order
+    });
+
+    dialogRef.afterClosed().subscribe(async (result) => {
+      if (result) {
+        try {
+          await this.moderatorService.updateOrderTracking(result.id, result.location, result.status);
+          this.snackBar.open('Order tracking updated successfully', 'Close', { duration: 3000 });
+          this.refresh();
+        } catch (err) {
+          this.snackBar.open('Failed to update tracking', 'Close', { duration: 3000 });
+        }
+      }
+    });
   }
 
   exportToCSV() {
@@ -383,5 +405,72 @@ export class ModeratorOrdersComponent {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  }
+}
+
+// Re-using UpdateTrackingDialog (assuming it can be shared or needs to be redeclared if not exported)
+// For standalone components in different features, it's often easiest to redeclare or move to shared.
+// Given the prompt "make same as admin", I'll redeclare it here for self-containment if it's not in shared.
+@Component({
+  selector: 'app-update-tracking-dialog',
+  standalone: true,
+  imports: [CommonModule, MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, FormsModule],
+  template: `
+    <h2 mat-dialog-title>Update Order Tracking</h2>
+    <mat-dialog-content>
+      <p class="info-text">Update location and status for Order #{{data.id || data.orderId}}</p>
+      
+      <div class="form-container">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Current Location</mat-label>
+          <input matInput [(ngModel)]="location" placeholder="e.g. Mumbai Hub, Out for Delivery">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Status</mat-label>
+          <mat-select [(ngModel)]="status">
+            <mat-option value="PENDING">Pending</mat-option>
+            <mat-option value="PROCESSING">Processing</mat-option>
+            <mat-option value="SHIPPED">Shipped</mat-option>
+            <mat-option value="DELIVERED">Delivered</mat-option>
+            <mat-option value="CANCELLED">Cancelled</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="current-info" *ngIf="data.currentLocation">
+        <small>Current Location: <strong>{{data.currentLocation}}</strong></small>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button [mat-dialog-close]="false">Cancel</button>
+      <button mat-flat-button color="primary" (click)="save()" [disabled]="!location || !status">Update</button>
+    </mat-dialog-actions>
+  `,
+  styles: [`
+    .info-text { margin-bottom: 20px; color: var(--text-secondary); }
+    .form-container { display: flex; flex-direction: column; gap: 10px; }
+    .full-width { width: 100%; }
+    .current-info { margin-top: 10px; color: var(--text-secondary); }
+  `]
+})
+export class UpdateTrackingDialog {
+  data: any = inject(MAT_DIALOG_DATA);
+  dialogRef = inject(MatDialogRef<UpdateTrackingDialog>);
+
+  location = '';
+  status = '';
+
+  constructor() {
+    this.status = this.data.status;
+    this.location = this.data.currentLocation || '';
+  }
+
+  save() {
+    this.dialogRef.close({
+      id: this.data.id || this.data.orderId,
+      location: this.location,
+      status: this.status
+    });
   }
 }

@@ -40,6 +40,9 @@ public class Product implements java.io.Serializable {
     @Column(name = "brand_name", length = 255)
     private String brandName;
 
+    @Column(name = "tenant_id")
+    private Long tenantId; // Denormalized for fast filtering
+
     @Enumerated(EnumType.STRING)
     private Category category;
 
@@ -103,6 +106,9 @@ public class Product implements java.io.Serializable {
     @Column(nullable = false)
     private int reviewCount = 0;
 
+    @Column(nullable = false)
+    private boolean isMaster = false; // True for platform-supplied master products
+
     /*
      * =======================
      * RELATIONSHIPS
@@ -115,4 +121,12 @@ public class Product implements java.io.Serializable {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<UserReview> reviews = new ArrayList<>();
+
+    @PrePersist
+    @PreUpdate
+    protected void onSave() {
+        if (this.moderator == null) {
+            this.isMaster = true;
+        }
+    }
 }

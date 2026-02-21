@@ -89,6 +89,30 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getOrderResponseDTO(orderId));
     }
 
+    @GetMapping("/{orderId}/tracking")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public ResponseEntity<List<com.dto.OrderTrackingDTO>> getOrderTracking(
+            @PathVariable Long orderId,
+            @AuthenticationPrincipal UserDetailsImpl currentUser) {
+
+        Order order = orderService.getOrderById(orderId);
+
+        boolean isAdminOrMod = currentUser.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN")
+                        || a.getAuthority().equals("ROLE_MODERATOR"));
+
+        if (!isAdminOrMod && !order.getUser().getId().equals(currentUser.getId())) {
+            return ResponseEntity.status(403).build();
+        }
+
+        List<com.dto.OrderTrackingDTO> tracking = order.getTrackingHistory().stream()
+                .map(t -> new com.dto.OrderTrackingDTO(t.getStatus().name(), t.getCity(), t.getState(),
+                        t.getDescription(), t.getTimestamp()))
+                .toList();
+
+        return ResponseEntity.ok(tracking);
+    }
+
     private User getCurrentUser() {
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();

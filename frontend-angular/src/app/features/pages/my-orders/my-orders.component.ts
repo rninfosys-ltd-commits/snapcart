@@ -5,6 +5,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatDialogModule, MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 import { OrderService } from '../../../core/services/order.service';
 import { environment } from '../../../../environments/environment';
 
@@ -14,7 +16,7 @@ import { OrderTrackingTimelineComponent } from '../../../shared/components/order
 @Component({
    selector: 'app-my-orders',
    standalone: true,
-   imports: [CommonModule, MatTabsModule, MatButtonModule, MatIconModule, MatStepperModule, RouterLink, OrderTrackingTimelineComponent],
+   imports: [CommonModule, MatTabsModule, MatButtonModule, MatIconModule, MatStepperModule, MatDialogModule, MatDividerModule, RouterLink, OrderTrackingTimelineComponent],
    template: `
     <div class="page-container">
        <h1 class="page-title">Your Orders</h1>
@@ -275,6 +277,7 @@ import { OrderTrackingTimelineComponent } from '../../../shared/components/order
 export class MyOrdersComponent {
    orderService = inject(OrderService);
    router = inject(Router);
+   private dialog = inject(MatDialog);
    protected environment = environment;
 
    orders = signal<any[]>([]);
@@ -342,9 +345,17 @@ export class MyOrdersComponent {
       }
    }
 
-   viewOrderDetails(orderId: number) {
-      // Placeholder for potential detailed view page
-      console.log('View order details', orderId);
+   async viewOrderDetails(orderId: number) {
+      try {
+         const order = await this.orderService.getOrderById(orderId);
+         this.dialog.open(OrderDetailsDialog, {
+            width: '800px',
+            data: { order, service: this.orderService }
+         });
+      } catch (err) {
+         console.error('Failed to load order details', err);
+         alert('Failed to load order details');
+      }
    }
 
    async toggleTracking(order: any) {
@@ -387,5 +398,187 @@ export class MyOrdersComponent {
       if (reason) {
          alert(`Return request submitted for ${item.product.name}. We will contact you shortly.`);
       }
+   }
+}
+
+@Component({
+   selector: 'app-order-details-dialog',
+   standalone: true,
+   imports: [CommonModule, MatDialogModule, MatButtonModule, MatIconModule, MatDividerModule, OrderTrackingTimelineComponent],
+   template: `
+    <div class="dialog-header">
+        <h2 mat-dialog-title>Order Details</h2>
+        <button mat-icon-button mat-dialog-close><mat-icon>close</mat-icon></button>
+    </div>
+    
+    <mat-dialog-content>
+        <div class="order-meta">
+            <div class="meta-item">
+                <span class="label">Ordered on</span>
+                <span class="value">{{ data.order.orderDate | date:'longDate' }}</span>
+            </div>
+            <div class="meta-item">
+                <span class="label">Order#</span>
+                <span class="value">{{ data.order.id }}</span>
+            </div>
+            <div class="meta-item" *ngIf="data.order.totalAmount">
+                <span class="label">Total Amount</span>
+                <span class="value">₹{{ data.order.totalAmount }}</span>
+            </div>
+        </div>
+
+        <mat-divider style="margin: 15px 0;"></mat-divider>
+
+        <div class="details-grid">
+            <div class="shipping-section">
+                <h3>Shipping Address</h3>
+                <div class="address-box">
+                    <strong>{{ data.order.user?.name || 'Customer' }}</strong>
+                    <div *ngIf="getParsedAddress(data.order.shippingAddress) as addr; else rawAddr">
+                         <p>{{ addr.address }}</p>
+                         <p>{{ addr.city }}, {{ addr.state }} - {{ addr.pincode }}</p>
+                         <p>Phone: {{ addr.phone }}</p>
+                    </div>
+                    <ng-template #rawAddr>
+                         <p>{{ data.order.shippingAddress || 'No address provided' }}</p>
+                    </ng-template>
+                </div>
+            </div>
+
+            <div class="payment-section">
+                <h3>Payment Method</h3>
+                <p class="pay-method">{{ (data.order.paymentMethod || 'Prepaid') | uppercase }}</p>
+                <div class="status-badge" [class.paid]="data.order.paymentStatus === 'PAID'">
+                    {{ data.order.paymentStatus || 'COMPLETED' }}
+                </div>
+            </div>
+        </div>
+
+        <mat-divider style="margin: 20px 0;"></mat-divider>
+
+        <h3>Order Items</h3>
+        <div class="items-list">
+            <div class="item-detail-row" *ngFor="let item of data.order.items">
+                <img [src]="environment.apiUrl + '/images/product/' + (item.product?.modelNo || item.product?.id) + '/1'" 
+                     class="item-thumb" (error)="$any($event.target).style.display='none'">
+                <div class="item-info">
+                    <span class="item-name">{{ item.product?.name }}</span>
+                    <span class="item-qty">Qty: {{ item.quantity }}</span>
+                </div>
+                <div class="item-price">
+                    ₹{{ item.price * item.quantity }}
+                </div>
+            </div>
+        </div>
+
+        <mat-divider style="margin: 20px 0;"></mat-divider>
+
+        <div class="tracking-section">
+            <div class="section-header">
+                <h3>Tracking Status</h3>
+                <span class="current-status">{{ data.order.status }}</span>
+            </div>
+            
+            <div class="loading-tracking" *ngIf="loadingTracking">
+                <div class="spinner-sm"></div> Loading tracking updates...
+            </div>
+            
+            <app-order-tracking-timeline 
+                *ngIf="!loadingTracking" 
+                [trackingHistory]="trackingHistory">
+            </app-order-tracking-timeline>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button color="primary" (click)="downloadInvoice()">Download Invoice</button>
+        <button mat-flat-button color="primary" mat-dialog-close>Close</button>
+    </mat-dialog-actions>
+   `,
+   styles: [`
+    .dialog-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+    h2 { margin: 0; font-weight: 600; font-size: 20px; }
+    
+    .order-meta { display: flex; gap: 40px; margin-top: 15px; }
+    .meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .label { font-size: 12px; color: #666; text-transform: uppercase; }
+    .value { font-weight: 500; font-size: 14px; }
+    
+    .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 15px; }
+    h3 { font-size: 16px; margin: 0 0 10px; font-weight: 600; color: #333; }
+    
+    .address-box { font-size: 14px; line-height: 1.6; }
+    .address-box p { margin: 2px 0; color: #555; }
+    
+    .pay-method { font-weight: 700; color: #333; margin-bottom: 4px; }
+    
+    .status-badge { display: inline-block; padding: 4px 12px; border-radius: 4px; background: #eee; font-size: 12px; font-weight: 600; margin-top: 8px; }
+    .status-badge.paid { background: #e8f5e9; color: #2e7d32; }
+    
+    .items-list { display: flex; flex-direction: column; gap: 15px; }
+    .item-detail-row { display: flex; align-items: center; gap: 15px; }
+    .item-thumb { width: 40px; height: 40px; object-fit: contain; border: 1px solid #eee; border-radius: 4px; }
+    .item-info { flex: 1; display: flex; flex-direction: column; }
+    .item-name { font-size: 14px; font-weight: 500; }
+    .item-qty { font-size: 12px; color: #666; }
+    .item-price { font-weight: 600; }
+    
+    .tracking-section { margin-top: 10px; }
+    .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .current-status { padding: 4px 12px; border-radius: 20px; background: #fff8e1; color: #f57f17; font-size: 12px; font-weight: 600; text-transform: uppercase; }
+    
+    .loading-tracking { display: flex; align-items: center; gap: 10px; padding: 20px; color: #666; font-size: 14px; }
+    .spinner-sm { width: 16px; height: 16px; border: 2px solid #ddd; border-top-color: #333; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+   `]
+})
+export class OrderDetailsDialog {
+   data: any = inject(MAT_DIALOG_DATA);
+   dialogRef = inject(MatDialogRef<OrderDetailsDialog>);
+   protected environment = environment;
+
+   trackingHistory: any[] = [];
+   loadingTracking = true;
+
+   constructor() {
+      this.loadTracking();
+   }
+
+   async loadTracking() {
+      try {
+         this.loadingTracking = true;
+         this.trackingHistory = await this.data.service.getTracking(this.data.order.id);
+      } finally {
+         this.loadingTracking = false;
+      }
+   }
+
+   async downloadInvoice() {
+      try {
+         const blob = await this.data.service.downloadInvoice(this.data.order.id);
+         const url = window.URL.createObjectURL(blob);
+         const a = document.createElement('a');
+         a.href = url;
+         a.download = `Invoice_${this.data.order.id}.pdf`;
+         document.body.appendChild(a);
+         a.click();
+         window.URL.revokeObjectURL(url);
+         document.body.removeChild(a);
+      } catch (err) {
+         console.error(err);
+         alert('Failed to download invoice');
+      }
+   }
+
+   getParsedAddress(addrStr: string): any {
+      if (!addrStr) return null;
+      if (addrStr.trim().startsWith('{')) {
+         try {
+            return JSON.parse(addrStr);
+         } catch (e) {
+            return null;
+         }
+      }
+      return null;
    }
 }

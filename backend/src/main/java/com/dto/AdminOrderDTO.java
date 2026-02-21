@@ -24,4 +24,7 @@ public class AdminOrderDTO {
     private String status;
     private String currentLocation;
     private LocalDateTime orderDate;
+    private String paymentMethod;
+    private String paymentStatus;
+    private String shippingAddress;
 }

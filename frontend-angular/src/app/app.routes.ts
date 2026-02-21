@@ -149,6 +149,10 @@ export const routes: Routes = [
                 loadComponent: () => import('./features/moderator/inventory/inventory.component').then(m => m.ModeratorInventoryComponent)
             },
             {
+                path: 'procure-inventory',
+                loadComponent: () => import('./features/moderator/procure-inventory/procure-inventory.component').then(m => m.ProcureInventoryComponent)
+            },
+            {
                 path: 'edit-product/:modelNo',
                 loadComponent: () => import('./features/moderator/edit-product/edit-product.component').then(m => m.EditProductComponent)
             },

@@ -30,6 +30,9 @@ public class AnalyticsService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private com.repository.ModeratorRepository moderatorRepository;
+
     public com.payload.response.DashboardResponse getDashboardStats() {
         com.payload.response.DashboardResponse response = new com.payload.response.DashboardResponse();
 
@@ -54,35 +57,63 @@ public class AnalyticsService {
         return response;
     }
 
+    private Long getTenantId(Long userId) {
+        if (userId == null)
+            return null;
+        var mod = moderatorRepository.findByUserId(userId).orElse(null);
+        if (mod == null) {
+            // Check if employee
+            var user = userRepository.findById(userId).orElse(null);
+            if (user != null && user.getRole() == com.entity.Role.EMPLOYEE && user.getParentId() != null) {
+                mod = moderatorRepository.findByUserId(user.getParentId()).orElse(null);
+            }
+        }
+        return mod != null ? mod.getId() : null;
+    }
+
     public AnalyticsSummary getSummary(Long moderatorId, String range) {
+        Long tenantId = getTenantId(moderatorId);
         LocalDateTime startDate = getStartDate(range);
-        List<Order> orders = orderRepository.findAll().stream()
+
+        List<Order> allOrders = orderRepository.findAll();
+        List<Order> filteredOrders = allOrders.stream()
                 .filter(o -> o.getOrderDate().isAfter(startDate))
+                .filter(o -> tenantId == null || o.getItems().stream().anyMatch(i -> tenantId.equals(i.getTenantId())))
                 .collect(Collectors.toList());
 
-        double revenue = orders.stream()
+        double revenue = filteredOrders.stream()
                 .filter(o -> o.getStatus() != OrderStatus.CANCELLED)
-                .mapToDouble(Order::getTotalAmount)
+                .mapToDouble(o -> {
+                    if (tenantId == null)
+                        return o.getTotalAmount();
+                    return o.getItems().stream()
+                            .filter(i -> tenantId.equals(i.getTenantId()))
+                            .mapToDouble(i -> i.getGrossAmount() != null ? i.getGrossAmount()
+                                    : (i.getPrice() * i.getQuantity()))
+                            .sum();
+                })
                 .sum();
 
         long newCustomers = userRepository.findAll().stream()
                 .filter(u -> u.getCreatedAt() != null && u.getCreatedAt().isAfter(startDate))
                 .count();
 
-        double avgOrderValue = orders.isEmpty() ? 0 : revenue / orders.size();
+        double avgOrderValue = filteredOrders.isEmpty() ? 0 : revenue / filteredOrders.size();
 
         return AnalyticsSummary.builder()
                 .totalRevenue(revenue)
-                .totalOrders(orders.size())
+                .totalOrders(filteredOrders.size())
                 .newCustomers((int) newCustomers)
                 .avgOrderValue(Math.round(avgOrderValue * 100.0) / 100.0)
                 .build();
     }
 
     public ChartData getOrdersTrend(Long moderatorId, String range) {
+        Long tenantId = getTenantId(moderatorId);
         LocalDateTime startDate = getStartDate(range);
         List<Order> orders = orderRepository.findAll().stream()
                 .filter(o -> o.getOrderDate().isAfter(startDate))
+                .filter(o -> tenantId == null || o.getItems().stream().anyMatch(i -> tenantId.equals(i.getTenantId())))
                 .collect(Collectors.toList());
 
         Map<String, Long> groupedStats = groupOrdersByDate(orders, range);
@@ -95,12 +126,14 @@ public class AnalyticsService {
     }
 
     public ChartData getRevenueTrend(Long moderatorId, String range) {
+        Long tenantId = getTenantId(moderatorId);
         LocalDateTime startDate = getStartDate(range);
         List<Order> orders = orderRepository.findAll().stream()
                 .filter(o -> o.getOrderDate().isAfter(startDate) && o.getStatus() != OrderStatus.CANCELLED)
+                .filter(o -> tenantId == null || o.getItems().stream().anyMatch(i -> tenantId.equals(i.getTenantId())))
                 .collect(Collectors.toList());
 
-        Map<String, Double> groupedStats = groupRevenueByDate(orders, range);
+        Map<String, Double> groupedStats = groupRevenueByDate(orders, range, tenantId);
 
         return ChartData.builder()
                 .labels(new ArrayList<>(groupedStats.keySet()))
@@ -115,19 +148,17 @@ public class AnalyticsService {
     }
 
     public ChartData getCategoryDistribution(Long moderatorId) {
-        // Since we don't have easy category linkage in Order items without deep
-        // fetching,
-        // we will mock this PARTIALLY or fetch from products.
-        // For a robust solution, we'd aggregate OrderItems.
-        // Implementing a simple product-based distribution for now.
+        Long tenantId = getTenantId(moderatorId);
 
-        long men = productRepository.countByCategory(com.entity.Category.MEN);
-        long women = productRepository.countByCategory(com.entity.Category.WOMEN);
-        long electronics = productRepository.countByCategory(com.entity.Category.ELECTRONICS);
+        List<com.entity.Product> products = tenantId == null ? productRepository.findAll()
+                : productRepository.findByTenantId(tenantId);
+
+        Map<com.entity.Category, Long> categoryCounts = products.stream()
+                .collect(Collectors.groupingBy(com.entity.Product::getCategory, Collectors.counting()));
 
         return ChartData.builder()
-                .labels(List.of("Men", "Women", "Electronics"))
-                .data(List.of((double) men, (double) women, (double) electronics))
+                .labels(categoryCounts.keySet().stream().map(Enum::name).collect(Collectors.toList()))
+                .data(categoryCounts.values().stream().map(Long::doubleValue).collect(Collectors.toList()))
                 .label("Products by Category")
                 .build();
     }
@@ -148,16 +179,28 @@ public class AnalyticsService {
     private Map<String, Long> groupOrdersByDate(List<Order> orders, String range) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd");
         return orders.stream()
+                .sorted((a, b) -> a.getOrderDate().compareTo(b.getOrderDate()))
                 .collect(Collectors.groupingBy(
                         o -> o.getOrderDate().format(formatter),
+                        java.util.LinkedHashMap::new,
                         Collectors.counting()));
     }
 
-    private Map<String, Double> groupRevenueByDate(List<Order> orders, String range) {
+    private Map<String, Double> groupRevenueByDate(List<Order> orders, String range, Long tenantId) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd");
         return orders.stream()
+                .sorted((a, b) -> a.getOrderDate().compareTo(b.getOrderDate()))
                 .collect(Collectors.groupingBy(
                         o -> o.getOrderDate().format(formatter),
-                        Collectors.summingDouble(Order::getTotalAmount)));
+                        java.util.LinkedHashMap::new,
+                        Collectors.summingDouble(o -> {
+                            if (tenantId == null)
+                                return o.getTotalAmount();
+                            return o.getItems().stream()
+                                    .filter(i -> tenantId.equals(i.getTenantId()))
+                                    .mapToDouble(i -> i.getGrossAmount() != null ? i.getGrossAmount()
+                                            : (i.getPrice() * i.getQuantity()))
+                                    .sum();
+                        })));
     }
 }

@@ -7,8 +7,6 @@ import com.mapper.OrderMapper;
 import com.repository.OrderRepository;
 import com.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -33,35 +31,48 @@ public class ModeratorOrderController {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private com.service.OrderService orderService;
+
     /**
-     * Get all customer orders
-     * 
-     * GET /api/moderators/orders
+     * Get all customer orders for the authenticated tenant/moderator
      */
     @GetMapping
-    public ResponseEntity<Page<AdminOrderDTO>> getAllOrders(Pageable pageable) {
-        Page<Order> orders = orderRepository.findAll(pageable);
-        return ResponseEntity.ok(orders.map(OrderMapper::toAdminDTO));
+    public ResponseEntity<java.util.List<AdminOrderDTO>> getAllOrders() {
+        Long tenantId = com.config.TenantContext.getTenantId();
+        if (tenantId == null) {
+            return ResponseEntity.status(401).build();
+        }
+
+        java.util.List<Order> orders = orderService.getOrdersByTenantId(tenantId);
+        return ResponseEntity
+                .ok(orders.stream().map(OrderMapper::toAdminDTO).collect(java.util.stream.Collectors.toList()));
     }
 
     /**
-     * Get single order details
-     * 
-     * GET /api/moderators/orders/{id}
+     * Get single order details (Tenant-Isolated)
      */
     @GetMapping("/{id}")
     public ResponseEntity<AdminOrderDTO> getOrder(@PathVariable Long id) {
         Order order = orderRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Order not found"));
 
+        Long tenantId = com.config.TenantContext.getTenantId();
+        if (tenantId == null) {
+            return ResponseEntity.status(401).build();
+        }
+
+        // Verify that at least one item in the order belongs to this tenant
+        boolean isOwner = order.getItems().stream().anyMatch(item -> tenantId.equals(item.getTenantId()));
+        if (!isOwner && !com.config.TenantContext.isAdminOrSuperAdmin()) {
+            throw new RuntimeException("Unauthorized: You do not have access to this order.");
+        }
+
         return ResponseEntity.ok(OrderMapper.toAdminDTO(order));
     }
 
     /**
-     * Update order status
-     * 
-     * PUT /api/moderators/orders/{id}/status
-     * Body: { "status": "SHIPPED" }
+     * Update order status (Tenant-Protected)
      */
     @PutMapping("/{id}/status")
     public ResponseEntity<Map<String, String>> updateOrderStatus(
@@ -71,6 +82,17 @@ public class ModeratorOrderController {
         try {
             Order order = orderRepository.findById(id)
                     .orElseThrow(() -> new RuntimeException("Order not found"));
+
+            Long tenantId = com.config.TenantContext.getTenantId();
+            if (tenantId == null) {
+                return ResponseEntity.status(401).build();
+            }
+
+            // Verify owner
+            boolean isOwner = order.getItems().stream().anyMatch(item -> tenantId.equals(item.getTenantId()));
+            if (!isOwner && !com.config.TenantContext.isAdminOrSuperAdmin()) {
+                throw new RuntimeException("Unauthorized: You cannot modify this order.");
+            }
 
             String statusStr = request.get("status");
             OrderStatus newStatus = OrderStatus.valueOf(statusStr);
@@ -103,14 +125,22 @@ public class ModeratorOrderController {
     }
 
     /**
-     * Get payment details for an order
-     * 
-     * GET /api/moderators/orders/{id}/payment
+     * Get payment details (Tenant-Protected)
      */
     @GetMapping("/{id}/payment")
     public ResponseEntity<Map<String, Object>> getPaymentDetails(@PathVariable Long id) {
         Order order = orderRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Order not found"));
+
+        Long tenantId = com.config.TenantContext.getTenantId();
+        if (tenantId == null) {
+            return ResponseEntity.status(401).build();
+        }
+
+        boolean isOwner = order.getItems().stream().anyMatch(item -> tenantId.equals(item.getTenantId()));
+        if (!isOwner && !com.config.TenantContext.isAdminOrSuperAdmin()) {
+            throw new RuntimeException("Unauthorized: Access denied.");
+        }
 
         Map<String, Object> paymentDetails = new HashMap<>();
         paymentDetails.put("paymentMethod", order.getPaymentMethod());
@@ -119,5 +149,31 @@ public class ModeratorOrderController {
         paymentDetails.put("totalAmount", order.getTotalAmount());
 
         return ResponseEntity.ok(paymentDetails);
+    }
+
+    /**
+     * Update order tracking details (Tenant-Isolated)
+     */
+    @PutMapping("/{id}/tracking")
+    public ResponseEntity<com.dto.OrderResponseDTO> updateOrderTracking(
+            @PathVariable Long id,
+            @RequestParam String location,
+            @RequestParam String status) {
+
+        Order order = orderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+
+        Long tenantId = com.config.TenantContext.getTenantId();
+        if (tenantId == null) {
+            return ResponseEntity.status(401).build();
+        }
+
+        // Verify owner
+        boolean isOwner = order.getItems().stream().anyMatch(item -> tenantId.equals(item.getTenantId()));
+        if (!isOwner && !com.config.TenantContext.isAdminOrSuperAdmin()) {
+            throw new RuntimeException("Unauthorized: You cannot update tracking for this order.");
+        }
+
+        return ResponseEntity.ok(orderService.updateOrderLocation(id, location, status));
     }
 }

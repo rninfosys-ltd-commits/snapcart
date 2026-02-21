@@ -194,9 +194,14 @@ public class InvoiceService {
 
                 addTableCell(table, String.valueOf(slNo.getAndIncrement()), Element.ALIGN_CENTER);
 
-                String description = item.getVariant().getProduct().getName() + "\n" +
-                        "Color: " + item.getVariant().getColor() + " | Size: " + item.getVariant().getSize() + "\n" +
-                        "HSN: 6404";
+                // USE SNAPSHOTTED DATA (IMMUTABILITY)
+                String description = item.getProductName() != null ? item.getProductName() : "Product";
+                if (item.getVariant() != null) {
+                    description += "\nColor: " + item.getVariant().getColor() + " | Size: "
+                            + item.getVariant().getSize();
+                }
+                description += "\nHSN: 6404";
+
                 addTableCell(table, description, Element.ALIGN_LEFT);
                 addTableCell(table, String.format("₹%.2f", unitBasePrice), Element.ALIGN_RIGHT);
                 addTableCell(table, String.valueOf(item.getQuantity()), Element.ALIGN_CENTER);

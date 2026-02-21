@@ -58,4 +58,12 @@ export class ModeratorService {
     async getPaymentDetails(id: number): Promise<any> {
         return firstValueFrom(this.http.get<any>(`${this.apiUrl}/orders/${id}/payment`));
     }
+
+    async updateOrderTracking(id: number, location: string, status: string): Promise<any> {
+        return firstValueFrom(this.http.put<any>(
+            `${this.apiUrl}/orders/${id}/tracking`,
+            {},
+            { params: { location, status } }
+        ));
+    }
 }

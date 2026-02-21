@@ -113,7 +113,10 @@ public class SecurityConfig {
                                                 .requestMatchers(HttpMethod.GET, "/api/reviews/**").permitAll()
 
                                                 // ---------------- MODERATOR ACCESS ----------------
-                                                .requestMatchers("/api/moderators/**")
+                                                .requestMatchers("/api/moderators/settlements/**",
+                                                                "/api/moderator/settlements/**")
+                                                .hasAnyRole("MODERATOR", "ADMIN")
+                                                .requestMatchers("/api/moderators/**", "/api/moderator/**")
                                                 .hasAnyRole("MODERATOR", "ADMIN")
 
                                                 // ---------------- SHARED ADMIN/MODERATOR ENDPOINTS ----------------
@@ -121,7 +124,8 @@ public class SecurityConfig {
                                                                 "/api/admin/orders/**",
                                                                 "/api/admin/products/**",
                                                                 "/api/admin/inventory/**",
-                                                                "/api/admin/reviews/**")
+                                                                "/api/admin/reviews/**",
+                                                                "/api/admin/settlements/**")
                                                 .hasAnyRole("ADMIN", "MODERATOR")
 
                                                 // ---------------- ADMIN ONLY ----------------

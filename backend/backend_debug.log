@@ -1,86 +1,12 @@
-2026-02-20T11:23:43.536+05:30  INFO 8488 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 8488 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
-2026-02-20T11:23:43.541+05:30  INFO 8488 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
-2026-02-20T11:23:47.491+05:30  INFO 8488 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-20T11:23:48.527+05:30  INFO 8488 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1014 ms. Found 24 JPA repository interfaces.
-2026-02-20T11:23:49.968+05:30  INFO 8488 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-02-20T11:23:49.993+05:30  INFO 8488 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-02-20T11:23:49.994+05:30  INFO 8488 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
-2026-02-20T11:23:50.133+05:30  INFO 8488 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-02-20T11:23:50.135+05:30  INFO 8488 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6493 ms
-2026-02-20T11:23:50.904+05:30  INFO 8488 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-02-20T11:23:51.033+05:30  INFO 8488 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2026-02-20T11:23:51.127+05:30  INFO 8488 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-02-20T11:23:51.531+05:30  INFO 8488 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-02-20T11:23:51.568+05:30  INFO 8488 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-02-20T11:23:52.022+05:30  INFO 8488 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@44e4fa97
-2026-02-20T11:23:52.026+05:30  INFO 8488 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-02-20T11:23:52.122+05:30  WARN 8488 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-02-20T11:23:52.125+05:30  WARN 8488 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2026-02-20T11:23:53.990+05:30  INFO 8488 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-02-20T11:23:54.688+05:30  INFO 8488 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-02-20T11:23:55.316+05:30  INFO 8488 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-02-20T11:23:56.930+05:30  INFO 8488 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
-2026-02-20T11:23:57.633+05:30  WARN 8488 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-02-20T11:23:58.168+05:30  INFO 8488 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
-2026-02-20T11:23:58.282+05:30  INFO 8488 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@17ac0057, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6d5f9907, org.springframework.security.web.context.SecurityContextHolderFilter@6f0bae12, org.springframework.security.web.header.HeaderWriterFilter@101ada63, org.springframework.web.filter.CorsFilter@20cfbff6, org.springframework.security.web.authentication.logout.LogoutFilter@5e25a95a, com.config.JwtAuthenticationFilter@62e06e2e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6f15fce7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6f6bc1e0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@69d0fac0, org.springframework.security.web.session.SessionManagementFilter@2a11b504, org.springframework.security.web.access.ExceptionTranslationFilter@63928f9f, org.springframework.security.web.access.intercept.AuthorizationFilter@35f2b220]
-2026-02-20T11:23:59.676+05:30  INFO 8488 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-2026-02-20T11:23:59.713+05:30  INFO 8488 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 16.877 seconds (process running for 17.655)
-2026-02-20T11:24:09.353+05:30  INFO 8488 --- [BACKEND] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-02-20T11:24:09.358+05:30  INFO 8488 --- [BACKEND] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-02-20T11:24:09.372+05:30  INFO 8488 --- [BACKEND] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
-2026-02-20T11:41:28.331+05:30  INFO 8488 --- [BACKEND] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-02-20T11:41:28.453+05:30  INFO 8488 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-02-20T11:41:28.656+05:30  INFO 8488 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-02-20T11:42:44.910+05:30  INFO 7728 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 7728 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
-2026-02-20T11:42:44.914+05:30  INFO 7728 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
-2026-02-20T11:42:48.600+05:30  INFO 7728 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-20T11:42:49.453+05:30  INFO 7728 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 839 ms. Found 24 JPA repository interfaces.
-2026-02-20T11:42:50.954+05:30  INFO 7728 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-02-20T11:42:50.979+05:30  INFO 7728 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-02-20T11:42:50.980+05:30  INFO 7728 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
-2026-02-20T11:42:51.122+05:30  INFO 7728 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-02-20T11:42:51.124+05:30  INFO 7728 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6099 ms
-2026-02-20T11:42:51.816+05:30  INFO 7728 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-02-20T11:42:51.945+05:30  INFO 7728 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2026-02-20T11:42:52.028+05:30  INFO 7728 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-02-20T11:42:52.594+05:30  INFO 7728 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-02-20T11:42:52.646+05:30  INFO 7728 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-02-20T11:42:53.250+05:30  INFO 7728 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5c10216f
-2026-02-20T11:42:53.253+05:30  INFO 7728 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-02-20T11:42:53.350+05:30  WARN 7728 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-02-20T11:42:53.352+05:30  WARN 7728 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2026-02-20T11:42:55.779+05:30  INFO 7728 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-02-20T11:42:56.644+05:30  INFO 7728 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-02-20T11:42:57.568+05:30  INFO 7728 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-02-20T11:43:00.105+05:30  INFO 7728 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
-2026-02-20T11:43:00.802+05:30  WARN 7728 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-02-20T11:43:01.547+05:30  INFO 7728 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
-2026-02-20T11:43:01.719+05:30  INFO 7728 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3c0a1c1c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6d5a43c1, org.springframework.security.web.context.SecurityContextHolderFilter@6f6bc1e0, org.springframework.security.web.header.HeaderWriterFilter@5e271caa, org.springframework.web.filter.CorsFilter@1c07365c, org.springframework.security.web.authentication.logout.LogoutFilter@216bd7cb, com.config.JwtAuthenticationFilter@222c53c7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7e51b8d5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@682d2bb3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@59f3ae9c, org.springframework.security.web.session.SessionManagementFilter@2d0dbf29, org.springframework.security.web.access.ExceptionTranslationFilter@101ada63, org.springframework.security.web.access.intercept.AuthorizationFilter@69d0fac0]
-2026-02-20T11:43:02.762+05:30  INFO 7728 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-2026-02-20T11:43:02.795+05:30  INFO 7728 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 18.445 seconds (process running for 19.179)
-2026-02-20T12:01:32.421+05:30  INFO 7728 --- [BACKEND] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-02-20T12:01:32.535+05:30  INFO 7728 --- [BACKEND] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-02-20T12:01:33.550+05:30  INFO 7728 --- [BACKEND] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1006 ms
-2026-02-20T12:02:01.321+05:30  INFO 7728 --- [BACKEND] [http-nio-8080-exec-2] com.service.OrderService                 : Updating order location. OrderId: 2, Location: Mumbai, Status: PROCESSING
-2026-02-20T12:02:01.655+05:30  WARN 7728 --- [BACKEND] [http-nio-8080-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1265, SQLState: 01000
-2026-02-20T12:02:01.662+05:30 ERROR 7728 --- [BACKEND] [http-nio-8080-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncated for column 'status' at row 1
-2026-02-20T12:02:01.866+05:30 ERROR 7728 --- [BACKEND] [http-nio-8080-exec-2] com.service.OrderService                 : Error updating order location for OrderId: 2
+2026-02-21T00:00:00.040+05:30  INFO 1232 --- [BACKEND] [scheduling-1] com.service.VisitorService               : Cleaned up anonymous visitors older than 30 days
+2026-02-21T00:00:06.592+05:30  INFO 1232 --- [BACKEND] [http-nio-8080-exec-1] com.controller.pub.AuthController        : Attempting login for user: yashkashikar9834@gmail.com
+2026-02-21T00:00:22.029+05:30  INFO 1232 --- [BACKEND] [http-nio-8080-exec-6] com.controller.pub.AuthController        : Attempting login for user: yashkashikar9834@gmail.com
+2026-02-21T00:00:55.774+05:30  INFO 1232 --- [BACKEND] [http-nio-8080-exec-3] com.service.OrderService                 : Updating order location. OrderId: 3, Location: Hyderabad, Status: PROCESSING
+2026-02-21T00:00:55.804+05:30  INFO 1232 --- [BACKEND] [task-2] com.event.listener.OrderEventListener    : Handling OrderStatusChangedEvent: Type=TRACKING_UPDATE, OrderId=3
+2026-02-21T00:00:55.805+05:30 ERROR 1232 --- [BACKEND] [task-2] .a.i.SimpleAsyncUncaughtExceptionHandler : Unexpected exception occurred invoking async method: public void com.event.listener.OrderEventListener.handleOrderStatusChangedEvent(com.event.OrderStatusChangedEvent)
 
-org.springframework.orm.jpa.JpaSystemException: could not execute statement [Data truncated for column 'status' at row 1] [insert into order_tracking (city,description,location,order_id,state,status,timestamp) values (?,?,?,?,?,?,?)]
-	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:341) ~[spring-orm-6.1.3.jar:6.1.3]
-	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:241) ~[spring-orm-6.1.3.jar:6.1.3]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550) ~[spring-orm-6.1.3.jar:6.1.3]
-	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-6.1.3.jar:6.1.3]
-	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:335) ~[spring-tx-6.1.3.jar:6.1.3]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:152) ~[spring-tx-6.1.3.jar:6.1.3]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:164) ~[spring-data-jpa-3.2.2.jar:3.2.2]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:220) ~[spring-aop-6.1.3.jar:6.1.3]
-	at jdk.proxy2/jdk.proxy2.$Proxy172.save(Unknown Source) ~[na:na]
-	at com.service.OrderService.updateOrderLocation(OrderService.java:353) ~[classes/:na]
+java.lang.NoClassDefFoundError: com/event/listener/OrderEventListener$1
+	at com.event.listener.OrderEventListener.handleOrderStatusChangedEvent(OrderEventListener.java:24) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
@@ -89,367 +15,249 @@ org.springframework.orm.jpa.JpaSystemException: could not execute statement [Dat
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.1.3.jar:6.1.3]
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.1.3.jar:6.1.3]
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-6.1.3.jar:6.1.3]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:385) ~[spring-tx-6.1.3.jar:6.1.3]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.1.3.jar:6.1.3]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:717) ~[spring-aop-6.1.3.jar:6.1.3]
-	at com.service.OrderService$$SpringCGLIB$$0.updateOrderLocation(<generated>) ~[classes/:na]
-	at com.controller.admin.AdminOrderController.updateTracking(AdminOrderController.java:47) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:351) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.invoke(AuthorizationManagerBeforeMethodInterceptor.java:198) ~[spring-security-core-6.2.1.jar:6.2.1]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:717) ~[spring-aop-6.1.3.jar:6.1.3]
-	at com.controller.admin.AdminOrderController$$SpringCGLIB$$0.updateTracking(<generated>) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:261) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:189) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.3.jar:6.1.3]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:917) ~[spring-webmvc-6.1.3.jar:6.1.3]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:829) ~[spring-webmvc-6.1.3.jar:6.1.3]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.3.jar:6.1.3]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.3.jar:6.1.3]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.3.jar:6.1.3]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.3.jar:6.1.3]
-	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:925) ~[spring-webmvc-6.1.3.jar:6.1.3]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:593) ~[tomcat-embed-core-10.1.18.jar:6.0]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.3.jar:6.1.3]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.18.jar:6.0]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.18.jar:10.1.18]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$FilterObservation$SimpleFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:479) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:340) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator.lambda$wrapSecured$0(ObservationFilterChainDecorator.java:82) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:128) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at com.config.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:54) ~[classes/:na]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:227) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.wrapFilter(ObservationFilterChainDecorator.java:240) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$AroundFilterObservation$SimpleAroundFilterObservation.lambda$wrap$0(ObservationFilterChainDecorator.java:323) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$ObservationFilter.doFilter(ObservationFilterChainDecorator.java:224) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.ObservationFilterChainDecorator$VirtualFilterChain.doFilter(ObservationFilterChainDecorator.java:137) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.2.1.jar:6.2.1]
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.3.jar:6.1.3]
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:225) ~[spring-security-config-6.2.1.jar:6.2.1]
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:109) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.3.jar:6.1.3]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.18.jar:10.1.18]
+	at org.springframework.aop.interceptor.AsyncExecutionInterceptor.lambda$invoke$0(AsyncExecutionInterceptor.java:113) ~[spring-aop-6.1.3.jar:6.1.3]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
 	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
-Caused by: org.hibernate.exception.GenericJDBCException: could not execute statement [Data truncated for column 'status' at row 1] [insert into order_tracking (city,description,location,order_id,state,status,timestamp) values (?,?,?,?,?,?,?)]
-	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:63) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.id.insert.GetGeneratedKeysDelegate.performInsert(GetGeneratedKeysDelegate.java:107) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.engine.jdbc.mutation.internal.MutationExecutorPostInsertSingleTable.execute(MutationExecutorPostInsertSingleTable.java:100) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.persister.entity.mutation.InsertCoordinator.doStaticInserts(InsertCoordinator.java:175) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.persister.entity.mutation.InsertCoordinator.coordinateInsert(InsertCoordinator.java:113) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2868) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:81) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:670) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:291) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:272) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:322) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:386) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:300) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:219) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:134) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.event.internal.DefaultMergeEventListener.saveTransientEntity(DefaultMergeEventListener.java:315) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.event.internal.DefaultMergeEventListener.entityIsTransient(DefaultMergeEventListener.java:234) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.event.internal.DefaultMergeEventListener.merge(DefaultMergeEventListener.java:153) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.event.internal.DefaultMergeEventListener.doMerge(DefaultMergeEventListener.java:143) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.event.internal.DefaultMergeEventListener.onMerge(DefaultMergeEventListener.java:127) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:138) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.internal.SessionImpl.fireMerge(SessionImpl.java:888) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.internal.SessionImpl.merge(SessionImpl.java:859) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.engine.spi.CascadingActions$6.cascade(CascadingActions.java:253) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.engine.spi.CascadingActions$6.cascade(CascadingActions.java:243) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.engine.internal.Cascade.cascadeToOne(Cascade.java:517) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.engine.internal.Cascade.cascadeAssociation(Cascade.java:439) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.engine.internal.Cascade.cascadeProperty(Cascade.java:224) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.engine.internal.Cascade.cascadeCollectionElements(Cascade.java:551) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.engine.internal.Cascade.cascadeCollection(Cascade.java:481) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.engine.internal.Cascade.cascadeAssociation(Cascade.java:442) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.engine.internal.Cascade.cascadeProperty(Cascade.java:224) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.engine.internal.Cascade.cascade(Cascade.java:157) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.event.internal.DefaultMergeEventListener.cascadeOnMerge(DefaultMergeEventListener.java:573) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.event.internal.DefaultMergeEventListener.entityIsPersistent(DefaultMergeEventListener.java:213) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.event.internal.DefaultMergeEventListener.merge(DefaultMergeEventListener.java:156) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.event.internal.DefaultMergeEventListener.doMerge(DefaultMergeEventListener.java:143) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.event.internal.DefaultMergeEventListener.onMerge(DefaultMergeEventListener.java:127) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.event.internal.DefaultMergeEventListener.onMerge(DefaultMergeEventListener.java:81) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.internal.SessionImpl.fireMerge(SessionImpl.java:867) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at org.hibernate.internal.SessionImpl.merge(SessionImpl.java:853) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.orm.jpa.ExtendedEntityManagerCreator$ExtendedEntityManagerInvocationHandler.invoke(ExtendedEntityManagerCreator.java:364) ~[spring-orm-6.1.3.jar:6.1.3]
-	at jdk.proxy2/jdk.proxy2.$Proxy162.merge(Unknown Source) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:319) ~[spring-orm-6.1.3.jar:6.1.3]
-	at jdk.proxy2/jdk.proxy2.$Proxy162.merge(Unknown Source) ~[na:na]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:621) ~[spring-data-jpa-3.2.2.jar:3.2.2]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:351) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:277) ~[spring-data-commons-3.2.2.jar:3.2.2]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:170) ~[spring-data-commons-3.2.2.jar:3.2.2]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158) ~[spring-data-commons-3.2.2.jar:3.2.2]
-	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:516) ~[spring-data-commons-3.2.2.jar:3.2.2]
-	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:285) ~[spring-data-commons-3.2.2.jar:3.2.2]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:628) ~[spring-data-commons-3.2.2.jar:3.2.2]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:168) ~[spring-data-commons-3.2.2.jar:3.2.2]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143) ~[spring-data-commons-3.2.2.jar:3.2.2]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:70) ~[spring-data-commons-3.2.2.jar:3.2.2]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-6.1.3.jar:6.1.3]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:385) ~[spring-tx-6.1.3.jar:6.1.3]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.1.3.jar:6.1.3]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.1.3.jar:6.1.3]
-	... 174 common frames omitted
-Caused by: java.sql.SQLException: Data truncated for column 'status' at row 1
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1054) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1003) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1312) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:988) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-5.0.1.jar:na]
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:na]
-	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:194) ~[hibernate-core-6.4.1.Final.jar:6.4.1.Final]
-	... 250 common frames omitted
+Caused by: java.lang.ClassNotFoundException: com.event.listener.OrderEventListener$1
+	... 14 common frames omitted
 
-2026-02-20T12:21:39.638+05:30  INFO 7728 --- [BACKEND] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-02-20T12:21:39.740+05:30  INFO 7728 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-02-20T12:21:39.853+05:30  INFO 7728 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-02-20T12:23:21.497+05:30  INFO 18920 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 18920 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
-2026-02-20T12:23:21.500+05:30  INFO 18920 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
-2026-02-20T12:23:24.014+05:30  INFO 18920 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-20T12:23:24.611+05:30  INFO 18920 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 581 ms. Found 24 JPA repository interfaces.
-2026-02-20T12:23:25.586+05:30  INFO 18920 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-02-20T12:23:25.606+05:30  INFO 18920 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-02-20T12:23:25.606+05:30  INFO 18920 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
-2026-02-20T12:23:25.693+05:30  INFO 18920 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-02-20T12:23:25.694+05:30  INFO 18920 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4133 ms
-2026-02-20T12:23:26.195+05:30  INFO 18920 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-02-20T12:23:26.286+05:30  INFO 18920 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2026-02-20T12:23:26.330+05:30  INFO 18920 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-02-20T12:23:26.632+05:30  INFO 18920 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-02-20T12:23:26.663+05:30  INFO 18920 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-02-20T12:23:27.095+05:30  INFO 18920 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@27b94ed9
-2026-02-20T12:23:27.100+05:30  INFO 18920 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-02-20T12:23:27.191+05:30  WARN 18920 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-02-20T12:23:27.192+05:30  WARN 18920 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2026-02-20T12:23:28.706+05:30  INFO 18920 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-02-20T12:23:29.490+05:30  INFO 18920 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-02-20T12:23:30.183+05:30  INFO 18920 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-02-20T12:23:31.713+05:30  INFO 18920 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
-2026-02-20T12:23:32.220+05:30  WARN 18920 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-02-20T12:23:32.714+05:30  INFO 18920 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
-2026-02-20T12:23:32.812+05:30  INFO 18920 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@62afe4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@770ecf53, org.springframework.security.web.context.SecurityContextHolderFilter@4e8224cf, org.springframework.security.web.header.HeaderWriterFilter@1bc4ce09, org.springframework.web.filter.CorsFilter@1969034e, org.springframework.security.web.authentication.logout.LogoutFilter@732a5516, com.config.JwtAuthenticationFilter@690406d0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@216bd7cb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@246b40f5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2024f4b7, org.springframework.security.web.session.SessionManagementFilter@2a336787, org.springframework.security.web.access.ExceptionTranslationFilter@38322f24, org.springframework.security.web.access.intercept.AuthorizationFilter@4789e2bc]
-2026-02-20T12:23:33.496+05:30  INFO 18920 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-2026-02-20T12:23:33.516+05:30  INFO 18920 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 12.522 seconds (process running for 13.091)
-2026-02-20T12:23:44.014+05:30  INFO 18920 --- [BACKEND] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-02-20T12:23:44.016+05:30  INFO 18920 --- [BACKEND] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-02-20T12:23:44.028+05:30  INFO 18920 --- [BACKEND] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
-2026-02-20T12:24:10.080+05:30  INFO 18920 --- [BACKEND] [http-nio-8080-exec-4] com.service.OrderService                 : Updating order location. OrderId: 2, Location: Kolkata, Status: PROCESSING
-2026-02-20T12:24:10.157+05:30  INFO 18920 --- [BACKEND] [task-1] com.event.listener.OrderEventListener    : Handling OrderStatusChangedEvent: Type=TRACKING_UPDATE, OrderId=2
-2026-02-20T12:24:10.171+05:30  INFO 18920 --- [BACKEND] [task-2] com.service.EmailService                 : Sending email to kashikaryash@gmail.com with subject: ? Order #2 Update: Kolkata
-2026-02-20T12:24:10.179+05:30  WARN 18920 --- [BACKEND] [http-nio-8080-exec-4] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1265, SQLState: 01000
-2026-02-20T12:24:10.180+05:30 ERROR 18920 --- [BACKEND] [http-nio-8080-exec-4] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncated for column 'status' at row 1
-2026-02-20T12:24:24.406+05:30  INFO 18920 --- [BACKEND] [task-2] com.service.EmailService                 : Email sent successfully to kashikaryash@gmail.com
-2026-02-20T12:52:28.189+05:30  INFO 18920 --- [BACKEND] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-02-20T12:52:28.313+05:30  INFO 18920 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-02-20T12:52:28.429+05:30  INFO 18920 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-02-20T12:52:48.574+05:30  INFO 5240 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 5240 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
-2026-02-20T12:52:48.578+05:30  INFO 5240 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
-2026-02-20T12:52:51.631+05:30  INFO 5240 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-20T12:52:52.266+05:30  INFO 5240 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 625 ms. Found 24 JPA repository interfaces.
-2026-02-20T12:52:53.301+05:30  INFO 5240 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-02-20T12:52:53.313+05:30  INFO 5240 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-02-20T12:52:53.313+05:30  INFO 5240 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
-2026-02-20T12:52:53.405+05:30  INFO 5240 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-02-20T12:52:53.406+05:30  INFO 5240 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4741 ms
-2026-02-20T12:52:53.891+05:30  INFO 5240 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-02-20T12:52:53.990+05:30  INFO 5240 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2026-02-20T12:52:54.063+05:30  INFO 5240 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-02-20T12:52:54.352+05:30  INFO 5240 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-02-20T12:52:54.391+05:30  INFO 5240 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-02-20T12:52:54.836+05:30  INFO 5240 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@44e4fa97
-2026-02-20T12:52:54.838+05:30  INFO 5240 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-02-20T12:52:54.916+05:30  WARN 5240 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-02-20T12:52:54.917+05:30  WARN 5240 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2026-02-20T12:52:56.616+05:30  INFO 5240 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-02-20T12:52:57.436+05:30  INFO 5240 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-02-20T12:52:58.413+05:30  INFO 5240 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-02-20T12:53:00.284+05:30  INFO 5240 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
-2026-02-20T12:53:00.856+05:30  WARN 5240 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-02-20T12:53:01.486+05:30  INFO 5240 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
-2026-02-20T12:53:01.650+05:30  INFO 5240 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@201822d7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@635b5740, org.springframework.security.web.context.SecurityContextHolderFilter@75e38460, org.springframework.security.web.header.HeaderWriterFilter@766bb7f, org.springframework.web.filter.CorsFilter@2ffa1f25, org.springframework.security.web.authentication.logout.LogoutFilter@37efd738, com.config.JwtAuthenticationFilter@62e06e2e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@67c96b50, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@53418cc0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@50599a7e, org.springframework.security.web.session.SessionManagementFilter@29600405, org.springframework.security.web.access.ExceptionTranslationFilter@579c3641, org.springframework.security.web.access.intercept.AuthorizationFilter@3f730e66]
-2026-02-20T12:53:02.424+05:30  INFO 5240 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-2026-02-20T12:53:02.451+05:30  INFO 5240 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 14.569 seconds (process running for 16.055)
-2026-02-20T12:53:09.297+05:30  INFO 5240 --- [BACKEND] [http-nio-8080-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-02-20T12:53:09.313+05:30  INFO 5240 --- [BACKEND] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-02-20T12:53:09.333+05:30  INFO 5240 --- [BACKEND] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed initialization in 15 ms
-2026-02-20T12:53:31.368+05:30  INFO 5240 --- [BACKEND] [http-nio-8080-exec-7] com.service.OrderService                 : Updating order location. OrderId: 2, Location: Pune, Status: SHIPPED
-2026-02-20T12:53:31.422+05:30  INFO 5240 --- [BACKEND] [task-1] com.event.listener.OrderEventListener    : Handling OrderStatusChangedEvent: Type=TRACKING_UPDATE, OrderId=2
-2026-02-20T12:53:31.440+05:30  INFO 5240 --- [BACKEND] [task-2] com.service.EmailService                 : Sending email to kashikaryash@gmail.com with subject: ? Order #2 Update: Pune
-2026-02-20T12:53:45.813+05:30  INFO 5240 --- [BACKEND] [task-2] com.service.EmailService                 : Email sent successfully to kashikaryash@gmail.com
-2026-02-20T13:12:53.496+05:30  INFO 5240 --- [BACKEND] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-02-20T13:12:53.733+05:30  INFO 5240 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-02-20T13:12:53.972+05:30  INFO 5240 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-02-20T13:13:14.328+05:30  INFO 18648 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 18648 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
-2026-02-20T13:13:14.334+05:30  INFO 18648 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
-2026-02-20T13:13:18.489+05:30  INFO 18648 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-20T13:13:19.231+05:30  INFO 18648 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 731 ms. Found 24 JPA repository interfaces.
-2026-02-20T13:13:20.660+05:30  INFO 18648 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-02-20T13:13:20.688+05:30  INFO 18648 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-02-20T13:13:20.688+05:30  INFO 18648 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
-2026-02-20T13:13:20.933+05:30  INFO 18648 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-02-20T13:13:20.934+05:30  INFO 18648 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6448 ms
-2026-02-20T13:13:21.632+05:30  INFO 18648 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-02-20T13:13:21.730+05:30  INFO 18648 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2026-02-20T13:13:21.794+05:30  INFO 18648 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-02-20T13:13:22.292+05:30  INFO 18648 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-02-20T13:13:22.341+05:30  INFO 18648 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-02-20T13:13:22.913+05:30  INFO 18648 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5c10216f
-2026-02-20T13:13:22.923+05:30  INFO 18648 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-02-20T13:13:23.080+05:30  WARN 18648 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-02-20T13:13:23.082+05:30  WARN 18648 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2026-02-20T13:13:25.442+05:30  INFO 18648 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-02-20T13:13:26.868+05:30  INFO 18648 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-02-20T13:13:27.829+05:30  INFO 18648 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-02-20T13:13:29.444+05:30  INFO 18648 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
-2026-02-20T13:13:29.982+05:30  WARN 18648 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-02-20T13:13:30.557+05:30  INFO 18648 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
-2026-02-20T13:13:30.687+05:30  INFO 18648 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@16dd2634, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@53db4ff8, org.springframework.security.web.context.SecurityContextHolderFilter@6d5a43c1, org.springframework.security.web.header.HeaderWriterFilter@3b582a37, org.springframework.web.filter.CorsFilter@6effce89, org.springframework.security.web.authentication.logout.LogoutFilter@34594779, com.config.JwtAuthenticationFilter@19dfeb17, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@a8eaa76, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@732a5516, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@234e9716, org.springframework.security.web.session.SessionManagementFilter@69d0fac0, org.springframework.security.web.access.ExceptionTranslationFilter@43623121, org.springframework.security.web.access.intercept.AuthorizationFilter@15763605]
-2026-02-20T13:13:31.462+05:30  INFO 18648 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-2026-02-20T13:13:31.489+05:30  INFO 18648 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 17.832 seconds (process running for 18.503)
-2026-02-20T13:14:03.354+05:30  INFO 18648 --- [BACKEND] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-02-20T13:14:03.355+05:30  INFO 18648 --- [BACKEND] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-02-20T13:14:03.363+05:30  INFO 18648 --- [BACKEND] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
-2026-02-20T18:49:10.213+05:30  INFO 18648 --- [BACKEND] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-02-20T18:49:10.473+05:30  INFO 18648 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-02-20T18:49:10.573+05:30  INFO 18648 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-02-21T00:00:55.828+05:30  WARN 1232 --- [BACKEND] [http-nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1265, SQLState: 01000
+2026-02-21T00:00:55.829+05:30 ERROR 1232 --- [BACKEND] [http-nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncated for column 'status' at row 1
+2026-02-21T00:01:12.897+05:30  INFO 1232 --- [BACKEND] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-21T00:01:12.921+05:30  INFO 1232 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-21T00:01:12.957+05:30  INFO 1232 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-02-21T00:01:24.966+05:30  INFO 14076 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 14076 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
+2026-02-21T00:01:24.974+05:30  INFO 14076 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
+2026-02-21T00:01:28.475+05:30  INFO 14076 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-21T00:01:29.761+05:30  INFO 14076 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1269 ms. Found 26 JPA repository interfaces.
+2026-02-21T00:01:31.446+05:30  INFO 14076 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-02-21T00:01:31.469+05:30  INFO 14076 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-21T00:01:31.471+05:30  INFO 14076 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2026-02-21T00:01:31.724+05:30  INFO 14076 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-21T00:01:31.727+05:30  INFO 14076 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6587 ms
+2026-02-21T00:01:32.460+05:30  INFO 14076 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-21T00:01:32.549+05:30  INFO 14076 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2026-02-21T00:01:32.612+05:30  INFO 14076 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-21T00:01:33.121+05:30  INFO 14076 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-21T00:01:33.185+05:30  INFO 14076 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-21T00:01:33.772+05:30  INFO 14076 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@e43189c
+2026-02-21T00:01:33.776+05:30  INFO 14076 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-21T00:01:33.877+05:30  WARN 14076 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-21T00:01:33.878+05:30  WARN 14076 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-02-21T00:01:36.092+05:30  INFO 14076 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-21T00:01:37.113+05:30  INFO 14076 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-21T00:01:37.905+05:30  INFO 14076 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-21T00:01:39.848+05:30  INFO 14076 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
+2026-02-21T00:01:41.781+05:30  WARN 14076 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-21T00:01:42.863+05:30  INFO 14076 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2026-02-21T00:01:43.091+05:30  INFO 14076 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6b0b6001, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@72ac14c6, org.springframework.security.web.context.SecurityContextHolderFilter@7404ea32, org.springframework.security.web.header.HeaderWriterFilter@4292a5c6, org.springframework.web.filter.CorsFilter@534463c0, org.springframework.security.web.authentication.logout.LogoutFilter@1d694d9a, com.config.JwtAuthenticationFilter@194910bc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@72ba2d6f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@46d9c67c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@8fd65c4, org.springframework.security.web.session.SessionManagementFilter@6ec5e204, org.springframework.security.web.access.ExceptionTranslationFilter@92690e5, org.springframework.security.web.access.intercept.AuthorizationFilter@18f7f928]
+2026-02-21T00:01:45.859+05:30  INFO 14076 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-02-21T00:01:45.971+05:30  INFO 14076 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 21.925 seconds (process running for 23.091)
+2026-02-21T00:02:18.187+05:30  INFO 14076 --- [BACKEND] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-21T00:02:18.189+05:30  INFO 14076 --- [BACKEND] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-21T00:02:18.192+05:30  INFO 14076 --- [BACKEND] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-02-21T00:02:18.611+05:30  INFO 14076 --- [BACKEND] [http-nio-8080-exec-1] com.service.OrderService                 : Updating order location. OrderId: 3, Location: Pune, Status: PROCESSING
+2026-02-21T00:02:18.754+05:30  INFO 14076 --- [BACKEND] [task-1] com.event.listener.OrderEventListener    : Handling OrderStatusChangedEvent: Type=TRACKING_UPDATE, OrderId=3
+2026-02-21T00:02:18.774+05:30  INFO 14076 --- [BACKEND] [task-2] com.service.EmailService                 : Sending email to kashikaryash@gmail.com with subject: ? Order #3 Update: Pune
+2026-02-21T00:02:18.818+05:30  WARN 14076 --- [BACKEND] [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1265, SQLState: 01000
+2026-02-21T00:02:18.820+05:30 ERROR 14076 --- [BACKEND] [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncated for column 'status' at row 1
+2026-02-21T00:02:23.015+05:30  INFO 14076 --- [BACKEND] [task-2] com.service.EmailService                 : Email sent successfully to kashikaryash@gmail.com
+2026-02-21T00:07:20.627+05:30  INFO 14076 --- [BACKEND] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-21T00:07:20.743+05:30  INFO 14076 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-21T00:07:20.852+05:30  INFO 14076 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-02-21T00:15:16.727+05:30  INFO 4588 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 4588 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
+2026-02-21T00:15:16.732+05:30  INFO 4588 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
+2026-02-21T00:15:20.435+05:30  INFO 4588 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-21T00:15:21.308+05:30  INFO 4588 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 861 ms. Found 26 JPA repository interfaces.
+2026-02-21T00:15:22.914+05:30  INFO 4588 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-02-21T00:15:22.935+05:30  INFO 4588 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-21T00:15:22.936+05:30  INFO 4588 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2026-02-21T00:15:23.108+05:30  INFO 4588 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-21T00:15:23.108+05:30  INFO 4588 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6287 ms
+2026-02-21T00:15:23.880+05:30  INFO 4588 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-21T00:15:24.017+05:30  INFO 4588 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2026-02-21T00:15:24.104+05:30  INFO 4588 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-21T00:15:24.551+05:30  INFO 4588 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-21T00:15:24.641+05:30  INFO 4588 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-21T00:15:25.606+05:30  INFO 4588 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@e43189c
+2026-02-21T00:15:25.610+05:30  INFO 4588 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-21T00:15:25.722+05:30  WARN 4588 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-21T00:15:25.725+05:30  WARN 4588 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-02-21T00:15:29.136+05:30  INFO 4588 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-21T00:15:30.226+05:30  INFO 4588 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-21T00:15:31.287+05:30  INFO 4588 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-21T00:15:34.466+05:30  INFO 4588 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
+2026-02-21T00:15:35.259+05:30  WARN 4588 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-21T00:15:35.996+05:30  INFO 4588 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2026-02-21T00:15:36.149+05:30  INFO 4588 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6e9eaa96, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@51defa7a, org.springframework.security.web.context.SecurityContextHolderFilter@4b51cb8f, org.springframework.security.web.header.HeaderWriterFilter@28b83798, org.springframework.web.filter.CorsFilter@5e8fb0bd, org.springframework.security.web.authentication.logout.LogoutFilter@744b5bd7, com.config.JwtAuthenticationFilter@bf154bb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@220248ad, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1ed9a4bd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5ba6659d, org.springframework.security.web.session.SessionManagementFilter@20d5f1c5, org.springframework.security.web.access.ExceptionTranslationFilter@33ddc39b, org.springframework.security.web.access.intercept.AuthorizationFilter@46d9c67c]
+2026-02-21T00:15:37.308+05:30  INFO 4588 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-02-21T00:15:37.341+05:30  INFO 4588 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 21.303 seconds (process running for 22.063)
+2026-02-21T00:17:08.575+05:30  INFO 4588 --- [BACKEND] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-21T00:17:08.586+05:30  INFO 4588 --- [BACKEND] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-21T00:17:08.821+05:30  INFO 4588 --- [BACKEND] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 233 ms
+2026-02-21T00:24:57.649+05:30  INFO 4588 --- [BACKEND] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-21T00:24:57.795+05:30  INFO 4588 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-21T00:24:58.037+05:30  INFO 4588 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-02-21T00:25:20.458+05:30  INFO 5796 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 5796 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
+2026-02-21T00:25:20.466+05:30  INFO 5796 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
+2026-02-21T00:25:27.948+05:30  INFO 5796 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-21T00:25:29.113+05:30  INFO 5796 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1144 ms. Found 26 JPA repository interfaces.
+2026-02-21T00:25:31.150+05:30  INFO 5796 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-02-21T00:25:31.169+05:30  INFO 5796 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-21T00:25:31.172+05:30  INFO 5796 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2026-02-21T00:25:31.315+05:30  INFO 5796 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-21T00:25:31.315+05:30  INFO 5796 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 10749 ms
+2026-02-21T00:25:31.948+05:30  INFO 5796 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-21T00:25:32.097+05:30  INFO 5796 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2026-02-21T00:25:32.166+05:30  INFO 5796 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-21T00:25:32.522+05:30  INFO 5796 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-21T00:25:32.592+05:30  INFO 5796 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-21T00:25:33.103+05:30  INFO 5796 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@47d6a31a
+2026-02-21T00:25:33.106+05:30  INFO 5796 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-21T00:25:33.185+05:30  WARN 5796 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-21T00:25:33.186+05:30  WARN 5796 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-02-21T00:25:35.604+05:30  INFO 5796 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-21T00:25:36.498+05:30  INFO 5796 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-21T00:25:37.517+05:30  INFO 5796 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-21T00:25:40.559+05:30  INFO 5796 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
+2026-02-21T00:25:41.291+05:30  WARN 5796 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-21T00:25:41.942+05:30  INFO 5796 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2026-02-21T00:25:42.072+05:30  INFO 5796 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4575df15, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2d17c0ab, org.springframework.security.web.context.SecurityContextHolderFilter@2ef002b1, org.springframework.security.web.header.HeaderWriterFilter@20d5f1c5, org.springframework.web.filter.CorsFilter@506ec7ea, org.springframework.security.web.authentication.logout.LogoutFilter@7baee2, com.config.JwtAuthenticationFilter@5f482ecd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1d9f40af, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4480b27, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5239d115, org.springframework.security.web.session.SessionManagementFilter@4cc73927, org.springframework.security.web.access.ExceptionTranslationFilter@5e6775fd, org.springframework.security.web.access.intercept.AuthorizationFilter@5e8fb0bd]
+2026-02-21T00:25:43.131+05:30  INFO 5796 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-02-21T00:25:43.159+05:30  INFO 5796 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 23.824 seconds (process running for 24.832)
+2026-02-21T00:25:53.685+05:30  INFO 5796 --- [BACKEND] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-21T00:25:53.692+05:30  INFO 5796 --- [BACKEND] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-21T00:25:53.705+05:30  INFO 5796 --- [BACKEND] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
+2026-02-21T00:26:26.035+05:30  INFO 5796 --- [BACKEND] [http-nio-8080-exec-10] com.service.OrderService                 : Updating order location. OrderId: 3, Location: Kolkata, Status: PROCESSING
+2026-02-21T00:26:26.076+05:30  INFO 5796 --- [BACKEND] [task-1] com.event.listener.OrderEventListener    : Handling OrderStatusChangedEvent: Type=TRACKING_UPDATE, OrderId=3
+2026-02-21T00:26:26.087+05:30  INFO 5796 --- [BACKEND] [task-2] com.service.EmailService                 : Sending email to kashikaryash@gmail.com with subject: ? Order #3 Update: Kolkata
+2026-02-21T00:26:26.104+05:30  WARN 5796 --- [BACKEND] [http-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1265, SQLState: 01000
+2026-02-21T00:26:26.105+05:30 ERROR 5796 --- [BACKEND] [http-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncated for column 'status' at row 1
+2026-02-21T00:26:30.493+05:30  INFO 5796 --- [BACKEND] [task-2] com.service.EmailService                 : Email sent successfully to kashikaryash@gmail.com
+2026-02-21T00:40:31.255+05:30  INFO 5796 --- [BACKEND] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-21T00:40:31.403+05:30  INFO 5796 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-21T00:40:31.558+05:30  INFO 5796 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-02-21T00:40:54.329+05:30  INFO 4200 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 4200 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
+2026-02-21T00:40:54.332+05:30  INFO 4200 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
+2026-02-21T00:40:58.571+05:30  INFO 4200 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-21T00:40:59.480+05:30  INFO 4200 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 895 ms. Found 26 JPA repository interfaces.
+2026-02-21T00:41:01.016+05:30  INFO 4200 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-02-21T00:41:01.039+05:30  INFO 4200 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-21T00:41:01.039+05:30  INFO 4200 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2026-02-21T00:41:01.154+05:30  INFO 4200 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-21T00:41:01.155+05:30  INFO 4200 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6700 ms
+2026-02-21T00:41:01.888+05:30  INFO 4200 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-21T00:41:02.047+05:30  INFO 4200 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2026-02-21T00:41:02.108+05:30  INFO 4200 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-21T00:41:02.533+05:30  INFO 4200 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-21T00:41:02.586+05:30  INFO 4200 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-21T00:41:03.200+05:30  INFO 4200 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@e43189c
+2026-02-21T00:41:03.203+05:30  INFO 4200 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-21T00:41:03.301+05:30  WARN 4200 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-21T00:41:03.303+05:30  WARN 4200 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-02-21T00:41:05.785+05:30  INFO 4200 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-21T00:41:07.046+05:30  INFO 4200 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-21T00:41:08.083+05:30  INFO 4200 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-21T00:41:10.634+05:30  INFO 4200 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
+2026-02-21T00:41:11.424+05:30  WARN 4200 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-21T00:41:12.135+05:30  INFO 4200 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2026-02-21T00:41:12.273+05:30  INFO 4200 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7c9eb178, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2b4c26ec, org.springframework.security.web.context.SecurityContextHolderFilter@79eb7803, org.springframework.security.web.header.HeaderWriterFilter@3cb3a3f6, org.springframework.web.filter.CorsFilter@54118bbf, org.springframework.security.web.authentication.logout.LogoutFilter@40f7ae65, com.config.JwtAuthenticationFilter@bf154bb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@92690e5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@49d75bb0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@40724ccd, org.springframework.security.web.session.SessionManagementFilter@6b81c35a, org.springframework.security.web.access.ExceptionTranslationFilter@4eb0f3ed, org.springframework.security.web.access.intercept.AuthorizationFilter@1e5ba462]
+2026-02-21T00:41:13.376+05:30  INFO 4200 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-02-21T00:41:13.406+05:30  INFO 4200 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 19.835 seconds (process running for 20.373)
+2026-02-21T00:41:58.617+05:30  INFO 4200 --- [BACKEND] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-21T00:41:58.619+05:30  INFO 4200 --- [BACKEND] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-21T00:41:58.626+05:30  INFO 4200 --- [BACKEND] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2026-02-21T00:41:58.916+05:30  INFO 4200 --- [BACKEND] [http-nio-8080-exec-1] com.service.OrderService                 : Updating order location. OrderId: 3, Location: Kolkata, Status: PROCESSING
+2026-02-21T00:41:58.922+05:30 DEBUG 4200 --- [BACKEND] [http-nio-8080-exec-1] com.service.OrderService                 : Saving order with new tracking record. OrderId: 3, Current Status: PROCESSING
+2026-02-21T00:41:58.985+05:30  INFO 4200 --- [BACKEND] [task-1] com.event.listener.OrderEventListener    : Handling OrderStatusChangedEvent: Type=TRACKING_UPDATE, OrderId=3
+2026-02-21T00:41:58.994+05:30  INFO 4200 --- [BACKEND] [task-2] com.service.EmailService                 : Sending email to kashikaryash@gmail.com with subject: ? Order #3 Update: Kolkata
+2026-02-21T00:41:59.067+05:30  WARN 4200 --- [BACKEND] [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1265, SQLState: 01000
+2026-02-21T00:41:59.067+05:30 ERROR 4200 --- [BACKEND] [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncated for column 'status' at row 1
+2026-02-21T00:42:03.128+05:30  INFO 4200 --- [BACKEND] [task-2] com.service.EmailService                 : Email sent successfully to kashikaryash@gmail.com
+2026-02-21T00:42:36.540+05:30  INFO 4200 --- [BACKEND] [http-nio-8080-exec-1] com.service.OrderService                 : Updating order location. OrderId: 3, Location: Mumbai, Status: PROCESSING
+2026-02-21T00:42:36.554+05:30 DEBUG 4200 --- [BACKEND] [http-nio-8080-exec-1] com.service.OrderService                 : Saving order with new tracking record. OrderId: 3, Current Status: PROCESSING
+2026-02-21T00:42:36.655+05:30  INFO 4200 --- [BACKEND] [task-3] com.event.listener.OrderEventListener    : Handling OrderStatusChangedEvent: Type=TRACKING_UPDATE, OrderId=3
+2026-02-21T00:42:36.723+05:30  INFO 4200 --- [BACKEND] [task-4] com.service.EmailService                 : Sending email to kashikaryash@gmail.com with subject: ? Order #3 Update: Mumbai
+2026-02-21T00:42:36.883+05:30  WARN 4200 --- [BACKEND] [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1265, SQLState: 01000
+2026-02-21T00:42:36.892+05:30 ERROR 4200 --- [BACKEND] [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncated for column 'status' at row 1
+2026-02-21T00:42:41.304+05:30  INFO 4200 --- [BACKEND] [task-4] com.service.EmailService                 : Email sent successfully to kashikaryash@gmail.com
+2026-02-21T00:55:44.487+05:30  INFO 4200 --- [BACKEND] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-21T00:55:44.619+05:30  INFO 4200 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-21T00:55:44.753+05:30  INFO 4200 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-02-21T00:56:00.253+05:30  INFO 21172 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 21172 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
+2026-02-21T00:56:00.260+05:30  INFO 21172 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
+2026-02-21T00:56:06.557+05:30  INFO 21172 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-21T00:56:08.110+05:30  INFO 21172 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1534 ms. Found 26 JPA repository interfaces.
+2026-02-21T00:56:10.678+05:30  INFO 21172 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-02-21T00:56:10.700+05:30  INFO 21172 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-21T00:56:10.701+05:30  INFO 21172 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2026-02-21T00:56:10.814+05:30  INFO 21172 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-21T00:56:10.816+05:30  INFO 21172 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 10392 ms
+2026-02-21T00:56:11.649+05:30  INFO 21172 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-21T00:56:11.942+05:30  INFO 21172 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2026-02-21T00:56:12.052+05:30  INFO 21172 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-21T00:56:12.804+05:30  INFO 21172 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-21T00:56:12.885+05:30  INFO 21172 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-21T00:56:13.433+05:30  INFO 21172 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2fce55d6
+2026-02-21T00:56:13.436+05:30  INFO 21172 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-21T00:56:13.534+05:30  WARN 21172 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-21T00:56:13.535+05:30  WARN 21172 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-02-21T00:56:15.954+05:30  INFO 21172 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-21T00:56:16.908+05:30  INFO 21172 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-21T00:56:18.128+05:30  INFO 21172 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-21T00:56:20.541+05:30  INFO 21172 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
+2026-02-21T00:56:21.229+05:30  WARN 21172 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-21T00:56:21.875+05:30  INFO 21172 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2026-02-21T00:56:21.988+05:30  INFO 21172 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3fa57a5a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7c9eb178, org.springframework.security.web.context.SecurityContextHolderFilter@1461c28e, org.springframework.security.web.header.HeaderWriterFilter@7281a0fe, org.springframework.web.filter.CorsFilter@2b4c26ec, org.springframework.security.web.authentication.logout.LogoutFilter@5ba6659d, com.config.JwtAuthenticationFilter@6d6cd631, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2b2fdee3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1c5a561e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@54118bbf, org.springframework.security.web.session.SessionManagementFilter@11f8edb5, org.springframework.security.web.access.ExceptionTranslationFilter@1d9f40af, org.springframework.security.web.access.intercept.AuthorizationFilter@3a98c6d2]
+2026-02-21T00:56:22.908+05:30  INFO 21172 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-02-21T00:56:22.939+05:30  INFO 21172 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 23.947 seconds (process running for 24.989)
+2026-02-21T00:57:49.567+05:30  INFO 21172 --- [BACKEND] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-21T00:57:49.655+05:30  INFO 21172 --- [BACKEND] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-21T00:57:51.576+05:30  INFO 21172 --- [BACKEND] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1909 ms
+2026-02-21T00:58:24.128+05:30  INFO 21172 --- [BACKEND] [http-nio-8080-exec-9] com.service.OrderService                 : Updating order location. OrderId: 3, Location: Pune, Status: PROCESSING
+2026-02-21T00:58:24.146+05:30 DEBUG 21172 --- [BACKEND] [http-nio-8080-exec-9] com.service.OrderService                 : Saving order with new tracking record. OrderId: 3, Current Status: PROCESSING
+2026-02-21T00:58:24.228+05:30  INFO 21172 --- [BACKEND] [task-1] com.event.listener.OrderEventListener    : Handling OrderStatusChangedEvent: Type=TRACKING_UPDATE, OrderId=3
+2026-02-21T00:58:24.252+05:30  INFO 21172 --- [BACKEND] [task-2] com.service.EmailService                 : Sending email to kashikaryash@gmail.com with subject: ? Order #3 Update: Pune
+2026-02-21T00:58:28.467+05:30  INFO 21172 --- [BACKEND] [task-2] com.service.EmailService                 : Email sent successfully to kashikaryash@gmail.com
+2026-02-21T10:12:18.194+05:30  INFO 3792 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 3792 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
+2026-02-21T10:12:18.198+05:30  INFO 3792 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
+2026-02-21T10:12:20.676+05:30  INFO 3792 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-21T10:12:21.326+05:30  INFO 3792 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 642 ms. Found 26 JPA repository interfaces.
+2026-02-21T10:12:22.364+05:30  INFO 3792 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-02-21T10:12:22.382+05:30  INFO 3792 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-21T10:12:22.383+05:30  INFO 3792 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2026-02-21T10:12:22.488+05:30  INFO 3792 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-21T10:12:22.490+05:30  INFO 3792 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4219 ms
+2026-02-21T10:12:23.029+05:30  INFO 3792 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-21T10:12:23.143+05:30  INFO 3792 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2026-02-21T10:12:23.192+05:30  INFO 3792 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-21T10:12:23.470+05:30  INFO 3792 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-21T10:12:23.510+05:30  INFO 3792 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-21T10:12:24.015+05:30  INFO 3792 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2fce55d6
+2026-02-21T10:12:24.018+05:30  INFO 3792 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-21T10:12:24.088+05:30  WARN 3792 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-21T10:12:24.090+05:30  WARN 3792 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-02-21T10:12:25.730+05:30  INFO 3792 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-21T10:12:26.445+05:30  INFO 3792 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-21T10:12:27.176+05:30  INFO 3792 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-21T10:12:29.157+05:30  INFO 3792 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
+2026-02-21T10:12:29.694+05:30  WARN 3792 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-21T10:12:30.180+05:30  INFO 3792 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2026-02-21T10:12:30.272+05:30  INFO 3792 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2b4c26ec, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@54118bbf, org.springframework.security.web.context.SecurityContextHolderFilter@3af3d4b9, org.springframework.security.web.header.HeaderWriterFilter@edba700, org.springframework.web.filter.CorsFilter@40724ccd, org.springframework.security.web.authentication.logout.LogoutFilter@66dc812b, com.config.JwtAuthenticationFilter@6d6cd631, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2d54db64, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@744b5bd7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@49ee30ca, org.springframework.security.web.session.SessionManagementFilter@2099bfce, org.springframework.security.web.access.ExceptionTranslationFilter@16415b48, org.springframework.security.web.access.intercept.AuthorizationFilter@1d694d9a]
+2026-02-21T10:12:30.961+05:30  INFO 3792 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-02-21T10:12:30.984+05:30  INFO 3792 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 13.298 seconds (process running for 13.831)
+2026-02-21T10:13:04.368+05:30  INFO 3792 --- [BACKEND] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-21T10:13:04.369+05:30  INFO 3792 --- [BACKEND] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-21T10:13:04.374+05:30  INFO 3792 --- [BACKEND] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2026-02-21T10:13:30.361+05:30  INFO 3792 --- [BACKEND] [task-1] com.event.listener.OrderEventListener    : Handling OrderStatusChangedEvent: Type=ORDER_CONFIRMED, OrderId=4
+2026-02-21T10:13:30.365+05:30  INFO 3792 --- [BACKEND] [task-2] com.service.EmailService                 : Sending email with attachment to kashikaryash@gmail.com with subject: Order Confirmed! #4
+2026-02-21T10:13:45.244+05:30  INFO 3792 --- [BACKEND] [task-2] com.service.EmailService                 : Email with attachment sent successfully to kashikaryash@gmail.com
+2026-02-21T10:14:25.241+05:30  INFO 3792 --- [BACKEND] [http-nio-8080-exec-5] com.service.OrderService                 : Updating order location. OrderId: 4, Location: Pune, Status: SHIPPED
+2026-02-21T10:14:25.244+05:30 DEBUG 3792 --- [BACKEND] [http-nio-8080-exec-5] com.service.OrderService                 : Saving order with new tracking record. OrderId: 4, Current Status: SHIPPED
+2026-02-21T10:14:25.252+05:30  INFO 3792 --- [BACKEND] [task-3] com.event.listener.OrderEventListener    : Handling OrderStatusChangedEvent: Type=TRACKING_UPDATE, OrderId=4
+2026-02-21T10:14:25.263+05:30  INFO 3792 --- [BACKEND] [task-4] com.service.EmailService                 : Sending email to kashikaryash@gmail.com with subject: ? Order #4 Update: Pune
+2026-02-21T10:14:39.479+05:30  INFO 3792 --- [BACKEND] [task-4] com.service.EmailService                 : Email sent successfully to kashikaryash@gmail.com
+2026-02-21T10:16:04.262+05:30  INFO 3792 --- [BACKEND] [task-5] com.service.EmailService                 : Sending email to kashikaryash@gmail.com with subject: ? Order #3 - Delivered
+2026-02-21T10:16:18.405+05:30  INFO 3792 --- [BACKEND] [task-5] com.service.EmailService                 : Email sent successfully to kashikaryash@gmail.com

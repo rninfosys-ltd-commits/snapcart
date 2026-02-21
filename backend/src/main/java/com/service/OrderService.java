@@ -6,7 +6,7 @@ import com.entity.*;
 import com.mapper.OrderMapper;
 import com.repository.CartRepository;
 import com.repository.OrderRepository;
-import com.repository.UserRepository;
+// import com.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,16 +40,14 @@ public class OrderService {
     @Autowired
     private InvoiceService invoiceService;
 
-    @Autowired
-    private UserRepository userRepository;
+    // @Autowired
+    // private UserRepository userRepository;
 
     @Autowired
-    private WalletService walletService;
+    private SettlementService settlementService;
 
     @Autowired
     private OrderTrackingService orderTrackingService;
-
-    private static final double PLATFORM_COMMISSION_PERCENT = 10.0;
 
     @Transactional
     public OrderResponseDTO placeOrder(User user, com.payload.request.OrderRequest request) {
@@ -78,9 +76,9 @@ public class OrderService {
         }
 
         order.setStatus(OrderStatus.PENDING);
-        order.setPaymentStatus(PaymentStatus.PENDING); // Explicitly set to avoid constraint issues
+        order.setPaymentStatus(PaymentStatus.PENDING);
 
-        // Handle shipping address (could be String or Object from frontend)
+        // Handle shipping address
         String shippingAddrStr = "";
         if (request.getShippingAddress() != null) {
             if (request.getShippingAddress() instanceof String) {
@@ -98,6 +96,21 @@ public class OrderService {
         order.setPaymentMethod(request.getPaymentMethod());
         order.setOrderDate(java.time.LocalDateTime.now());
 
+        // --- MULTI-TENANT DETECTION ---
+        java.util.Set<Long> tenantIds = cart.getItems().stream()
+                .map(item -> item.getVariant().getProduct().getModerator())
+                .filter(Objects::nonNull)
+                .map(Moderator::getId)
+                .collect(Collectors.toSet());
+
+        if (tenantIds.size() == 1) {
+            order.setSettlementType(SettlementType.DIRECT_TO_MODERATOR);
+            order.setPrimaryTenantId(tenantIds.iterator().next());
+        } else {
+            order.setSettlementType(SettlementType.PLATFORM_SETTLEMENT);
+            // primaryTenantId remains null for multi-tenant
+        }
+
         List<OrderItem> orderItems = cart.getItems().stream().map(cartItem -> {
             OrderItem orderItem = new OrderItem();
             orderItem.setOrder(order);
@@ -112,6 +125,30 @@ public class OrderService {
             }
             variant.setQuantity(variant.getQuantity() - cartItem.getQuantity());
 
+            // --- FINANCIAL & DATA SNAPSHOTS (IMMUTABILITY) ---
+            Product product = variant.getProduct();
+            Moderator moderator = product.getModerator();
+
+            orderItem.setProductName(product.getName());
+            orderItem.setTenantId(moderator != null ? moderator.getId() : null);
+
+            // Get primary image snapshot
+            String imgUrl = product.getVariants().get(0).getImages().stream()
+                    .filter(ProductImage::isPrimary)
+                    .map(ProductImage::getImageUrl)
+                    .findFirst().orElse("");
+            orderItem.setProductImage(imgUrl);
+
+            // Financial Ledger Snapshots
+            double commPercent = (moderator != null) ? moderator.getPlatformCommissionPercent() : 10.0;
+            double gross = cartItem.getPrice() * cartItem.getQuantity();
+            double commAmount = gross * (commPercent / 100.0);
+
+            orderItem.setGrossAmount(gross);
+            orderItem.setCommissionPercentSnapshot(commPercent);
+            orderItem.setCommissionAmount(commAmount);
+            orderItem.setNetAmount(gross - commAmount);
+
             return orderItem;
         }).collect(Collectors.toList());
 
@@ -120,16 +157,16 @@ public class OrderService {
         // Save the order
         Order savedOrder = orderRepository.save(order);
 
-        // Clear the cart directly to avoid cross-transactional rollback issues
+        // Clear the cart
         try {
             cart.getItems().clear();
             cart.setTotalAmount(0.0);
             cartRepository.save(cart);
         } catch (Exception e) {
-            System.err.println("Warning: Failed to clear cart after successful order: " + e.getMessage());
+            System.err.println("Warning: Failed to clear cart: " + e.getMessage());
         }
 
-        // Generate Invoice for record keeping (but send email only after payment)
+        // Generate Invoice
         byte[] invoicePdf = null;
         try {
             invoicePdf = invoiceService.generateInvoice(savedOrder.getId());
@@ -139,23 +176,25 @@ public class OrderService {
 
         // Add initial tracking record
         try {
-            // Get warehouse details from the first item's moderator (simplified)
             Moderator moderator = orderItems.get(0).getVariant().getProduct().getModerator();
             String city = (moderator != null && moderator.getWarehouseCity() != null) ? moderator.getWarehouseCity()
                     : "Mumbai";
             String state = (moderator != null && moderator.getWarehouseState() != null) ? moderator.getWarehouseState()
                     : "Maharashtra";
 
-            orderTrackingService.addTrackingRecord(savedOrder.getId(), TrackingStatus.ORDER_CONFIRMED,
+            OrderTracking tracking = orderTrackingService.addTrackingRecord(savedOrder.getId(),
+                    TrackingStatus.ORDER_CONFIRMED,
                     city, state, "Order has been confirmed and is being prepared.");
+
+            // Add to the list on the object so it's included in the returned DTO
+            if (savedOrder.getTrackingHistory() == null) {
+                savedOrder.setTrackingHistory(new java.util.ArrayList<>());
+            }
+            savedOrder.getTrackingHistory().add(tracking);
         } catch (Exception e) {
-            // Defensive coding: Non-fatal error should not rollback order
             System.err.println("Non-fatal error: Failed to add initial tracking: " + e.getMessage());
         }
 
-        // Publish Order Confirmed Event (Async Email)
-        // Note: Usually confirmation email is sent after payment success, but if this
-        // is COD or immediate, we can trigger here.
         eventPublisher.publishEvent(new OrderStatusChangedEvent(this,
                 user.getEmail(), savedOrder.getId().toString(), user.getName(), invoicePdf));
 
@@ -163,8 +202,8 @@ public class OrderService {
     }
 
     /**
-     * Distributes payments between Moderators and Super Admin based on order
-     * composition.
+     * Distributes payments between Moderators and Super Admin using the Settlement
+     * Ledger.
      */
     @Transactional
     public void distributePayments(Order order) {
@@ -172,68 +211,19 @@ public class OrderService {
             return;
         }
 
-        User superAdmin = findSuperAdmin();
-        List<OrderItem> items = order.getItems();
-
-        // Identify unique brands
-        java.util.Set<Long> brandModeratorIds = items.stream()
-                .map(item -> item.getVariant().getProduct().getModerator()).filter(Objects::nonNull)
-                .map(Moderator::getId).collect(Collectors.toSet());
-
-        boolean isSingleBrand = brandModeratorIds.size() == 1;
-        double totalDiscount = order.getDiscount();
-        double subtotal = items.stream().mapToDouble(i -> i.getPrice() * i.getQuantity()).sum();
-
-        // Ratio of actual price paid vs subtotal (to handle flat discounts
-        // proportionally)
-        double priceRatio = subtotal > 0 ? (subtotal - totalDiscount) / subtotal : 1.0;
-
-        if (isSingleBrand) {
-            // Case 1: Single Brand - Automatic Split
-            Moderator moderator = items.get(0).getVariant().getProduct().getModerator();
-            double netOrderAmount = (subtotal - totalDiscount);
-            double commission = netOrderAmount * (PLATFORM_COMMISSION_PERCENT / 100.0);
-            double moderatorShare = netOrderAmount - commission;
-
-            walletService.creditWallet(moderator.getUser(), moderatorShare, Transaction.TransactionSource.ORDER_PAYMENT,
-                    order.getId().toString(), "Share for Single Brand Order #" + order.getId());
-
-            walletService.creditWallet(superAdmin, commission, Transaction.TransactionSource.COMMISSION,
-                    order.getId().toString(), "Commission for Single Brand Order #" + order.getId());
-        } else {
-            // Case 2: Multiple Brands - Admin receives full amount first, then distributes
-            // Logic: Calculate each brand's share and credit them. Balance stays with
-            // Admin.
-            double totalModeratorPayouts = 0;
-
-            for (OrderItem item : items) {
-                Moderator mod = item.getVariant().getProduct().getModerator();
-                if (mod == null) {
-                    // Platform product - admin keeps full amount
-                    continue;
-                }
-
-                double itemTotal = item.getPrice() * item.getQuantity() * priceRatio;
-                double commission = itemTotal * (PLATFORM_COMMISSION_PERCENT / 100.0);
-                double modShare = itemTotal - commission;
-
-                totalModeratorPayouts += modShare;
-
-                walletService.creditWallet(mod.getUser(), modShare, Transaction.TransactionSource.ORDER_PAYMENT,
-                        order.getId().toString(), "Prorated share for Multi-Brand Order #" + order.getId());
-            }
-
-            double adminTotal = (subtotal - totalDiscount) - totalModeratorPayouts;
-            walletService.creditWallet(superAdmin, adminTotal, Transaction.TransactionSource.COMMISSION,
-                    order.getId().toString(),
-                    "Platform share (Commission + Internal items) for Multi-Brand Order #" + order.getId());
-        }
+        // Delegate to SettlementService for immutable ledger entry generation
+        // Passing null as eventId for manual/legacy triggers
+        settlementService.createSettlements(order, null);
     }
 
-    private User findSuperAdmin() {
-        return userRepository.findByRole(Role.SUPER_ADMIN).stream().findFirst()
-                .orElseGet(() -> userRepository.findByRole(Role.ADMIN).stream().findFirst()
-                        .orElseThrow(() -> new RuntimeException("No Admin/SuperAdmin found for commission routing")));
+    public List<Order> getOrdersByTenantId(Long tenantId) {
+        // Optimization: check primaryTenantId first for single-tenant orders
+        List<Order> directOrders = orderRepository.findByPrimaryTenantId(tenantId);
+        List<Order> multiTenantOrders = orderRepository.findByItemsTenantId(tenantId);
+
+        java.util.Set<Order> allOrders = new java.util.HashSet<>(directOrders);
+        allOrders.addAll(multiTenantOrders);
+        return allOrders.stream().toList();
     }
 
     @Transactional
@@ -252,7 +242,7 @@ public class OrderService {
     }
 
     @Transactional
-    public Order updateOrderStatus(Long orderId, OrderStatus status) {
+    public OrderResponseDTO updateOrderStatus(Long orderId, OrderStatus status) {
         Order order = getOrderById(orderId);
         OrderStatus oldStatus = order.getStatus();
         order.setStatus(status);
@@ -270,7 +260,7 @@ public class OrderService {
                     OrderStatusChangedEvent.EventType.STATUS_UPDATE));
         }
 
-        return savedOrder;
+        return OrderMapper.toResponseDTO(savedOrder);
     }
 
     @Transactional
@@ -321,7 +311,7 @@ public class OrderService {
     }
 
     @Transactional
-    public Order updateOrderLocation(Long orderId, String location, String statusStr) {
+    public OrderResponseDTO updateOrderLocation(Long orderId, String location, String statusStr) {
         log.info("Updating order location. OrderId: {}, Location: {}, Status: {}", orderId, location, statusStr);
         try {
             Order order = getOrderById(orderId);
@@ -347,9 +337,14 @@ public class OrderService {
                 };
             }
             OrderTracking tracking = new OrderTracking(order, trackingStatus, location, "", "Update via Admin Portal");
-            order.getTrackingHistory().add(tracking); // Cascaded
-                                                      // save
 
+            if (order.getTrackingHistory() == null) {
+                order.setTrackingHistory(new java.util.ArrayList<>());
+            }
+            order.getTrackingHistory().add(tracking);
+
+            log.debug("Saving order with new tracking record. OrderId: {}, Current Status: {}", orderId,
+                    order.getStatus());
             Order savedOrder = orderRepository.save(order);
 
             // Publish tracking update event (Async Email)
@@ -362,7 +357,7 @@ public class OrderService {
                     user.getName(),
                     location));
 
-            return savedOrder;
+            return OrderMapper.toResponseDTO(savedOrder);
         } catch (Exception e) {
             log.error("Error updating order location for OrderId: {}", orderId, e);
             throw e;

@@ -2,6 +2,7 @@ package com.repository;
 
 import com.entity.Product;
 import com.entity.Category;
+import com.entity.SubCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +10,11 @@ import java.util.Optional;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Optional<Product> findByName(String name);
 
-    List<Product> findByCategory(Category category);
+    List<Product> findByCategoryAndSubCategory(Category category, SubCategory subCategory);
+
+    List<Product> findByTenantId(Long tenantId);
+
+    List<Product> findByIsMasterTrue();
 
     @org.springframework.data.jpa.repository.Query("SELECT p FROM Product p JOIN p.moderator m JOIN m.user u WHERE u.id = :userId")
     List<Product> findByModerator_UserId(@org.springframework.data.repository.query.Param("userId") Long userId);

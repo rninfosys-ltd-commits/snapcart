@@ -82,6 +82,15 @@ public class ModeratorService {
         moderator.setIsActive(true);
 
         Moderator saved = moderatorRepository.save(moderator);
+
+        // Populate tenantId (using moderator ID as tenant identifier)
+        saved.setTenantId(saved.getId());
+        moderatorRepository.save(saved);
+
+        // Sync to User for security context
+        user.setTenantId(saved.getId());
+        userRepository.save(saved.getUser());
+
         return toResponse(saved);
     }
 
@@ -348,6 +357,11 @@ public class ModeratorService {
         employee.setGender(request.getGender());
         employee.setRole(Role.EMPLOYEE);
         employee.setParentId(moderatorId);
+
+        // Set tenantId for the employee (same as moderator's tenantId)
+        User moderatorUser = userRepository.findById(moderatorId)
+                .orElseThrow(() -> new RuntimeException("Moderator not found"));
+        employee.setTenantId(moderatorUser.getTenantId());
 
         User saved = userRepository.save(employee);
 

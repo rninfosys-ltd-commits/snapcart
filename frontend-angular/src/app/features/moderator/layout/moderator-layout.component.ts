@@ -36,6 +36,11 @@ import { AuthService } from '../../../core/services/auth.service';
         
         <div class="nav-right">
           
+          <a mat-button routerLink="/moderator/procure-inventory" class="nav-link">
+            <mat-icon>shopping_cart</mat-icon>
+            Procure Inventory
+          </a>
+
           <a mat-button routerLink="/moderator/employees" class="nav-link" *ngIf="auth.primaryRole() === 'MODERATOR' || auth.primaryRole() === 'ADMIN'">
             <mat-icon>group</mat-icon>
             Team

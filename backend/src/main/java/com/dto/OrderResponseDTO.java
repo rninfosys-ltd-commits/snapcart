@@ -20,4 +20,7 @@ public class OrderResponseDTO {
     private String currentLocation;
     private List<OrderTrackingDTO> trackingHistory;
     private LocalDateTime orderDate;
+    private String paymentMethod;
+    private String paymentStatus;
+    private String shippingAddress;
 }

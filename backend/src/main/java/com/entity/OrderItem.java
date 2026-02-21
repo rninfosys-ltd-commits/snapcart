@@ -28,4 +28,21 @@ public class OrderItem {
 
     @Column(nullable = false)
     private double price;
+
+    // ==================== FINANCIAL & DATA SNAPSHOTS (FROZEN AT PURCHASE)
+    // ====================
+
+    @Column(length = 255)
+    private String productName;
+
+    @Column(length = 1000)
+    private String productImage;
+
+    @Column(name = "tenant_id")
+    private Long tenantId;
+
+    private Double grossAmount; // productPrice * quantity
+    private Double commissionPercentSnapshot; // moderator's commission % at time of purchase
+    private Double commissionAmount; // grossAmount * commissionPercent / 100
+    private Double netAmount; // amount due to moderator (gross - commission)
 }

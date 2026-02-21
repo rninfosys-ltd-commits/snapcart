@@ -60,6 +60,9 @@ public class User {
     @Column(columnDefinition = "TEXT")
     private String paymentInfo;
 
+    @Column(name = "tenant_id")
+    private Long tenantId; // Mapped to moderator.id internally
+
     // Helper to check if user has profile picture
     public boolean hasProfilePicture() {
         return profilePicture != null && profilePicture.length > 0;

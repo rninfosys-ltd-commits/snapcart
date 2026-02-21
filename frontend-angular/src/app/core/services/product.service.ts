@@ -179,5 +179,14 @@ export class ProductService {
             throw err;
         }
     }
+
+    // Procurement Methods
+    async getMasterCatalog(): Promise<any[]> {
+        return firstValueFrom(this.http.get<any[]>(`${environment.apiUrl}/moderator/procurement/master-catalog`));
+    }
+
+    async placeProcurementOrder(items: any[]): Promise<any> {
+        return firstValueFrom(this.http.post<any>(`${environment.apiUrl}/moderator/procurement/order`, items));
+    }
 }
 

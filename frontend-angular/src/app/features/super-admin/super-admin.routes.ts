@@ -12,7 +12,15 @@ export const SUPER_ADMIN_ROUTES: Routes = [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', component: SuperAdminDashboardComponent },
             { path: 'audit-logs', component: AuditLogsComponent },
-            { path: 'admins', component: AdminManagementComponent }
+            { path: 'admins', component: AdminManagementComponent },
+            {
+                path: 'products',
+                loadComponent: () => import('../admin/inventory/inventory.component').then(m => m.InventoryComponent)
+            },
+            {
+                path: 'add-product',
+                loadComponent: () => import('../admin/add-product/add-product.component').then(m => m.AddProductComponent)
+            }
         ]
     }
 ];

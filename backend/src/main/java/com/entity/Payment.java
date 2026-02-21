@@ -45,6 +45,13 @@ public class Payment {
 
     private LocalDateTime paymentDate;
 
+    // ==================== SETTLEMENT ROUTING ====================
+
+    @Enumerated(EnumType.STRING)
+    private SettlementType settlementType;
+
+    private String destinationAccountId; // Target gateway account for direct routing
+
     @PrePersist
     protected void onCreate() {
         this.paymentDate = LocalDateTime.now();

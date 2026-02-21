@@ -34,7 +34,10 @@ public class OrderMapper {
                                 order.getDiscount(),
                                 order.getStatus().name(),
                                 order.getCurrentLocation(),
-                                order.getOrderDate());
+                                order.getOrderDate(),
+                                order.getPaymentMethod(),
+                                order.getPaymentStatus() != null ? order.getPaymentStatus().name() : "PENDING",
+                                order.getShippingAddress());
         }
 
         public static OrderResponseDTO toResponseDTO(Order order) {
@@ -62,7 +65,10 @@ public class OrderMapper {
                                 order.getStatus().name(),
                                 order.getCurrentLocation(),
                                 trackingHistory,
-                                order.getOrderDate());
+                                order.getOrderDate(),
+                                order.getPaymentMethod(),
+                                order.getPaymentStatus() != null ? order.getPaymentStatus().name() : "PENDING",
+                                order.getShippingAddress());
         }
 
         private static AdminOrderItemDTO toItemDTO(OrderItem item) {

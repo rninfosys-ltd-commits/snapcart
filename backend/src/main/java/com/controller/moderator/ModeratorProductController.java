@@ -37,9 +37,12 @@ public class ModeratorProductController {
     private ObjectMapper objectMapper;
 
     @GetMapping("/my")
-    public ResponseEntity<?> getMyProducts(
-            @AuthenticationPrincipal UserDetailsImpl currentUser) {
+    public ResponseEntity<?> getMyProducts(@AuthenticationPrincipal UserDetailsImpl currentUser) {
         try {
+            if (currentUser == null) {
+                return ResponseEntity.status(401).build();
+            }
+            // Use getProductsByModerator which uses a robust join query
             List<Product> products = productService.getProductsByModerator(currentUser.getId());
             return ResponseEntity.ok(products.stream().map(productMapper::toResponse).toList());
         } catch (Exception e) {

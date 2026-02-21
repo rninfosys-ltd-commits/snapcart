@@ -1,5 +1,6 @@
 package com.service;
 
+import com.entity.Moderator;
 import com.entity.Order;
 import com.entity.Payment;
 import com.entity.PaymentStatus;
@@ -31,7 +32,7 @@ public class PaymentService {
     private InvoiceService invoiceService;
 
     @Autowired
-    private OrderService orderService;
+    private SettlementService settlementService;
 
     public String generateUPIString(double amount, String orderId) {
         try {
@@ -39,18 +40,14 @@ public class PaymentService {
             String finalUpiId = UPI_ID;
             String finalMerchantName = MERCHANT_NAME;
 
-            if (order != null && order.getItems() != null) {
-                for (com.entity.OrderItem item : order.getItems()) {
-                    com.entity.Product product = item.getVariant().getProduct();
-                    if (product.isSingleBrand() && product.getModerator() != null
-                            && product.getModerator().getUser().getPaymentInfo() != null
-                            && !product.getModerator().getUser().getPaymentInfo().isEmpty()) {
-                        finalUpiId = product.getModerator().getUser().getPaymentInfo();
-                        finalMerchantName = product.getModerator().getUser().getName() != null
-                                ? product.getModerator().getUser().getName()
-                                : MERCHANT_NAME;
-                        break; // If one item is single brand, route entire order to moderator for simplicity
-                    }
+            if (order != null && order.getSettlementType() == com.entity.SettlementType.DIRECT_TO_MODERATOR) {
+                // Route to moderator
+                Moderator moderator = order.getItems().get(0).getVariant().getProduct().getModerator();
+                if (moderator != null && moderator.getUser().getPaymentInfo() != null
+                        && !moderator.getUser().getPaymentInfo().isEmpty()) {
+                    finalUpiId = moderator.getUser().getPaymentInfo();
+                    finalMerchantName = moderator.getUser().getName() != null ? moderator.getUser().getName()
+                            : MERCHANT_NAME;
                 }
             }
 
@@ -68,22 +65,17 @@ public class PaymentService {
 
     /**
      * Initiate payment for an order
-     * 
-     * @param orderId Order ID
-     * @return Payment entity with QR code data
      */
     @Transactional
     public Payment initiatePayment(Long orderId) {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("Order not found: " + orderId));
 
-        // Check if payment already exists for this order
         Payment existingPayment = paymentRepository.findByOrderId(orderId).orElse(null);
         if (existingPayment != null) {
             return existingPayment;
         }
 
-        // Create new payment
         Payment payment = new Payment();
         payment.setUser(order.getUser());
         payment.setOrder(order);
@@ -91,23 +83,32 @@ public class PaymentService {
         payment.setCurrency("INR");
         payment.setStatus(PaymentStatus.PENDING);
         payment.setPaymentMethod("UPI");
+        payment.setSettlementType(order.getSettlementType());
 
-        // Generate UPI string and store
+        if (order.getSettlementType() == com.entity.SettlementType.DIRECT_TO_MODERATOR) {
+            Moderator mod = order.getItems().get(0).getVariant().getProduct().getModerator();
+            if (mod != null) {
+                payment.setDestinationAccountId(mod.getPaymentAccountId());
+            }
+        }
+
         String qrData = generateUPIString(order.getTotalAmount(), order.getId().toString());
-        payment.setStripePaymentIntentId(qrData); // Reusing field for UPI data
+        payment.setStripePaymentIntentId(qrData);
 
         return paymentRepository.save(payment);
     }
 
     /**
      * Verify and confirm payment
-     * 
-     * @param paymentId     Payment ID
-     * @param transactionId Transaction reference ID
-     * @return Updated payment
      */
     @Transactional
     public Payment verifyPayment(Long paymentId, String transactionId) {
+        // Overloaded for backward compat or manual calls (null eventId)
+        return verifyPayment(paymentId, transactionId, "MAN-" + System.currentTimeMillis());
+    }
+
+    @Transactional
+    public Payment verifyPayment(Long paymentId, String transactionId, String webhookEventId) {
         Payment payment = paymentRepository.findById(paymentId)
                 .orElseThrow(() -> new RuntimeException("Payment not found: " + paymentId));
 
@@ -115,20 +116,18 @@ public class PaymentService {
         payment.setPaymentDate(LocalDateTime.now());
         Payment savedPayment = paymentRepository.save(payment);
 
-        // Update order
         Order order = payment.getOrder();
         order.setPaymentStatus(PaymentStatus.COMPLETED);
         order.setPaymentReference(transactionId);
         orderRepository.save(order);
 
-        // Distribute payments to Moderator and Admin wallets
+        // Ledger-based settlement creation (idempotent)
         try {
-            orderService.distributePayments(order);
+            settlementService.createSettlements(order, webhookEventId);
         } catch (Exception e) {
-            System.err.println("Failed to distribute payments for order " + order.getId() + ": " + e.getMessage());
+            System.err.println("Failed to create settlements for order " + order.getId() + ": " + e.getMessage());
         }
 
-        // Send invoice email
         try {
             invoiceService.sendInvoiceEmail(order.getId());
         } catch (Exception e) {

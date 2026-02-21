@@ -196,8 +196,7 @@
     box-shadow: var(--shadow-sm);
 }
 
-.social-link mat-icon {
-    font-size: 1rem;
+.social-link svg {
     width: 1rem;
     height: 1rem;
 }
