@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { ProductService } from '../../../core/services/product.service';
 
 @Component({
     selector: 'app-footer',
@@ -13,22 +14,25 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.css']
 })
-export class FooterComponent {
+export class FooterComponent implements OnInit {
     private sanitizer = inject(DomSanitizer);
-    showContact = false;
+    private productService = inject(ProductService);
 
-    shopLinks = [
-        { name: 'Men', path: '/cat/MEN' },
-        { name: 'Women', path: '/cat/WOMEN' },
-        { name: 'Kids', path: '/cat/KIDS' },
-        { name: 'Electronics', path: '/cat/ELECTRONICS' },
-        { name: 'Home & Kitchen', path: '/cat/HOME_KITCHEN' },
-        { name: 'Beauty', path: '/cat/BEAUTY' },
-        { name: 'Accessories', path: '/cat/ACCESSORIES' },
-        { name: 'Jewellery', path: '/cat/JEWELLERY' },
-        { name: 'Bags & Footwear', path: '/cat/BAGS_FOOTWEAR' }
-    ];
+    showContact = false;
+    shopLinks = signal<{ name: string, path: string }[]>([]);
     helpLinks = ['Contact Us', 'FAQs', 'Shipping', 'Returns'];
+
+    async ngOnInit() {
+        try {
+            const categories = await this.productService.getActiveCategories();
+            this.shopLinks.set(categories.map(cat => ({
+                name: cat.charAt(0).toUpperCase() + cat.slice(1).toLowerCase(),
+                path: `/cat/${cat}`
+            })));
+        } catch (err) {
+            console.error('Failed to load active categories for footer', err);
+        }
+    }
 
     socialIcons = [
         { name: 'facebook', url: '#' },
