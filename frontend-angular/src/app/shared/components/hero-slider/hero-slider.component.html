@@ -46,7 +46,8 @@
 
                 <!-- Side Banner Slider (20%) -->
                 <div class="col-lg-4 d-none d-lg-block" *ngIf="activeSideProduct as deal">
-                    <div class="side-banner-premium shadow-lg" (click)="handleShopNow(deal)" style="cursor: pointer;">
+                    <div class="side-banner-premium shadow-lg" (click)="handleShopNow(deal)" style="cursor: pointer;"
+                        [style.backgroundImage]="'url(' + getBannerImage(deal) + ')'">
                         <div class="banner-overlay"></div>
                         <div class="banner-content">
                             <div class="top-info">
