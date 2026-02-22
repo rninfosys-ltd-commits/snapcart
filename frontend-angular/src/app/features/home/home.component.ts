@@ -5,6 +5,7 @@ import { RecentlyViewedSectionComponent } from '../../shared/components/recently
 import { CategorySectionComponent } from '../../shared/components/category-section/category-section.component';
 import { Router, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../core/services/auth.service';
 import { ProductService } from '../../core/services/product.service';
 import { Product } from '../../core/models/models';
@@ -22,6 +23,7 @@ import { FlashDealBannerComponent } from '../../shared/components/flash-deal-ban
     ProductCardComponent,
     FlashDealBannerComponent,
     MatIconModule,
+    MatButtonModule,
     RouterLink
   ],
   templateUrl: './home.component.html',
