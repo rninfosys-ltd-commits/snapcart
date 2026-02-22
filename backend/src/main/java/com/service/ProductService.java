@@ -370,8 +370,16 @@ public class ProductService {
     }
 
     public List<Product> getFlashSaleProducts() {
-        // Return derived products
+        // First try to find products with active flash sales (saleEndTime in future)
         List<ProductVariant> variants = productVariantRepository.findBySaleEndTimeAfter(java.time.LocalDateTime.now());
+
+        // If none found, fallback to any product with a salePrice set
+        if (variants.isEmpty()) {
+            variants = productVariantRepository.findBySalePriceIsNotNull().stream()
+                    .filter(v -> v.getSalePrice() < v.getPrice())
+                    .collect(Collectors.toList());
+        }
+
         return variants.stream()
                 .map(ProductVariant::getProduct)
                 .distinct()

@@ -13,4 +13,6 @@ public interface ProductVariantRepository extends JpaRepository<ProductVariant, 
     // Find low stock variants
     List<ProductVariant> findByQuantityLessThanOrderByQuantityAsc(int threshold,
             org.springframework.data.domain.Pageable pageable);
+
+    List<ProductVariant> findBySalePriceIsNotNull();
 }

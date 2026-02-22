@@ -42,8 +42,10 @@ export class HeroSliderComponent implements OnInit, OnDestroy {
     products = signal<any[]>([]);
     flashDeals = signal<any[]>([]);
     currentIndex = signal(0);
+    sideIndex = signal(0);
     loading = signal(true);
     private timer: any;
+    private sideTimer: any;
 
     ngOnInit() {
         this.fetchData();
@@ -51,6 +53,7 @@ export class HeroSliderComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         if (this.timer) clearInterval(this.timer);
+        if (this.sideTimer) clearInterval(this.sideTimer);
     }
 
     async fetchData() {
@@ -61,8 +64,12 @@ export class HeroSliderComponent implements OnInit, OnDestroy {
             ]);
             this.products.set(featured);
             this.flashDeals.set(flash);
+
             if (featured.length > 1) {
                 this.startAutoSlide();
+            }
+            if (flash.length > 1) {
+                this.startSideAutoSlide();
             }
         } catch (error) {
             console.error('Error fetching hero data:', error);
@@ -73,7 +80,47 @@ export class HeroSliderComponent implements OnInit, OnDestroy {
 
     // Keep helper for banner
     get featuredFlashDeal() {
-        return this.flashDeals().length > 0 ? this.flashDeals()[0] : null;
+        if (this.flashDeals().length > 0) return this.flashDeals()[0];
+        if (this.products().length > 0) return this.products()[0];
+        return null;
+    }
+
+    startAutoSlide() {
+        this.timer = setInterval(() => {
+            this.currentIndex.update(prev => (prev + 1) % this.products().length);
+        }, 5000);
+    }
+
+    startSideAutoSlide() {
+        this.sideTimer = setInterval(() => {
+            this.sideIndex.update(prev => (prev + 1) % this.flashDeals().length);
+        }, 6000); // Slightly different timing for visual interest
+    }
+
+    handleShopNow(product: any) {
+        this.router.navigate(['/products', product.modelNo]);
+    }
+
+    setIndex(index: number) {
+        this.currentIndex.set(index);
+        if (this.timer) clearInterval(this.timer);
+        this.startAutoSlide();
+    }
+
+    setSideIndex(index: number) {
+        this.sideIndex.set(index);
+        if (this.sideTimer) clearInterval(this.sideTimer);
+        this.startSideAutoSlide();
+    }
+
+    get activeSideProduct() {
+        const deals = this.flashDeals();
+        if (deals.length > 0) return deals[this.sideIndex()];
+
+        const featured = this.products();
+        if (featured.length > 0) return featured[0];
+
+        return null;
     }
 
     getBannerImage(product: any): string {
@@ -88,27 +135,14 @@ export class HeroSliderComponent implements OnInit, OnDestroy {
 
     getDiscount(product: any): number {
         if (product.discountPercentage) return product.discountPercentage;
-        if (product.price && product.salePrice) {
+        if (product.price && product.salePrice && product.salePrice < product.price) {
             return Math.round(((product.price - product.salePrice) / product.price) * 100);
         }
-        return 60; // fallback
+        return 0;
     }
 
-    startAutoSlide() {
-        this.timer = setInterval(() => {
-            this.currentIndex.update(prev => (prev + 1) % this.products().length);
-        }, 5000);
-    }
-
-    handleShopNow(product: any) {
-        this.router.navigate(['/products', product.modelNo]);
-    }
-
-    setIndex(index: number) {
-        this.currentIndex.set(index);
-        // Reset timer on manual change
-        if (this.timer) clearInterval(this.timer);
-        this.startAutoSlide();
+    isFlashSale(product: any): boolean {
+        return this.flashDeals().some(d => d.id === product.id);
     }
 
     formatCurrency(value: number) {
