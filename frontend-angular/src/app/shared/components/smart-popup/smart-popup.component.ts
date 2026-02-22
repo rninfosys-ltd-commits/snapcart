@@ -48,10 +48,12 @@ export class SmartPopupComponent implements OnInit, OnDestroy {
         // Find one not yet shown
         const deal = flashSales.find((p: Product) => !this.smartPopupService.wasShown(p.modelNo));
         if (deal) {
-          this.product = deal;
-          this.isFlashDeal = true;
-          this.determineTags(deal);
-          this.showPopup();
+          setTimeout(() => {
+            this.product = deal;
+            this.isFlashDeal = true;
+            this.determineTags(deal);
+            this.showPopup();
+          });
           return;
         }
       }

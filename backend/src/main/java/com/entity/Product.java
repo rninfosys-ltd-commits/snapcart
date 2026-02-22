@@ -44,12 +44,15 @@ public class Product implements java.io.Serializable {
     private Long tenantId; // Denormalized for fast filtering
 
     @Enumerated(EnumType.STRING)
+    // @Column(length = 100) // Hibernate update should handle this if added
     private Category category;
 
     @Enumerated(EnumType.STRING)
+    @Column(length = 100)
     private SubCategory subCategory;
 
     @Enumerated(EnumType.STRING)
+    @Column(length = 100)
     private ProductGroup productGroup;
 
     @ElementCollection(fetch = FetchType.EAGER)

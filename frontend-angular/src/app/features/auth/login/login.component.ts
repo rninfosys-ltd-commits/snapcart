@@ -1,6 +1,6 @@
 
 import { AuthService } from '../../../core/services/auth.service';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -33,7 +33,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   templateUrl: 'login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loading = false;
   error = '';
   hidePassword = true;
@@ -48,11 +48,15 @@ export class LoginComponent {
     staySignedIn: [true]
   });
 
-  constructor() {
+  constructor() { }
+
+  ngOnInit(): void {
     // If already logged in, redirect appropriately
     const currentUser = this.auth.user();
     if (currentUser) {
-      this.redirectUserByRole(currentUser);
+      setTimeout(() => {
+        this.redirectUserByRole(currentUser);
+      });
     }
   }
 
@@ -84,6 +88,8 @@ export class LoginComponent {
       this.error = result.message;
     }
 
-    this.loading = false;
+    setTimeout(() => {
+      this.loading = false;
+    });
   }
 }

@@ -1,293 +1,148 @@
-2026-02-21T00:00:00.040+05:30  INFO 1232 --- [BACKEND] [scheduling-1] com.service.VisitorService               : Cleaned up anonymous visitors older than 30 days
-2026-02-21T00:00:06.592+05:30  INFO 1232 --- [BACKEND] [http-nio-8080-exec-1] com.controller.pub.AuthController        : Attempting login for user: yashkashikar9834@gmail.com
-2026-02-21T00:00:22.029+05:30  INFO 1232 --- [BACKEND] [http-nio-8080-exec-6] com.controller.pub.AuthController        : Attempting login for user: yashkashikar9834@gmail.com
-2026-02-21T00:00:55.774+05:30  INFO 1232 --- [BACKEND] [http-nio-8080-exec-3] com.service.OrderService                 : Updating order location. OrderId: 3, Location: Hyderabad, Status: PROCESSING
-2026-02-21T00:00:55.804+05:30  INFO 1232 --- [BACKEND] [task-2] com.event.listener.OrderEventListener    : Handling OrderStatusChangedEvent: Type=TRACKING_UPDATE, OrderId=3
-2026-02-21T00:00:55.805+05:30 ERROR 1232 --- [BACKEND] [task-2] .a.i.SimpleAsyncUncaughtExceptionHandler : Unexpected exception occurred invoking async method: public void com.event.listener.OrderEventListener.handleOrderStatusChangedEvent(com.event.OrderStatusChangedEvent)
-
-java.lang.NoClassDefFoundError: com/event/listener/OrderEventListener$1
-	at com.event.listener.OrderEventListener.handleOrderStatusChangedEvent(OrderEventListener.java:24) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:351) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765) ~[spring-aop-6.1.3.jar:6.1.3]
-	at org.springframework.aop.interceptor.AsyncExecutionInterceptor.lambda$invoke$0(AsyncExecutionInterceptor.java:113) ~[spring-aop-6.1.3.jar:6.1.3]
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
-	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
-Caused by: java.lang.ClassNotFoundException: com.event.listener.OrderEventListener$1
-	... 14 common frames omitted
-
-2026-02-21T00:00:55.828+05:30  WARN 1232 --- [BACKEND] [http-nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1265, SQLState: 01000
-2026-02-21T00:00:55.829+05:30 ERROR 1232 --- [BACKEND] [http-nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncated for column 'status' at row 1
-2026-02-21T00:01:12.897+05:30  INFO 1232 --- [BACKEND] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-02-21T00:01:12.921+05:30  INFO 1232 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-02-21T00:01:12.957+05:30  INFO 1232 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-02-21T00:01:24.966+05:30  INFO 14076 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 14076 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
-2026-02-21T00:01:24.974+05:30  INFO 14076 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
-2026-02-21T00:01:28.475+05:30  INFO 14076 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-21T00:01:29.761+05:30  INFO 14076 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1269 ms. Found 26 JPA repository interfaces.
-2026-02-21T00:01:31.446+05:30  INFO 14076 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-02-21T00:01:31.469+05:30  INFO 14076 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-02-21T00:01:31.471+05:30  INFO 14076 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
-2026-02-21T00:01:31.724+05:30  INFO 14076 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-02-21T00:01:31.727+05:30  INFO 14076 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6587 ms
-2026-02-21T00:01:32.460+05:30  INFO 14076 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-02-21T00:01:32.549+05:30  INFO 14076 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2026-02-21T00:01:32.612+05:30  INFO 14076 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-02-21T00:01:33.121+05:30  INFO 14076 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-02-21T00:01:33.185+05:30  INFO 14076 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-02-21T00:01:33.772+05:30  INFO 14076 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@e43189c
-2026-02-21T00:01:33.776+05:30  INFO 14076 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-02-21T00:01:33.877+05:30  WARN 14076 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-02-21T00:01:33.878+05:30  WARN 14076 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2026-02-21T00:01:36.092+05:30  INFO 14076 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-02-21T00:01:37.113+05:30  INFO 14076 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-02-21T00:01:37.905+05:30  INFO 14076 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-02-21T00:01:39.848+05:30  INFO 14076 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
-2026-02-21T00:01:41.781+05:30  WARN 14076 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-02-21T00:01:42.863+05:30  INFO 14076 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
-2026-02-21T00:01:43.091+05:30  INFO 14076 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6b0b6001, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@72ac14c6, org.springframework.security.web.context.SecurityContextHolderFilter@7404ea32, org.springframework.security.web.header.HeaderWriterFilter@4292a5c6, org.springframework.web.filter.CorsFilter@534463c0, org.springframework.security.web.authentication.logout.LogoutFilter@1d694d9a, com.config.JwtAuthenticationFilter@194910bc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@72ba2d6f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@46d9c67c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@8fd65c4, org.springframework.security.web.session.SessionManagementFilter@6ec5e204, org.springframework.security.web.access.ExceptionTranslationFilter@92690e5, org.springframework.security.web.access.intercept.AuthorizationFilter@18f7f928]
-2026-02-21T00:01:45.859+05:30  INFO 14076 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-2026-02-21T00:01:45.971+05:30  INFO 14076 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 21.925 seconds (process running for 23.091)
-2026-02-21T00:02:18.187+05:30  INFO 14076 --- [BACKEND] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-02-21T00:02:18.189+05:30  INFO 14076 --- [BACKEND] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-02-21T00:02:18.192+05:30  INFO 14076 --- [BACKEND] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2026-02-21T00:02:18.611+05:30  INFO 14076 --- [BACKEND] [http-nio-8080-exec-1] com.service.OrderService                 : Updating order location. OrderId: 3, Location: Pune, Status: PROCESSING
-2026-02-21T00:02:18.754+05:30  INFO 14076 --- [BACKEND] [task-1] com.event.listener.OrderEventListener    : Handling OrderStatusChangedEvent: Type=TRACKING_UPDATE, OrderId=3
-2026-02-21T00:02:18.774+05:30  INFO 14076 --- [BACKEND] [task-2] com.service.EmailService                 : Sending email to kashikaryash@gmail.com with subject: ? Order #3 Update: Pune
-2026-02-21T00:02:18.818+05:30  WARN 14076 --- [BACKEND] [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1265, SQLState: 01000
-2026-02-21T00:02:18.820+05:30 ERROR 14076 --- [BACKEND] [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncated for column 'status' at row 1
-2026-02-21T00:02:23.015+05:30  INFO 14076 --- [BACKEND] [task-2] com.service.EmailService                 : Email sent successfully to kashikaryash@gmail.com
-2026-02-21T00:07:20.627+05:30  INFO 14076 --- [BACKEND] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-02-21T00:07:20.743+05:30  INFO 14076 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-02-21T00:07:20.852+05:30  INFO 14076 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-02-21T00:15:16.727+05:30  INFO 4588 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 4588 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
-2026-02-21T00:15:16.732+05:30  INFO 4588 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
-2026-02-21T00:15:20.435+05:30  INFO 4588 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-21T00:15:21.308+05:30  INFO 4588 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 861 ms. Found 26 JPA repository interfaces.
-2026-02-21T00:15:22.914+05:30  INFO 4588 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-02-21T00:15:22.935+05:30  INFO 4588 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-02-21T00:15:22.936+05:30  INFO 4588 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
-2026-02-21T00:15:23.108+05:30  INFO 4588 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-02-21T00:15:23.108+05:30  INFO 4588 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6287 ms
-2026-02-21T00:15:23.880+05:30  INFO 4588 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-02-21T00:15:24.017+05:30  INFO 4588 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2026-02-21T00:15:24.104+05:30  INFO 4588 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-02-21T00:15:24.551+05:30  INFO 4588 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-02-21T00:15:24.641+05:30  INFO 4588 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-02-21T00:15:25.606+05:30  INFO 4588 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@e43189c
-2026-02-21T00:15:25.610+05:30  INFO 4588 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-02-21T00:15:25.722+05:30  WARN 4588 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-02-21T00:15:25.725+05:30  WARN 4588 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2026-02-21T00:15:29.136+05:30  INFO 4588 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-02-21T00:15:30.226+05:30  INFO 4588 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-02-21T00:15:31.287+05:30  INFO 4588 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-02-21T00:15:34.466+05:30  INFO 4588 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
-2026-02-21T00:15:35.259+05:30  WARN 4588 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-02-21T00:15:35.996+05:30  INFO 4588 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
-2026-02-21T00:15:36.149+05:30  INFO 4588 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6e9eaa96, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@51defa7a, org.springframework.security.web.context.SecurityContextHolderFilter@4b51cb8f, org.springframework.security.web.header.HeaderWriterFilter@28b83798, org.springframework.web.filter.CorsFilter@5e8fb0bd, org.springframework.security.web.authentication.logout.LogoutFilter@744b5bd7, com.config.JwtAuthenticationFilter@bf154bb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@220248ad, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1ed9a4bd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5ba6659d, org.springframework.security.web.session.SessionManagementFilter@20d5f1c5, org.springframework.security.web.access.ExceptionTranslationFilter@33ddc39b, org.springframework.security.web.access.intercept.AuthorizationFilter@46d9c67c]
-2026-02-21T00:15:37.308+05:30  INFO 4588 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-2026-02-21T00:15:37.341+05:30  INFO 4588 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 21.303 seconds (process running for 22.063)
-2026-02-21T00:17:08.575+05:30  INFO 4588 --- [BACKEND] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-02-21T00:17:08.586+05:30  INFO 4588 --- [BACKEND] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-02-21T00:17:08.821+05:30  INFO 4588 --- [BACKEND] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 233 ms
-2026-02-21T00:24:57.649+05:30  INFO 4588 --- [BACKEND] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-02-21T00:24:57.795+05:30  INFO 4588 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-02-21T00:24:58.037+05:30  INFO 4588 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-02-21T00:25:20.458+05:30  INFO 5796 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 5796 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
-2026-02-21T00:25:20.466+05:30  INFO 5796 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
-2026-02-21T00:25:27.948+05:30  INFO 5796 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-21T00:25:29.113+05:30  INFO 5796 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1144 ms. Found 26 JPA repository interfaces.
-2026-02-21T00:25:31.150+05:30  INFO 5796 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-02-21T00:25:31.169+05:30  INFO 5796 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-02-21T00:25:31.172+05:30  INFO 5796 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
-2026-02-21T00:25:31.315+05:30  INFO 5796 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-02-21T00:25:31.315+05:30  INFO 5796 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 10749 ms
-2026-02-21T00:25:31.948+05:30  INFO 5796 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-02-21T00:25:32.097+05:30  INFO 5796 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2026-02-21T00:25:32.166+05:30  INFO 5796 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-02-21T00:25:32.522+05:30  INFO 5796 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-02-21T00:25:32.592+05:30  INFO 5796 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-02-21T00:25:33.103+05:30  INFO 5796 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@47d6a31a
-2026-02-21T00:25:33.106+05:30  INFO 5796 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-02-21T00:25:33.185+05:30  WARN 5796 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-02-21T00:25:33.186+05:30  WARN 5796 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2026-02-21T00:25:35.604+05:30  INFO 5796 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-02-21T00:25:36.498+05:30  INFO 5796 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-02-21T00:25:37.517+05:30  INFO 5796 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-02-21T00:25:40.559+05:30  INFO 5796 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
-2026-02-21T00:25:41.291+05:30  WARN 5796 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-02-21T00:25:41.942+05:30  INFO 5796 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
-2026-02-21T00:25:42.072+05:30  INFO 5796 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4575df15, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2d17c0ab, org.springframework.security.web.context.SecurityContextHolderFilter@2ef002b1, org.springframework.security.web.header.HeaderWriterFilter@20d5f1c5, org.springframework.web.filter.CorsFilter@506ec7ea, org.springframework.security.web.authentication.logout.LogoutFilter@7baee2, com.config.JwtAuthenticationFilter@5f482ecd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1d9f40af, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4480b27, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5239d115, org.springframework.security.web.session.SessionManagementFilter@4cc73927, org.springframework.security.web.access.ExceptionTranslationFilter@5e6775fd, org.springframework.security.web.access.intercept.AuthorizationFilter@5e8fb0bd]
-2026-02-21T00:25:43.131+05:30  INFO 5796 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-2026-02-21T00:25:43.159+05:30  INFO 5796 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 23.824 seconds (process running for 24.832)
-2026-02-21T00:25:53.685+05:30  INFO 5796 --- [BACKEND] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-02-21T00:25:53.692+05:30  INFO 5796 --- [BACKEND] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-02-21T00:25:53.705+05:30  INFO 5796 --- [BACKEND] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
-2026-02-21T00:26:26.035+05:30  INFO 5796 --- [BACKEND] [http-nio-8080-exec-10] com.service.OrderService                 : Updating order location. OrderId: 3, Location: Kolkata, Status: PROCESSING
-2026-02-21T00:26:26.076+05:30  INFO 5796 --- [BACKEND] [task-1] com.event.listener.OrderEventListener    : Handling OrderStatusChangedEvent: Type=TRACKING_UPDATE, OrderId=3
-2026-02-21T00:26:26.087+05:30  INFO 5796 --- [BACKEND] [task-2] com.service.EmailService                 : Sending email to kashikaryash@gmail.com with subject: ? Order #3 Update: Kolkata
-2026-02-21T00:26:26.104+05:30  WARN 5796 --- [BACKEND] [http-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1265, SQLState: 01000
-2026-02-21T00:26:26.105+05:30 ERROR 5796 --- [BACKEND] [http-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncated for column 'status' at row 1
-2026-02-21T00:26:30.493+05:30  INFO 5796 --- [BACKEND] [task-2] com.service.EmailService                 : Email sent successfully to kashikaryash@gmail.com
-2026-02-21T00:40:31.255+05:30  INFO 5796 --- [BACKEND] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-02-21T00:40:31.403+05:30  INFO 5796 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-02-21T00:40:31.558+05:30  INFO 5796 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-02-21T00:40:54.329+05:30  INFO 4200 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 4200 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
-2026-02-21T00:40:54.332+05:30  INFO 4200 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
-2026-02-21T00:40:58.571+05:30  INFO 4200 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-21T00:40:59.480+05:30  INFO 4200 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 895 ms. Found 26 JPA repository interfaces.
-2026-02-21T00:41:01.016+05:30  INFO 4200 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-02-21T00:41:01.039+05:30  INFO 4200 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-02-21T00:41:01.039+05:30  INFO 4200 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
-2026-02-21T00:41:01.154+05:30  INFO 4200 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-02-21T00:41:01.155+05:30  INFO 4200 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6700 ms
-2026-02-21T00:41:01.888+05:30  INFO 4200 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-02-21T00:41:02.047+05:30  INFO 4200 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2026-02-21T00:41:02.108+05:30  INFO 4200 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-02-21T00:41:02.533+05:30  INFO 4200 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-02-21T00:41:02.586+05:30  INFO 4200 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-02-21T00:41:03.200+05:30  INFO 4200 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@e43189c
-2026-02-21T00:41:03.203+05:30  INFO 4200 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-02-21T00:41:03.301+05:30  WARN 4200 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-02-21T00:41:03.303+05:30  WARN 4200 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2026-02-21T00:41:05.785+05:30  INFO 4200 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-02-21T00:41:07.046+05:30  INFO 4200 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-02-21T00:41:08.083+05:30  INFO 4200 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-02-21T00:41:10.634+05:30  INFO 4200 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
-2026-02-21T00:41:11.424+05:30  WARN 4200 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-02-21T00:41:12.135+05:30  INFO 4200 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
-2026-02-21T00:41:12.273+05:30  INFO 4200 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7c9eb178, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2b4c26ec, org.springframework.security.web.context.SecurityContextHolderFilter@79eb7803, org.springframework.security.web.header.HeaderWriterFilter@3cb3a3f6, org.springframework.web.filter.CorsFilter@54118bbf, org.springframework.security.web.authentication.logout.LogoutFilter@40f7ae65, com.config.JwtAuthenticationFilter@bf154bb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@92690e5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@49d75bb0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@40724ccd, org.springframework.security.web.session.SessionManagementFilter@6b81c35a, org.springframework.security.web.access.ExceptionTranslationFilter@4eb0f3ed, org.springframework.security.web.access.intercept.AuthorizationFilter@1e5ba462]
-2026-02-21T00:41:13.376+05:30  INFO 4200 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-2026-02-21T00:41:13.406+05:30  INFO 4200 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 19.835 seconds (process running for 20.373)
-2026-02-21T00:41:58.617+05:30  INFO 4200 --- [BACKEND] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-02-21T00:41:58.619+05:30  INFO 4200 --- [BACKEND] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-02-21T00:41:58.626+05:30  INFO 4200 --- [BACKEND] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
-2026-02-21T00:41:58.916+05:30  INFO 4200 --- [BACKEND] [http-nio-8080-exec-1] com.service.OrderService                 : Updating order location. OrderId: 3, Location: Kolkata, Status: PROCESSING
-2026-02-21T00:41:58.922+05:30 DEBUG 4200 --- [BACKEND] [http-nio-8080-exec-1] com.service.OrderService                 : Saving order with new tracking record. OrderId: 3, Current Status: PROCESSING
-2026-02-21T00:41:58.985+05:30  INFO 4200 --- [BACKEND] [task-1] com.event.listener.OrderEventListener    : Handling OrderStatusChangedEvent: Type=TRACKING_UPDATE, OrderId=3
-2026-02-21T00:41:58.994+05:30  INFO 4200 --- [BACKEND] [task-2] com.service.EmailService                 : Sending email to kashikaryash@gmail.com with subject: ? Order #3 Update: Kolkata
-2026-02-21T00:41:59.067+05:30  WARN 4200 --- [BACKEND] [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1265, SQLState: 01000
-2026-02-21T00:41:59.067+05:30 ERROR 4200 --- [BACKEND] [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncated for column 'status' at row 1
-2026-02-21T00:42:03.128+05:30  INFO 4200 --- [BACKEND] [task-2] com.service.EmailService                 : Email sent successfully to kashikaryash@gmail.com
-2026-02-21T00:42:36.540+05:30  INFO 4200 --- [BACKEND] [http-nio-8080-exec-1] com.service.OrderService                 : Updating order location. OrderId: 3, Location: Mumbai, Status: PROCESSING
-2026-02-21T00:42:36.554+05:30 DEBUG 4200 --- [BACKEND] [http-nio-8080-exec-1] com.service.OrderService                 : Saving order with new tracking record. OrderId: 3, Current Status: PROCESSING
-2026-02-21T00:42:36.655+05:30  INFO 4200 --- [BACKEND] [task-3] com.event.listener.OrderEventListener    : Handling OrderStatusChangedEvent: Type=TRACKING_UPDATE, OrderId=3
-2026-02-21T00:42:36.723+05:30  INFO 4200 --- [BACKEND] [task-4] com.service.EmailService                 : Sending email to kashikaryash@gmail.com with subject: ? Order #3 Update: Mumbai
-2026-02-21T00:42:36.883+05:30  WARN 4200 --- [BACKEND] [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1265, SQLState: 01000
-2026-02-21T00:42:36.892+05:30 ERROR 4200 --- [BACKEND] [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncated for column 'status' at row 1
-2026-02-21T00:42:41.304+05:30  INFO 4200 --- [BACKEND] [task-4] com.service.EmailService                 : Email sent successfully to kashikaryash@gmail.com
-2026-02-21T00:55:44.487+05:30  INFO 4200 --- [BACKEND] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-02-21T00:55:44.619+05:30  INFO 4200 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-02-21T00:55:44.753+05:30  INFO 4200 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-02-21T00:56:00.253+05:30  INFO 21172 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 21172 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
-2026-02-21T00:56:00.260+05:30  INFO 21172 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
-2026-02-21T00:56:06.557+05:30  INFO 21172 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-21T00:56:08.110+05:30  INFO 21172 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1534 ms. Found 26 JPA repository interfaces.
-2026-02-21T00:56:10.678+05:30  INFO 21172 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-02-21T00:56:10.700+05:30  INFO 21172 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-02-21T00:56:10.701+05:30  INFO 21172 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
-2026-02-21T00:56:10.814+05:30  INFO 21172 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-02-21T00:56:10.816+05:30  INFO 21172 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 10392 ms
-2026-02-21T00:56:11.649+05:30  INFO 21172 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-02-21T00:56:11.942+05:30  INFO 21172 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2026-02-21T00:56:12.052+05:30  INFO 21172 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-02-21T00:56:12.804+05:30  INFO 21172 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-02-21T00:56:12.885+05:30  INFO 21172 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-02-21T00:56:13.433+05:30  INFO 21172 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2fce55d6
-2026-02-21T00:56:13.436+05:30  INFO 21172 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-02-21T00:56:13.534+05:30  WARN 21172 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-02-21T00:56:13.535+05:30  WARN 21172 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2026-02-21T00:56:15.954+05:30  INFO 21172 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-02-21T00:56:16.908+05:30  INFO 21172 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-02-21T00:56:18.128+05:30  INFO 21172 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-02-21T00:56:20.541+05:30  INFO 21172 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
-2026-02-21T00:56:21.229+05:30  WARN 21172 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-02-21T00:56:21.875+05:30  INFO 21172 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
-2026-02-21T00:56:21.988+05:30  INFO 21172 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3fa57a5a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7c9eb178, org.springframework.security.web.context.SecurityContextHolderFilter@1461c28e, org.springframework.security.web.header.HeaderWriterFilter@7281a0fe, org.springframework.web.filter.CorsFilter@2b4c26ec, org.springframework.security.web.authentication.logout.LogoutFilter@5ba6659d, com.config.JwtAuthenticationFilter@6d6cd631, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2b2fdee3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1c5a561e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@54118bbf, org.springframework.security.web.session.SessionManagementFilter@11f8edb5, org.springframework.security.web.access.ExceptionTranslationFilter@1d9f40af, org.springframework.security.web.access.intercept.AuthorizationFilter@3a98c6d2]
-2026-02-21T00:56:22.908+05:30  INFO 21172 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-2026-02-21T00:56:22.939+05:30  INFO 21172 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 23.947 seconds (process running for 24.989)
-2026-02-21T00:57:49.567+05:30  INFO 21172 --- [BACKEND] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-02-21T00:57:49.655+05:30  INFO 21172 --- [BACKEND] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-02-21T00:57:51.576+05:30  INFO 21172 --- [BACKEND] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1909 ms
-2026-02-21T00:58:24.128+05:30  INFO 21172 --- [BACKEND] [http-nio-8080-exec-9] com.service.OrderService                 : Updating order location. OrderId: 3, Location: Pune, Status: PROCESSING
-2026-02-21T00:58:24.146+05:30 DEBUG 21172 --- [BACKEND] [http-nio-8080-exec-9] com.service.OrderService                 : Saving order with new tracking record. OrderId: 3, Current Status: PROCESSING
-2026-02-21T00:58:24.228+05:30  INFO 21172 --- [BACKEND] [task-1] com.event.listener.OrderEventListener    : Handling OrderStatusChangedEvent: Type=TRACKING_UPDATE, OrderId=3
-2026-02-21T00:58:24.252+05:30  INFO 21172 --- [BACKEND] [task-2] com.service.EmailService                 : Sending email to kashikaryash@gmail.com with subject: ? Order #3 Update: Pune
-2026-02-21T00:58:28.467+05:30  INFO 21172 --- [BACKEND] [task-2] com.service.EmailService                 : Email sent successfully to kashikaryash@gmail.com
-2026-02-21T10:12:18.194+05:30  INFO 3792 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 3792 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
-2026-02-21T10:12:18.198+05:30  INFO 3792 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
-2026-02-21T10:12:20.676+05:30  INFO 3792 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-21T10:12:21.326+05:30  INFO 3792 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 642 ms. Found 26 JPA repository interfaces.
-2026-02-21T10:12:22.364+05:30  INFO 3792 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-02-21T10:12:22.382+05:30  INFO 3792 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-02-21T10:12:22.383+05:30  INFO 3792 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
-2026-02-21T10:12:22.488+05:30  INFO 3792 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-02-21T10:12:22.490+05:30  INFO 3792 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4219 ms
-2026-02-21T10:12:23.029+05:30  INFO 3792 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-02-21T10:12:23.143+05:30  INFO 3792 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2026-02-21T10:12:23.192+05:30  INFO 3792 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-02-21T10:12:23.470+05:30  INFO 3792 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-02-21T10:12:23.510+05:30  INFO 3792 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-02-21T10:12:24.015+05:30  INFO 3792 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2fce55d6
-2026-02-21T10:12:24.018+05:30  INFO 3792 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-02-21T10:12:24.088+05:30  WARN 3792 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-02-21T10:12:24.090+05:30  WARN 3792 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2026-02-21T10:12:25.730+05:30  INFO 3792 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-02-21T10:12:26.445+05:30  INFO 3792 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-02-21T10:12:27.176+05:30  INFO 3792 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-02-21T10:12:29.157+05:30  INFO 3792 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
-2026-02-21T10:12:29.694+05:30  WARN 3792 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-02-21T10:12:30.180+05:30  INFO 3792 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
-2026-02-21T10:12:30.272+05:30  INFO 3792 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2b4c26ec, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@54118bbf, org.springframework.security.web.context.SecurityContextHolderFilter@3af3d4b9, org.springframework.security.web.header.HeaderWriterFilter@edba700, org.springframework.web.filter.CorsFilter@40724ccd, org.springframework.security.web.authentication.logout.LogoutFilter@66dc812b, com.config.JwtAuthenticationFilter@6d6cd631, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2d54db64, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@744b5bd7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@49ee30ca, org.springframework.security.web.session.SessionManagementFilter@2099bfce, org.springframework.security.web.access.ExceptionTranslationFilter@16415b48, org.springframework.security.web.access.intercept.AuthorizationFilter@1d694d9a]
-2026-02-21T10:12:30.961+05:30  INFO 3792 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-2026-02-21T10:12:30.984+05:30  INFO 3792 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 13.298 seconds (process running for 13.831)
-2026-02-21T10:13:04.368+05:30  INFO 3792 --- [BACKEND] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-02-21T10:13:04.369+05:30  INFO 3792 --- [BACKEND] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-02-21T10:13:04.374+05:30  INFO 3792 --- [BACKEND] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
-2026-02-21T10:13:30.361+05:30  INFO 3792 --- [BACKEND] [task-1] com.event.listener.OrderEventListener    : Handling OrderStatusChangedEvent: Type=ORDER_CONFIRMED, OrderId=4
-2026-02-21T10:13:30.365+05:30  INFO 3792 --- [BACKEND] [task-2] com.service.EmailService                 : Sending email with attachment to kashikaryash@gmail.com with subject: Order Confirmed! #4
-2026-02-21T10:13:45.244+05:30  INFO 3792 --- [BACKEND] [task-2] com.service.EmailService                 : Email with attachment sent successfully to kashikaryash@gmail.com
-2026-02-21T10:14:25.241+05:30  INFO 3792 --- [BACKEND] [http-nio-8080-exec-5] com.service.OrderService                 : Updating order location. OrderId: 4, Location: Pune, Status: SHIPPED
-2026-02-21T10:14:25.244+05:30 DEBUG 3792 --- [BACKEND] [http-nio-8080-exec-5] com.service.OrderService                 : Saving order with new tracking record. OrderId: 4, Current Status: SHIPPED
-2026-02-21T10:14:25.252+05:30  INFO 3792 --- [BACKEND] [task-3] com.event.listener.OrderEventListener    : Handling OrderStatusChangedEvent: Type=TRACKING_UPDATE, OrderId=4
-2026-02-21T10:14:25.263+05:30  INFO 3792 --- [BACKEND] [task-4] com.service.EmailService                 : Sending email to kashikaryash@gmail.com with subject: ? Order #4 Update: Pune
-2026-02-21T10:14:39.479+05:30  INFO 3792 --- [BACKEND] [task-4] com.service.EmailService                 : Email sent successfully to kashikaryash@gmail.com
-2026-02-21T10:16:04.262+05:30  INFO 3792 --- [BACKEND] [task-5] com.service.EmailService                 : Sending email to kashikaryash@gmail.com with subject: ? Order #3 - Delivered
-2026-02-21T10:16:18.405+05:30  INFO 3792 --- [BACKEND] [task-5] com.service.EmailService                 : Email sent successfully to kashikaryash@gmail.com
-2026-02-21T10:59:06.254+05:30  INFO 3792 --- [BACKEND] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-02-21T10:59:06.320+05:30  INFO 3792 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-02-21T10:59:06.398+05:30  INFO 3792 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-02-21T10:59:18.745+05:30  INFO 10592 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 10592 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
-2026-02-21T10:59:18.748+05:30  INFO 10592 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
-2026-02-21T10:59:21.668+05:30  INFO 10592 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-02-21T10:59:22.454+05:30  INFO 10592 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 775 ms. Found 26 JPA repository interfaces.
-2026-02-21T10:59:23.593+05:30  INFO 10592 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-02-21T10:59:23.612+05:30  INFO 10592 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-02-21T10:59:23.613+05:30  INFO 10592 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
-2026-02-21T10:59:23.710+05:30  INFO 10592 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-02-21T10:59:23.711+05:30  INFO 10592 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4882 ms
-2026-02-21T10:59:24.268+05:30  INFO 10592 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-02-21T10:59:24.392+05:30  INFO 10592 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2026-02-21T10:59:24.475+05:30  INFO 10592 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-02-21T10:59:24.862+05:30  INFO 10592 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-02-21T10:59:24.906+05:30  INFO 10592 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-02-21T10:59:25.427+05:30  INFO 10592 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2fce55d6
-2026-02-21T10:59:25.430+05:30  INFO 10592 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-02-21T10:59:25.548+05:30  WARN 10592 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-02-21T10:59:25.550+05:30  WARN 10592 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2026-02-21T10:59:27.655+05:30  INFO 10592 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-02-21T10:59:28.380+05:30  INFO 10592 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-02-21T10:59:29.240+05:30  INFO 10592 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-02-21T10:59:31.480+05:30  INFO 10592 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
-2026-02-21T10:59:32.118+05:30  WARN 10592 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-02-21T10:59:32.710+05:30  INFO 10592 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
-2026-02-21T10:59:32.838+05:30  INFO 10592 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@48cd6821, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2922bf92, org.springframework.security.web.context.SecurityContextHolderFilter@31eb7290, org.springframework.security.web.header.HeaderWriterFilter@1461c28e, org.springframework.web.filter.CorsFilter@70e9a9d6, org.springframework.security.web.authentication.logout.LogoutFilter@5092d376, com.config.JwtAuthenticationFilter@6d6cd631, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7baee2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6ec5e204, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6657d966, org.springframework.security.web.session.SessionManagementFilter@2d54db64, org.springframework.security.web.access.ExceptionTranslationFilter@63c512c6, org.springframework.security.web.access.intercept.AuthorizationFilter@5b4b2bfa]
-2026-02-21T10:59:33.616+05:30  INFO 10592 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-2026-02-21T10:59:33.643+05:30  INFO 10592 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 15.526 seconds (process running for 16.138)
+2026-02-22T11:19:00.556+05:30  INFO 5892 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 5892 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
+2026-02-22T11:19:00.623+05:30  INFO 5892 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
+2026-02-22T11:19:17.189+05:30  INFO 5892 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-22T11:19:20.847+05:30  INFO 5892 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3573 ms. Found 26 JPA repository interfaces.
+2026-02-22T11:19:23.678+05:30  INFO 5892 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-02-22T11:19:23.718+05:30  INFO 5892 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-22T11:19:23.720+05:30  INFO 5892 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2026-02-22T11:19:23.983+05:30  INFO 5892 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-22T11:19:23.987+05:30  INFO 5892 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 22609 ms
+2026-02-22T11:19:25.272+05:30  INFO 5892 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-22T11:19:25.508+05:30  INFO 5892 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2026-02-22T11:19:25.640+05:30  INFO 5892 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-22T11:19:26.459+05:30  INFO 5892 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-22T11:19:26.598+05:30  INFO 5892 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-22T11:19:28.362+05:30  INFO 5892 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5e5af20c
+2026-02-22T11:19:28.390+05:30  INFO 5892 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-22T11:19:28.780+05:30  WARN 5892 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-22T11:19:28.796+05:30  WARN 5892 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-02-22T11:19:40.085+05:30  INFO 5892 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-22T11:19:42.487+05:30  INFO 5892 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22T11:19:44.504+05:30  INFO 5892 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-22T11:19:54.467+05:30  INFO 5892 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
+2026-02-22T11:19:57.314+05:30  WARN 5892 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-22T11:19:59.848+05:30  INFO 5892 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2026-02-22T11:20:00.464+05:30  INFO 5892 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@52d7dc2d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2c822a91, org.springframework.security.web.context.SecurityContextHolderFilter@7a9dfe2c, org.springframework.security.web.header.HeaderWriterFilter@4db6edb3, org.springframework.web.filter.CorsFilter@611d6bb2, org.springframework.security.web.authentication.logout.LogoutFilter@1cde05bc, com.config.JwtAuthenticationFilter@6892edb0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5d63ce, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3d67e1b7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@c20fbe0, org.springframework.security.web.session.SessionManagementFilter@6191335f, org.springframework.security.web.access.ExceptionTranslationFilter@445f815f, org.springframework.security.web.access.intercept.AuthorizationFilter@27b6b0de]
+2026-02-22T11:20:03.578+05:30  INFO 5892 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-02-22T11:20:03.705+05:30  INFO 5892 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 65.937 seconds (process running for 67.333)
+2026-02-22T11:20:03.891+05:30  INFO 5892 --- [BACKEND] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-22T11:20:03.891+05:30  INFO 5892 --- [BACKEND] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-22T11:20:03.899+05:30  INFO 5892 --- [BACKEND] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2026-02-22T11:20:23.710+05:30  INFO 5892 --- [BACKEND] [http-nio-8080-exec-3] com.controller.pub.AuthController        : Attempting login for user: kashikaryash1@gmail.com
+2026-02-22T12:04:11.163+05:30  INFO 5892 --- [BACKEND] [http-nio-8080-exec-7] com.controller.pub.AuthController        : Attempting login for user: moderator1@example.com
+2026-02-22T12:18:32.921+05:30  WARN 5892 --- [BACKEND] [http-nio-8080-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1265, SQLState: 01000
+2026-02-22T12:18:32.956+05:30 ERROR 5892 --- [BACKEND] [http-nio-8080-exec-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncated for column 'sub_category' at row 1
+2026-02-22T12:19:15.884+05:30  WARN 5892 --- [BACKEND] [http-nio-8080-exec-9] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1265, SQLState: 01000
+2026-02-22T12:19:15.888+05:30 ERROR 5892 --- [BACKEND] [http-nio-8080-exec-9] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncated for column 'sub_category' at row 1
+2026-02-22T12:19:49.370+05:30  WARN 5892 --- [BACKEND] [http-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1265, SQLState: 01000
+2026-02-22T12:19:49.375+05:30 ERROR 5892 --- [BACKEND] [http-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncated for column 'sub_category' at row 1
+2026-02-22T12:20:09.266+05:30  WARN 5892 --- [BACKEND] [http-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1265, SQLState: 01000
+2026-02-22T12:20:09.274+05:30 ERROR 5892 --- [BACKEND] [http-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncated for column 'sub_category' at row 1
+2026-02-22T12:20:19.405+05:30  WARN 5892 --- [BACKEND] [http-nio-8080-exec-7] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1265, SQLState: 01000
+2026-02-22T12:20:20.151+05:30 ERROR 5892 --- [BACKEND] [http-nio-8080-exec-7] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncated for column 'sub_category' at row 1
+2026-02-22T12:33:22.206+05:30  INFO 14348 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 14348 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
+2026-02-22T12:33:22.329+05:30  INFO 14348 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
+2026-02-22T12:33:36.361+05:30  INFO 14348 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-22T12:33:39.616+05:30  INFO 14348 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3231 ms. Found 26 JPA repository interfaces.
+2026-02-22T12:33:43.223+05:30  INFO 14348 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-02-22T12:33:43.245+05:30  INFO 14348 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-22T12:33:43.246+05:30  INFO 14348 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2026-02-22T12:33:43.394+05:30  INFO 14348 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-22T12:33:43.397+05:30  INFO 14348 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 20716 ms
+2026-02-22T12:33:44.686+05:30  INFO 14348 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-22T12:33:45.007+05:30  INFO 14348 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2026-02-22T12:33:45.130+05:30  INFO 14348 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-22T12:33:46.658+05:30  INFO 14348 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-22T12:33:46.794+05:30  INFO 14348 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-22T12:33:48.239+05:30  INFO 14348 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@47d6a31a
+2026-02-22T12:33:48.248+05:30  INFO 14348 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-22T12:33:48.520+05:30  WARN 14348 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-22T12:33:48.527+05:30  WARN 14348 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-02-22T12:33:56.222+05:30  INFO 14348 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-22T12:33:58.151+05:30  INFO 14348 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22T12:34:00.852+05:30  INFO 14348 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-22T12:34:09.577+05:30  INFO 14348 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
+2026-02-22T12:34:11.453+05:30  WARN 14348 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-22T12:34:13.323+05:30  INFO 14348 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2026-02-22T12:34:13.662+05:30  INFO 14348 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@23ed88c9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3a00c9af, org.springframework.security.web.context.SecurityContextHolderFilter@a5de4af, org.springframework.security.web.header.HeaderWriterFilter@6f4ded72, org.springframework.web.filter.CorsFilter@11d0a25e, org.springframework.security.web.authentication.logout.LogoutFilter@2d751681, com.config.JwtAuthenticationFilter@5f482ecd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1641ee27, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7a9dfe2c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@27b6b0de, org.springframework.security.web.session.SessionManagementFilter@2e37e758, org.springframework.security.web.access.ExceptionTranslationFilter@4b0465bd, org.springframework.security.web.access.intercept.AuthorizationFilter@1019657]
+2026-02-22T12:34:17.403+05:30  INFO 14348 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-02-22T12:34:17.505+05:30  INFO 14348 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 56.719 seconds (process running for 58.206)
+2026-02-22T12:34:46.129+05:30  INFO 14348 --- [BACKEND] [http-nio-8080-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-22T12:34:46.139+05:30  INFO 14348 --- [BACKEND] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-22T12:34:46.179+05:30  INFO 14348 --- [BACKEND] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 37 ms
+2026-02-22T12:36:41.267+05:30  INFO 14348 --- [BACKEND] [http-nio-8080-exec-1] com.controller.pub.AuthController        : Attempting login for user: kashikaryash1@gmail.com
+2026-02-22T12:51:19.112+05:30  INFO 14348 --- [BACKEND] [http-nio-8080-exec-2] com.controller.pub.AuthController        : Attempting login for user: moderator2@example.com
+2026-02-22T12:51:53.734+05:30  INFO 14348 --- [BACKEND] [http-nio-8080-exec-1] com.controller.pub.AuthController        : Attempting login for user: moderator3@example.com
+2026-02-22T12:55:57.582+05:30  WARN 14348 --- [BACKEND] [http-nio-8080-exec-7] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1265, SQLState: 01000
+2026-02-22T12:55:57.586+05:30 ERROR 14348 --- [BACKEND] [http-nio-8080-exec-7] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncated for column 'sub_category' at row 1
+2026-02-22T13:10:15.479+05:30  INFO 14348 --- [BACKEND] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22T13:10:15.727+05:30  INFO 14348 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-22T13:10:15.935+05:30  INFO 14348 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-02-22T13:10:30.626+05:30  INFO 10384 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 10384 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
+2026-02-22T13:10:30.629+05:30  INFO 10384 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
+2026-02-22T13:10:34.811+05:30  INFO 10384 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-22T13:10:35.935+05:30  INFO 10384 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1111 ms. Found 26 JPA repository interfaces.
+2026-02-22T13:10:37.684+05:30  INFO 10384 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-02-22T13:10:37.711+05:30  INFO 10384 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-22T13:10:37.715+05:30  INFO 10384 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2026-02-22T13:10:37.901+05:30  INFO 10384 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-22T13:10:37.902+05:30  INFO 10384 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7186 ms
+2026-02-22T13:10:38.676+05:30  INFO 10384 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-22T13:10:38.826+05:30  INFO 10384 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2026-02-22T13:10:38.900+05:30  INFO 10384 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-22T13:10:39.309+05:30  INFO 10384 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-22T13:10:39.354+05:30  INFO 10384 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-22T13:10:40.003+05:30  INFO 10384 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2fce55d6
+2026-02-22T13:10:40.008+05:30  INFO 10384 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-22T13:10:40.155+05:30  WARN 10384 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-22T13:10:40.157+05:30  WARN 10384 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-02-22T13:10:43.012+05:30  INFO 10384 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-22T13:10:44.513+05:30  INFO 10384 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22T13:10:45.669+05:30  INFO 10384 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-22T13:10:48.875+05:30  INFO 10384 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
+2026-02-22T13:10:49.701+05:30  WARN 10384 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-22T13:10:50.584+05:30  INFO 10384 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2026-02-22T13:10:50.841+05:30  INFO 10384 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@643c5b25, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3c1569b2, org.springframework.security.web.context.SecurityContextHolderFilter@df9940b, org.springframework.security.web.header.HeaderWriterFilter@6b0b6001, org.springframework.web.filter.CorsFilter@45d46151, org.springframework.security.web.authentication.logout.LogoutFilter@2488fd50, com.config.JwtAuthenticationFilter@6d6cd631, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@63323f91, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3c066b66, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7fec168e, org.springframework.security.web.session.SessionManagementFilter@5a7412b0, org.springframework.security.web.access.ExceptionTranslationFilter@799ac0ef, org.springframework.security.web.access.intercept.AuthorizationFilter@c6c1921]
+2026-02-22T13:10:52.405+05:30  INFO 10384 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-02-22T13:10:52.447+05:30  INFO 10384 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 22.474 seconds (process running for 23.082)
+2026-02-22T13:11:00.669+05:30  INFO 10384 --- [BACKEND] [http-nio-8080-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-22T13:11:00.671+05:30  INFO 10384 --- [BACKEND] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-22T13:11:00.713+05:30  INFO 10384 --- [BACKEND] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 38 ms
+2026-02-22T13:14:20.778+05:30  WARN 10384 --- [BACKEND] [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1265, SQLState: 01000
+2026-02-22T13:14:20.788+05:30 ERROR 10384 --- [BACKEND] [http-nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncated for column 'sub_category' at row 1
+2026-02-22T13:14:48.428+05:30  INFO 10384 --- [BACKEND] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22T13:14:48.442+05:30  INFO 10384 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-22T13:14:48.481+05:30  INFO 10384 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-02-22T13:15:03.776+05:30  INFO 19396 --- [BACKEND] [main] com.BackendApplication                   : Starting BackendApplication using Java 17.0.12 with PID 19396 (C:\Users\kashi\OneDrive\Desktop\snapcart\backend\target\classes started by yashk in C:\Users\kashi\OneDrive\Desktop\snapcart\backend)
+2026-02-22T13:15:03.782+05:30  INFO 19396 --- [BACKEND] [main] com.BackendApplication                   : No active profile set, falling back to 1 default profile: "default"
+2026-02-22T13:15:07.036+05:30  INFO 19396 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-22T13:15:07.842+05:30  INFO 19396 --- [BACKEND] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 786 ms. Found 26 JPA repository interfaces.
+2026-02-22T13:15:09.287+05:30  INFO 19396 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-02-22T13:15:09.310+05:30  INFO 19396 --- [BACKEND] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-22T13:15:09.311+05:30  INFO 19396 --- [BACKEND] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2026-02-22T13:15:09.441+05:30  INFO 19396 --- [BACKEND] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-22T13:15:09.443+05:30  INFO 19396 --- [BACKEND] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5558 ms
+2026-02-22T13:15:10.197+05:30  INFO 19396 --- [BACKEND] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-22T13:15:10.320+05:30  INFO 19396 --- [BACKEND] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2026-02-22T13:15:10.373+05:30  INFO 19396 --- [BACKEND] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-22T13:15:10.797+05:30  INFO 19396 --- [BACKEND] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-22T13:15:10.842+05:30  INFO 19396 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-22T13:15:11.547+05:30  INFO 19396 --- [BACKEND] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@47d6a31a
+2026-02-22T13:15:11.551+05:30  INFO 19396 --- [BACKEND] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-22T13:15:11.692+05:30  WARN 19396 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-22T13:15:11.696+05:30  WARN 19396 --- [BACKEND] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-02-22T13:15:15.163+05:30  INFO 19396 --- [BACKEND] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-22T13:15:17.016+05:30  INFO 19396 --- [BACKEND] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22T13:15:20.999+05:30  INFO 19396 --- [BACKEND] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-22T13:15:29.172+05:30  INFO 19396 --- [BACKEND] [main] com.service.StripeService                : Initializing Stripe API with key
+2026-02-22T13:15:30.923+05:30  WARN 19396 --- [BACKEND] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-22T13:15:32.686+05:30  INFO 19396 --- [BACKEND] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2026-02-22T13:15:33.041+05:30  INFO 19396 --- [BACKEND] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2e37e758, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4db6edb3, org.springframework.security.web.context.SecurityContextHolderFilter@2922bf92, org.springframework.security.web.header.HeaderWriterFilter@7c9eb178, org.springframework.web.filter.CorsFilter@7fced31f, org.springframework.security.web.authentication.logout.LogoutFilter@18f67db4, com.config.JwtAuthenticationFilter@5f482ecd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@799ac0ef, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@18f7f928, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@61606235, org.springframework.security.web.session.SessionManagementFilter@5b4b2bfa, org.springframework.security.web.access.ExceptionTranslationFilter@736e0bf8, org.springframework.security.web.access.intercept.AuthorizationFilter@1ec72ab7]
+2026-02-22T13:15:35.414+05:30  INFO 19396 --- [BACKEND] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-02-22T13:15:35.539+05:30  INFO 19396 --- [BACKEND] [main] com.BackendApplication                   : Started BackendApplication in 32.578 seconds (process running for 33.438)
+2026-02-22T13:15:35.713+05:30  INFO 19396 --- [BACKEND] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-22T13:15:35.716+05:30  INFO 19396 --- [BACKEND] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-22T13:15:35.724+05:30  INFO 19396 --- [BACKEND] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2026-02-22T13:42:08.220+05:30  INFO 19396 --- [BACKEND] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22T13:42:08.392+05:30  INFO 19396 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-22T13:42:08.598+05:30  INFO 19396 --- [BACKEND] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
