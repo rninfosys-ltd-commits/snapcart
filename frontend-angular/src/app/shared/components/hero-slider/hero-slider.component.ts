@@ -40,28 +40,58 @@ export class HeroSliderComponent implements OnInit, OnDestroy {
     protected environment = environment;
 
     products = signal<any[]>([]);
+    flashDeals = signal<any[]>([]);
     currentIndex = signal(0);
     loading = signal(true);
     private timer: any;
 
     ngOnInit() {
-        this.fetchFeatured();
+        this.fetchData();
     }
 
     ngOnDestroy() {
         if (this.timer) clearInterval(this.timer);
     }
 
-    async fetchFeatured() {
+    async fetchData() {
         try {
-            const data = await this.productService.getFeatured();
-            this.products.set(data);
-            if (data.length > 1) {
+            const [featured, flash] = await Promise.all([
+                this.productService.getFeatured(),
+                this.productService.getFlashSales()
+            ]);
+            this.products.set(featured);
+            this.flashDeals.set(flash);
+            if (featured.length > 1) {
                 this.startAutoSlide();
             }
+        } catch (error) {
+            console.error('Error fetching hero data:', error);
         } finally {
             this.loading.set(false);
         }
+    }
+
+    // Keep helper for banner
+    get featuredFlashDeal() {
+        return this.flashDeals().length > 0 ? this.flashDeals()[0] : null;
+    }
+
+    getBannerImage(product: any): string {
+        if (product.primaryImage) return product.primaryImage;
+        if (product.variants && product.variants.length > 0) {
+            const primary = product.variants[0].images.find((img: any) => img.isPrimary);
+            if (primary) return primary.imageUrl;
+            if (product.variants[0].images.length > 0) return product.variants[0].images[0].imageUrl;
+        }
+        return 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=400';
+    }
+
+    getDiscount(product: any): number {
+        if (product.discountPercentage) return product.discountPercentage;
+        if (product.price && product.salePrice) {
+            return Math.round(((product.price - product.salePrice) / product.price) * 100);
+        }
+        return 60; // fallback
     }
 
     startAutoSlide() {

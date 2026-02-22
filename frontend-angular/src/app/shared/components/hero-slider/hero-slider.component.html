@@ -45,26 +45,25 @@
                 </div>
 
                 <!-- Side Banner (20%) -->
-                <div class="col-lg-4 d-none d-lg-block">
-                    <div class="side-banner-premium shadow-lg">
+                <div class="col-lg-4 d-none d-lg-block" *ngIf="featuredFlashDeal as deal">
+                    <div class="side-banner-premium shadow-lg" (click)="handleShopNow(deal)" style="cursor: pointer;">
                         <div class="banner-overlay"></div>
                         <div class="banner-content">
                             <div class="top-info">
                                 <span class="badge-premium">LIMITED EDITION</span>
-                                <h3 class="banner-title">Premium Footwear</h3>
-                                <p class="banner-subtitle">Curated styles for the modern explorer</p>
+                                <h3 class="banner-title">{{deal.name}}</h3>
+                                <p class="banner-subtitle">Special offer on {{deal.brandName}}</p>
                             </div>
 
                             <div class="offer-box">
                                 <span class="upto">UP TO</span>
-                                <span class="discount">60% OFF</span>
+                                <span class="discount">{{getDiscount(deal)}}% OFF</span>
                             </div>
 
-                            <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=400"
-                                class="banner-img" alt="Side Banner">
+                            <img [src]="getBannerImage(deal)" class="banner-img" [alt]="deal.name">
 
-                            <button class="explore-btn">
-                                EXPLORE BRANDS
+                            <button class="explore-btn" (click)="$event.stopPropagation(); handleShopNow(deal)">
+                                SHOP THE DEAL
                                 <mat-icon>trending_flat</mat-icon>
                             </button>
                         </div>
