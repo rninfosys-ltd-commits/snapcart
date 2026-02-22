@@ -258,6 +258,14 @@ public class ProductService {
                 .toList();
     }
 
+    public List<Category> getActiveCategories() {
+        return productRepository.findAll().stream()
+                .map(Product::getCategory)
+                .filter(Objects::nonNull)
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
     public List<Product> getRandomProducts(int limit) {
         List<Long> ids = productRepository.findRandomProductIds(limit);
         return productRepository.findAllById(ids);

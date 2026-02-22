@@ -144,6 +144,15 @@ export class ProductService {
         }
     }
 
+    async getActiveCategories(): Promise<string[]> {
+        try {
+            return await firstValueFrom(this.http.get<string[]>(`${this.apiUrl}/categories/active`));
+        } catch (err) {
+            console.error('Failed to fetch active categories', err);
+            return [];
+        }
+    }
+
     async getModeratorProducts(): Promise<Product[]> {
         try {
             return await firstValueFrom(this.http.get<Product[]>(`${environment.apiUrl}/moderator/products/my`));

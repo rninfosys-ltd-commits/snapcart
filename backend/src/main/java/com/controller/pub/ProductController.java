@@ -63,6 +63,14 @@ public class ProductController {
                 .map(productMapper::toResponse).toList();
     }
 
+    @GetMapping("/categories/active")
+    @PreAuthorize("permitAll()")
+    public ResponseEntity<List<String>> getActiveCategories() {
+        return ResponseEntity.ok(productService.getActiveCategories().stream()
+                .map(Enum::name)
+                .collect(Collectors.toList()));
+    }
+
     @GetMapping("/search")
     @PreAuthorize("permitAll()")
     public java.util.List<com.payload.response.ProductSearchResponse> searchProducts(@RequestParam String q) {

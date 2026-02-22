@@ -19,26 +19,11 @@
                     (click)="filterByCategory('All')">
                     All
                 </button>
-                <button class="filter-chip" [class.active]="selectedCategory() === 'MEN'"
-                    (click)="filterByCategory('MEN')">
-                    Men
+                @for (cat of activeCategories(); track cat) {
+                <button class="filter-chip" [class.active]="selectedCategory() === cat" (click)="filterByCategory(cat)">
+                    {{ cat | titlecase }}
                 </button>
-                <button class="filter-chip" [class.active]="selectedCategory() === 'WOMEN'"
-                    (click)="filterByCategory('WOMEN')">
-                    Women
-                </button>
-                <button class="filter-chip" [class.active]="selectedCategory() === 'KIDS'"
-                    (click)="filterByCategory('KIDS')">
-                    Kids
-                </button>
-                <button class="filter-chip" [class.active]="selectedCategory() === 'ELECTRONICS'"
-                    (click)="filterByCategory('ELECTRONICS')">
-                    Electronics
-                </button>
-                <button class="filter-chip" [class.active]="selectedCategory() === 'BEAUTY'"
-                    (click)="filterByCategory('BEAUTY')">
-                    Beauty
-                </button>
+                }
             </div>
 
             @if (loading()) {
@@ -77,7 +62,16 @@
         </div>
         }
 
-        <!-- Advertisement / Banner -->
+        <!-- Dynamic Flash Deal Banner (Replaces static banner) -->
+        @if (featuredFlashDeal()) {
+        <div class="row mb-4">
+            <div class="col-12">
+                <app-flash-deal-banner [product]="featuredFlashDeal()!"
+                    (shopNow)="navigateToProduct($event.modelNo)"></app-flash-deal-banner>
+            </div>
+        </div>
+        } @else {
+        <!-- Fallback banner if no flash deals (optional, but keep for layout) -->
         <div class="row mb-4">
             <div class="col-12">
                 <div class="promo-banner bg-white rounded-2 overflow-hidden shadow-sm d-flex align-items-center justify-content-between p-4"
@@ -86,10 +80,11 @@
                         <h2 class="text-white h3 mb-1 fw-bold">Big Billion Days</h2>
                         <p class="text-white opacity-90 mb-0">Minimum 50% Off on everything!</p>
                     </div>
-                    <button class="btn btn-light fw-bold px-4">SHOP NOW</button>
+                    <button class="btn btn-light fw-bold px-4" routerLink="/products">SHOP NOW</button>
                 </div>
             </div>
         </div>
+        }
 
         <!-- Recently Viewed -->
         <div class="horizontal-scroller">

@@ -1,7 +1,7 @@
 <div class="category-section">
     <div class="container px-4">
         <div class="category-carousel">
-            <a *ngFor="let cat of categories" [routerLink]="cat.link" class="category-item">
+            <a *ngFor="let cat of getDisplayCategories()" [routerLink]="cat.link" class="category-item">
                 <div class="icon-circle">
                     <img [src]="cat.image" [alt]="cat.name"
                         (error)="$event.target.src='https://cdn-icons-png.flaticon.com/512/3050/3050239.png'">

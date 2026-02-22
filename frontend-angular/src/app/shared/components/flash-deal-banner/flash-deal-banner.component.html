@@ -1,0 +1,25 @@
+
+<div class="flash-deal-banner" (click)="onShopNow()" [routerLink]="['/products', product.modelNo]">
+    <div class="banner-content">
+        <div class="badge-limited">FLASH SALE</div>
+        <h2 class="product-name">{{ product.name }}</h2>
+        <p class="brand-info">Special offer from {{ product.brandName }}</p>
+        
+        <div class="discount-label">
+            <span class="up-to">UP TO</span>
+            <span class="percentage">{{ discountPercentage }}% OFF</span>
+        </div>
+
+        <button class="shop-now-btn" (click)="$event.stopPropagation(); onShopNow()">
+            SHOP NOW <mat-icon>arrow_right_alt</mat-icon>
+        </button>
+    </div>
+    <div class="banner-image">
+        <div class="image-wrapper">
+            <img [src]="primaryImage" [alt]="product.name">
+        </div>
+        <div class="floating-card">
+            <img [src]="primaryImage" [alt]="product.name">
+        </div>
+    </div>
+</div>
