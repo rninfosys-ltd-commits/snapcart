@@ -65,6 +65,15 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/products', modelNo]);
   }
 
+  scrollContainer(container: HTMLElement, direction: 'left' | 'right') {
+    const scrollAmount = 600;
+    if (direction === 'left') {
+      container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    } else {
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  }
+
   filterByCategory(category: string) {
     this.selectedCategory.set(category);
   }

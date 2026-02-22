@@ -7,10 +7,23 @@
         <app-category-section class="mb-4 d-block"></app-category-section>
 
         <!-- Suggested For You (Horizontal Scroller) -->
+        <!-- Suggested For You (Horizontal Scroller) -->
         <div class="horizontal-scroller">
             <div class="section-header">
-                <h2>Suggested For You</h2>
-                <button class="view-all-btn btn btn-sm" routerLink="/products">VIEW ALL</button>
+                <div class="header-main">
+                    <h2>Suggested For You</h2>
+                </div>
+                <div class="header-actions">
+                    <div class="scroll-nav d-none d-md-flex me-3">
+                        <button mat-icon-button (click)="scrollContainer(suggestedList, 'left')">
+                            <mat-icon>chevron_left</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="scrollContainer(suggestedList, 'right')">
+                            <mat-icon>chevron_right</mat-icon>
+                        </button>
+                    </div>
+                    <button class="view-all-btn btn btn-sm" routerLink="/products">VIEW ALL</button>
+                </div>
             </div>
 
             <!-- Category Filter Chips -->
@@ -39,7 +52,7 @@
                 }
             </div>
             } @else {
-            <div class="scroll-container">
+            <div class="scroll-container" #suggestedList>
                 @for (product of displayedProducts(); track product.modelNo) {
                 <app-product-card [product]="product"></app-product-card>
                 }
@@ -51,10 +64,22 @@
         @if (flashDeals().length > 0) {
         <div class="horizontal-scroller">
             <div class="section-header">
-                <h2>Hot Deals ✨</h2>
-                <span class="badge bg-danger">Limited Time</span>
+                <div class="header-main">
+                    <h2>Hot Deals ✨</h2>
+                    <span class="badge bg-danger ms-2">Limited Time</span>
+                </div>
+                <div class="header-actions">
+                    <div class="scroll-nav d-none d-md-flex">
+                        <button mat-icon-button (click)="scrollContainer(dealsList, 'left')">
+                            <mat-icon>chevron_left</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="scrollContainer(dealsList, 'right')">
+                            <mat-icon>chevron_right</mat-icon>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="scroll-container">
+            <div class="scroll-container" #dealsList>
                 @for (deal of flashDeals(); track deal.modelNo) {
                 <app-product-card [product]="deal"></app-product-card>
                 }
