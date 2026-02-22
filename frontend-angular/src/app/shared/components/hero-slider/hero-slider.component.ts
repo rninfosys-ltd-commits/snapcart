@@ -116,10 +116,6 @@ export class HeroSliderComponent implements OnInit, OnDestroy {
     get activeSideProduct() {
         const deals = this.flashDeals();
         if (deals.length > 0) return deals[this.sideIndex()];
-
-        const featured = this.products();
-        if (featured.length > 0) return featured[0];
-
         return null;
     }
 
