@@ -12,7 +12,7 @@ RUN npm run build -- --configuration production
 # Stage 2: Serve the app with Nginx
 FROM nginx:alpine
 
-COPY --from=build /app/dist/frontend-angular/browser /usr/share/nginx/html
+COPY --from=build /app/dist/frontend-angular/browser/ /usr/share/nginx/html/
 COPY nginx.conf /etc/nginx/templates/default.conf.template
 
 EXPOSE 80
