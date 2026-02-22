@@ -175,13 +175,27 @@
 
 @media (max-width: 991px) {
     .top-bar {
-        /* Height stays 80px or can be reduced if too tall for mobile? Let's keep 80 or slightly less (64) */
         height: 64px;
 
         .actions-container {
-            /* Keep logical order: Toggle, Logo, (gap), Actions */
             grid-template-columns: auto auto 1fr auto;
             gap: 0.5rem;
+        }
+
+        .logo {
+            .logo-icon {
+                font-size: 28px;
+                width: 28px;
+                height: 28px;
+            }
+
+            .brand-name {
+                font-size: 1.25rem;
+            }
+
+            .brand-tagline {
+                display: none;
+            }
         }
     }
 
@@ -189,10 +203,9 @@
         display: none;
     }
 
-    /* Keep user-control visible but compact */
     .user-control {
-        margin-left: 4px;
-        padding-left: 4px;
+        margin-left: 0;
+        padding-left: 0;
         border-left: none;
 
         .user-name {
@@ -205,24 +218,40 @@
         }
 
         .auth-guest {
+            gap: 0.5rem;
+
             .login-link {
-                font-size: 0.8rem;
-                min-width: auto !important;
-                padding: 0 6px !important;
+                font-size: 0.75rem;
+                padding: 0 4px !important;
             }
 
             .join-btn {
-                font-size: 0.75rem;
-                padding: 0 0.75rem !important;
-                height: 30px;
-                line-height: 30px;
+                font-size: 0.7rem;
+                padding: 0 0.5rem !important;
+                height: 28px;
+                line-height: 28px;
             }
         }
     }
 
-    /* Hide action icons except profile on very small screens if needed */
     .action-icons {
-        gap: 0.5rem;
+        gap: 0.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-bar .actions-container {
+        gap: 0.25rem;
+    }
+
+    .logo .brand-name {
+        font-size: 1.1rem;
+    }
+
+    .mobile-menu-btn {
+        width: 36px;
+        height: 36px;
+        margin-right: 0.25rem;
     }
 }
 

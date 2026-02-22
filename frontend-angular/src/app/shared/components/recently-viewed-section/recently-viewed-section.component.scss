@@ -112,3 +112,22 @@
         color: white !important;
     }
 }
+
+@media (max-width: 768px) {
+    .history-card {
+        min-width: 160px;
+        max-width: 160px;
+    }
+
+    .img-box {
+        height: 140px;
+    }
+
+    .item-name {
+        font-size: 0.8rem;
+    }
+
+    .item-price {
+        font-size: 0.9rem;
+    }
+}

@@ -205,6 +205,36 @@ import { environment } from '../../../../environments/environment';
     }
     .action-btn:hover { background: #e5e7eb; }
     .action-btn.added { background: #dcfce7; color: #166534; }
+
+    @media (max-width: 768px) {
+      .product-card { border-radius: 12px; }
+      .badges { top: 8px; left: 8px; gap: 4px; }
+      .badge { padding: 2px 6px; font-size: 8px; }
+      .wishlist-btn { top: 8px; right: 8px; width: 30px; height: 30px; }
+      .wishlist-btn mat-icon { font-size: 16px; width: 16px; height: 16px; }
+      
+      .card-body { padding: 12px; }
+      .product-name { font-size: 13px; -webkit-line-clamp: 2; margin-bottom: 2px; }
+      .product-desc { display: none; }
+      .price { font-size: 15px; }
+      .original-price, .discount-text { font-size: 10px; }
+      
+      .overlay { 
+        opacity: 1; 
+        transform: translateY(0); 
+        padding: 8px; 
+        background: transparent;
+        justify-content: flex-end;
+        gap: 6px;
+      }
+      .overlay button { transform: scale(0.85); margin: 0; }
+      .product-img { max-width: 85%; max-height: 85%; }
+    }
+
+    @media (max-width: 480px) {
+      .price-row { flex-wrap: wrap; gap: 4px; }
+      .product-name { font-size: 12px; height: 34px; }
+    }
   `]
 })
 export class ProductCardComponent {

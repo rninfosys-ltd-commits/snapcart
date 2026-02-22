@@ -8,7 +8,7 @@
         <div class="container py-4">
             <div class="row g-4">
                 <!-- Main Slider (80%) -->
-                <div class="col-lg-8" *ngIf="products().length > 0">
+                <div class="col-12 col-lg-8 mb-3 mb-lg-0" *ngIf="products().length > 0">
                     <div class="hero-main shadow-lg">
                         <div class="slider-box" *ngFor="let product of products(); let i = index"
                             [hidden]="currentIndex() !== i">
@@ -45,7 +45,7 @@
                 </div>
 
                 <!-- Side Banner Slider (20%) -->
-                <div class="col-lg-4 d-none d-lg-block" *ngIf="activeSideProduct as deal">
+                <div class="col-12 col-lg-4" *ngIf="activeSideProduct as deal">
                     <div class="side-banner-premium shadow-lg" (click)="handleShopNow(deal)" style="cursor: pointer;"
                         [style.backgroundImage]="'url(' + getBannerImage(deal) + ')'">
                         <div class="banner-overlay"></div>
