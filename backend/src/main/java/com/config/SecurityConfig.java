@@ -106,6 +106,7 @@ public class SecurityConfig {
                                                                 "/api/public/**",
                                                                 "/api/images/**",
                                                                 "/api/visitors/**",
+                                                                "/api/delivery/**",
                                                                 "/actuator/**")
                                                 .permitAll()
 
