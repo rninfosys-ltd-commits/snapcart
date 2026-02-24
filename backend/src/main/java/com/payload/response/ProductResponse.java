@@ -2,7 +2,6 @@ package com.payload.response;
 
 import lombok.Data;
 import java.util.List;
-import java.time.LocalDateTime;
 
 @Data
 public class ProductResponse {
@@ -14,8 +13,6 @@ public class ProductResponse {
     private String colorHex;
     private double price;
     private int quantity;
-    private Double salePrice;
-    private LocalDateTime saleEndTime;
     private String category;
     private String subCategory;
     private String productGroup;

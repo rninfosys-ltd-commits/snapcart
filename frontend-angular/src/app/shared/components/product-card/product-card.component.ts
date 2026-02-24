@@ -17,10 +17,7 @@ import { environment } from '../../../../environments/environment';
     <div class="product-card" (mouseenter)="isHovered.set(true)" (mouseleave)="isHovered.set(false)" (click)="onViewDetails()">
       <!-- Badges -->
       <div class="badges">
-        <span *ngIf="isFlashSaleActive()" class="badge discount">
-          -{{ Math.round(((product.price - product.salePrice) / product.price) * 100) }}%
-        </span>
-        <span *ngIf="!isFlashSaleActive() && product.discount" class="badge discount">{{product.discount}}% OFF</span>
+        <span *ngIf="product.discount" class="badge discount">{{product.discount}}% OFF</span>
         <span *ngIf="product.quantity === 0" class="badge out">Out of Stock</span>
         <span *ngIf="product.quantity > 0 && product.quantity <= 5" class="badge low">Low Stock</span>
         <span *ngIf="isInCart()" class="badge cart">In Cart</span>
@@ -55,12 +52,9 @@ import { environment } from '../../../../environments/environment';
         <p class="product-desc" [title]="product.description">{{product.description}}</p>
         
         <div class="price-row">
-          <span class="price">{{(isFlashSaleActive() ? product.salePrice : product.price) | currency:'INR':'symbol':'1.0-0'}}</span>
-          <span *ngIf="isFlashSaleActive() || (product.originalPrice > product.price)" class="original-price">
-            {{(isFlashSaleActive() ? product.price : product.originalPrice) | currency:'INR':'symbol':'1.0-0'}}
-          </span>
-          <span *ngIf="isFlashSaleActive()" class="discount-text">
-             {{ Math.round(((product.price - product.salePrice) / product.price) * 100) }}% OFF
+          <span class="price">{{product.price | currency:'INR':'symbol':'1.0-0'}}</span>
+          <span *ngIf="product.originalPrice > product.price" class="original-price">
+            {{product.originalPrice | currency:'INR':'symbol':'1.0-0'}}
           </span>
         </div>
       </div>
@@ -256,11 +250,6 @@ export class ProductCardComponent {
 
   isInWishlist = computed(() => {
     return this.wishlistService.wishlistItems().some((item: any) => item.productModelNo === this.product.modelNo);
-  });
-
-  isFlashSaleActive = computed(() => {
-    if (!this.product.salePrice || !this.product.saleEndTime) return false;
-    return new Date(this.product.saleEndTime) > new Date();
   });
 
   currentImage() {

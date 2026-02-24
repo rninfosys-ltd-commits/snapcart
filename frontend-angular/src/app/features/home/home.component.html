@@ -58,43 +58,7 @@
             </div>
         </div>
 
-        <!-- Flash Deals / Sponsored -->
-        @if (flashDeals().length > 0) {
-        <div class="horizontal-scroller">
-            <div class="section-header">
-                <div class="header-main">
-                    <h2>Hot Deals ✨</h2>
-                    <span class="badge bg-danger ms-2">Limited Time</span>
-                </div>
-                <div class="header-actions">
-                    <div class="scroll-nav d-none d-md-flex">
-                        <button mat-icon-button (click)="scrollContainer(dealsList, 'left')">
-                            <mat-icon>chevron_left</mat-icon>
-                        </button>
-                        <button mat-icon-button (click)="scrollContainer(dealsList, 'right')">
-                            <mat-icon>chevron_right</mat-icon>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="scroll-container" #dealsList>
-                @for (deal of flashDeals(); track deal.modelNo) {
-                <app-product-card [product]="deal"></app-product-card>
-                }
-            </div>
-        </div>
-        }
-
-        <!-- Dynamic Flash Deal Banner (Replaces static banner) -->
-        @if (featuredFlashDeal()) {
-        <div class="row mb-4">
-            <div class="col-12">
-                <app-flash-deal-banner [product]="featuredFlashDeal()!"
-                    (shopNow)="navigateToProduct($event.modelNo)"></app-flash-deal-banner>
-            </div>
-        </div>
-        } @else {
-        <!-- Fallback banner if no flash deals (optional, but keep for layout) -->
+        <!-- Banner (Always keep layout consistent) -->
         <div class="row mb-4">
             <div class="col-12">
                 <div class="promo-banner bg-white rounded-2 overflow-hidden shadow-sm d-flex align-items-center justify-content-between p-4"
@@ -107,7 +71,6 @@
                 </div>
             </div>
         </div>
-        }
 
         <!-- Recently Viewed -->
         <div class="horizontal-scroller">

@@ -10,7 +10,6 @@ import { AuthService } from '../../core/services/auth.service';
 import { ProductService } from '../../core/services/product.service';
 import { Product } from '../../core/models/models';
 import { ProductCardComponent } from '../../shared/components/product-card/product-card.component';
-import { FlashDealBannerComponent } from '../../shared/components/flash-deal-banner/flash-deal-banner.component';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +20,6 @@ import { FlashDealBannerComponent } from '../../shared/components/flash-deal-ban
     RecentlyViewedSectionComponent,
     CategorySectionComponent,
     ProductCardComponent,
-    FlashDealBannerComponent,
     MatIconModule,
     MatButtonModule,
     RouterLink
@@ -36,7 +34,6 @@ export class HomeComponent implements OnInit {
 
   user = this.auth.user;
   randomProducts = signal<Product[]>([]);
-  flashDeals = signal<Product[]>([]);
   activeCategories = signal<string[]>([]);
   loading = signal(true);
   loadingMore = signal(false);
@@ -44,12 +41,6 @@ export class HomeComponent implements OnInit {
   currentPage = signal(0);
   hasMore = signal(true);
   selectedCategory = signal<string>('All');
-
-  // Computed featured flash deal for the banner
-  featuredFlashDeal = computed(() => {
-    const deals = this.flashDeals();
-    return deals.length > 0 ? deals[0] : null;
-  });
 
   // Computed signal for filtered products
   displayedProducts = computed(() => {
@@ -131,13 +122,11 @@ export class HomeComponent implements OnInit {
     this.loading.set(true);
     this.currentPage.set(0);
     try {
-      const [pageData, flash, categories] = await Promise.all([
+      const [pageData, categories] = await Promise.all([
         this.productService.getProductsPaginated(0, this.pageSize()),
-        this.productService.getFlashSales(),
         this.productService.getActiveCategories()
       ]);
       this.randomProducts.set(pageData.content || []);
-      this.flashDeals.set(flash);
       this.activeCategories.set(categories);
       this.hasMore.set(!pageData.last && !pageData.empty);
     } catch (error) {

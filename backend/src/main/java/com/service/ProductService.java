@@ -345,8 +345,6 @@ public class ProductService {
         variant.setQuantity(vr.getQuantity());
         variant.setSku(vr.getSku());
         variant.setStyleCode(vr.getStyleCode());
-        variant.setSalePrice(vr.getSalePrice());
-        variant.setSaleEndTime(vr.getSaleEndTime());
 
         if (vr.getImageUrls() != null && !vr.getImageUrls().isEmpty()) {
             for (String url : vr.getImageUrls()) {
@@ -367,23 +365,6 @@ public class ProductService {
         if (!variant.getImages().isEmpty() && variant.getImages().stream().noneMatch(ProductImage::isPrimary)) {
             variant.getImages().get(0).setPrimary(true);
         }
-    }
-
-    public List<Product> getFlashSaleProducts() {
-        // First try to find products with active flash sales (saleEndTime in future)
-        List<ProductVariant> variants = productVariantRepository.findBySaleEndTimeAfter(java.time.LocalDateTime.now());
-
-        // If none found, fallback to any product with a salePrice set
-        if (variants.isEmpty()) {
-            variants = productVariantRepository.findBySalePriceIsNotNull().stream()
-                    .filter(v -> v.getSalePrice() < v.getPrice())
-                    .collect(Collectors.toList());
-        }
-
-        return variants.stream()
-                .map(ProductVariant::getProduct)
-                .distinct()
-                .collect(Collectors.toList());
     }
 
     public List<Product> getProductsByStyleCode(String styleCode) {
@@ -556,7 +537,6 @@ public class ProductService {
             attributeService.syncAttributes(variant, vDto.getColor(), vDto.getColorHex(), vDto.getSize());
             variant.setSku(vDto.getSku());
             variant.setStyleCode(vDto.getStyleCode());
-            variant.setSalePrice(vDto.getSalePrice());
 
             if (vDto.getImages() != null) {
                 variant.getImages().clear();

@@ -38,9 +38,6 @@ public class ProductVariant {
     @Column(nullable = false)
     private int quantity;
 
-    private Double salePrice;
-    private java.time.LocalDateTime saleEndTime;
-
     // --- Legacy Fields (re-enabled for DB compatibility) ---
     @Column(name = "color")
     private String color;

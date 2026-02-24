@@ -121,13 +121,6 @@ public class ProductController {
         return ResponseEntity.ok(productService.getFeaturedProducts());
     }
 
-    @GetMapping("/flash-sale")
-    public ResponseEntity<List<ProductResponse>> getFlashSaleProducts() {
-        // Updated logic: Service returns Products derived from flash sale variants
-        return ResponseEntity
-                .ok(productService.getFlashSaleProducts().stream().map(productMapper::toResponse).toList());
-    }
-
     @GetMapping("/recommendations")
     @PreAuthorize("permitAll()")
     public ResponseEntity<List<ProductResponse>> getRecommendations() {

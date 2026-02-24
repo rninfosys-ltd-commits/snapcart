@@ -15,8 +15,6 @@ export interface ProductVariant {
     price: number;
     quantity: number;
     images: ProductImage[];
-    salePrice?: number;
-    saleEndTime?: string; // ISO date string
 }
 
 export interface Product {
@@ -26,8 +24,6 @@ export interface Product {
     brandName: string;
     description: string;
     price: number; // Base price (lowest variant or default)
-    salePrice?: number;
-    saleEndTime?: string;
     discountPercentage?: number;
 
     category: string;

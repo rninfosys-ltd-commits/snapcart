@@ -49,11 +49,7 @@ public class CartService {
                     // Force load variant
                     if (item.getVariant() != null) {
                         ProductVariant v = item.getVariant();
-                        Double activePrice = (v.getSalePrice() != null && v.getSaleEndTime() != null
-                                && v.getSaleEndTime().isAfter(java.time.LocalDateTime.now()))
-                                        ? v.getSalePrice()
-                                        : v.getPrice();
-                        item.setPrice(activePrice);
+                        item.setPrice(v.getPrice());
                     } else {
                         iterator.remove(); // Remove null variant items
                     }
@@ -102,21 +98,16 @@ public class CartService {
                 .filter(item -> item.getVariant().getId().equals(variant.getId()))
                 .findFirst();
 
-        Double activePrice = (variant.getSalePrice() != null && variant.getSaleEndTime() != null
-                && variant.getSaleEndTime().isAfter(java.time.LocalDateTime.now()))
-                        ? variant.getSalePrice()
-                        : variant.getPrice();
-
         if (existingItem.isPresent()) {
             CartItem item = existingItem.get();
             item.setQuantity(item.getQuantity() + request.getQuantity());
-            item.setPrice(activePrice);
+            item.setPrice(variant.getPrice());
         } else {
             CartItem newItem = new CartItem();
             newItem.setCart(cart);
             newItem.setVariant(variant);
             newItem.setQuantity(request.getQuantity());
-            newItem.setPrice(activePrice);
+            newItem.setPrice(variant.getPrice());
             cart.getItems().add(newItem);
         }
 

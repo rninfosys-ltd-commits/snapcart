@@ -60,8 +60,6 @@ public class ProductMapper {
             res.setPrice(v.getPrice());
             res.setQuantity(v.getQuantity()); // Total quantity? Or first variant quantity?
                                               // Ideally sum of all quantities but let's stick to simple logic
-            res.setSalePrice(v.getSalePrice());
-            res.setSaleEndTime(v.getSaleEndTime());
             res.setStyleCode(v.getStyleCode());
 
             // Flatten images for backward compat
@@ -91,8 +89,6 @@ public class ProductMapper {
         dto.setQuantity(v.getQuantity());
         dto.setSku(v.getSku());
         dto.setStyleCode(v.getStyleCode());
-        dto.setSalePrice(v.getSalePrice());
-        dto.setSaleEndTime(v.getSaleEndTime());
 
         List<ProductVariantDTO.ProductImageDTO> images = v.getImages().stream()
                 .map(img -> {

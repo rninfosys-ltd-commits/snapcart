@@ -14,9 +14,6 @@ public class ProductVariantDTO {
     private String sku;
     private String styleCode;
 
-    private Double salePrice;
-    private java.time.LocalDateTime saleEndTime;
-
     private List<ProductImageDTO> images;
 
     @Data

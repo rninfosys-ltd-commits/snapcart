@@ -71,15 +71,6 @@ export class ProductService {
         }
     }
 
-    async getFlashSales(): Promise<Product[]> {
-        try {
-            return await firstValueFrom(this.http.get<Product[]>(`${this.apiUrl}/flash-sale`));
-        } catch (err) {
-            console.error('Failed to fetch flash sales', err);
-            return [];
-        }
-    }
-
 
     async getProductByModelNo(modelNo: string): Promise<Product> {
         try {
